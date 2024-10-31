@@ -6,7 +6,8 @@ const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, 1280, 720);
+	Novice::Initialize(kWindowTitle, 1920, 1080);
+	Novice::SetWindowMode(kFullscreen);
 
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
