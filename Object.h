@@ -1,5 +1,5 @@
 #pragma once
-class Object
+class IntObject
 {
 protected:
 
@@ -7,5 +7,14 @@ protected:
 	int posY_;
 	int speed_;
 	int radius_;
+};
+
+class FloatObject {
+protected:
+
+	float posX_;
+	float posY_;
+	float velocity_;
+	float radius_;
 };
 
