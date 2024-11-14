@@ -1,17 +1,27 @@
+//ソースファイル
 #include <Novice.h>
 
+//ヘッダーファイル
+#include "struct.h"
+#include "player.h"
+
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
+
+//コメントエリア
+/**/
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, 1920, 1080);
-	Novice::SetWindowMode(kFullscreen);
+	//Novice::SetWindowMode(kFullscreen);
 
-	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	//キー入力を受け取る箱
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
+
+	Player* player = new Player();
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -26,7 +36,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-
+		player->Update(keys);
 
 		///
 		/// ↑更新処理ここまで
@@ -36,6 +46,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
+		player->Draw();
+		Novice::ScreenPrintf(20, 20, "velocity.x:%5.1f", player->velocity_.x);
+		Novice::ScreenPrintf(20, 40, "velocity.y:%5.1f", player->velocity_.y);
+		Novice::ScreenPrintf(20, 60, "press keys A:%d", keys[DIK_A]);
+		Novice::ScreenPrintf(20, 80, "press keys D:%d", keys[DIK_D]);
 
 
 		///
