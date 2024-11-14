@@ -1,20 +1,27 @@
 #pragma once
-class IntObject
-{
-protected:
+#include "struct.h"
 
-	int posX_;
-	int posY_;
-	int speed_;
+class IntObject{
+protected:
+	//メンバ変数
+	IntVector2 pos_;
+	IntVector2 leftTop_;
+	IntVector2 leftBottom_;
+	IntVector2 rightBottom_;
+	IntVector2 rightTop_;
 	int radius_;
+	Images image;
 };
 
 class FloatObject {
 protected:
-
-	float posX_;
-	float posY_;
-	float velocity_;
+	//メンバ変数
+	Vector2 pos_;
+	Vector2 leftTop_;
+	Vector2 leftBottom_;
+	Vector2 rightBottom_;
+	Vector2 rightTop_;
 	float radius_;
+	Images image;
 };
 
