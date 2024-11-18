@@ -50,6 +50,9 @@
     <ClCompile Include="player.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="weapon.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector4.h">
       <Filter>最初からいる邪魔なほぼ使わん奴ら</Filter>
+    </ClInclude>
+    <ClInclude Include="weapon.h">
+      <Filter>ヘッダー入れるとこ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
