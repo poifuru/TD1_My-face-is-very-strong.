@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		player->Update(keys);
+		player->Update(keys, preKeys);
 
 		///
 		/// ↑更新処理ここまで
@@ -46,12 +46,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
-		player->Draw();
-		Novice::ScreenPrintf(20, 20, "velocity.x:%5.1f", player->velocity_.x);
-		Novice::ScreenPrintf(20, 40, "velocity.y:%5.1f", player->velocity_.y);
-		Novice::ScreenPrintf(20, 60, "press keys A:%d", keys[DIK_A]);
-		Novice::ScreenPrintf(20, 80, "press keys D:%d", keys[DIK_D]);
+		//地面
+		Novice::DrawLine(0, 900, 1920, 900, BLACK);
 
+		player->Draw();
+		
 
 		///
 		/// ↑描画処理ここまで
