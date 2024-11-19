@@ -1,7 +1,7 @@
 #pragma once
 #include <Novice.h>
 
-//\‘¢‘Ì‚ÌéŒ¾
+//æ§‹é€ ä½“ã®å®£è¨€
 struct Vector2 {
 	float x;
 	float y;
@@ -12,12 +12,12 @@ struct IntVector2 {
 	int y;
 };
 
-//‰æ‘œ‚ğ“ü‚ê‚Ä‚¨‚­\‘¢‘Ì
+//ç”»åƒã‚’å…¥ã‚Œã¦ãŠãæ§‹é€ ä½“
 struct Images {
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
 };
 
-//ƒIƒuƒWƒFƒNƒg‚Ì\‘¢‘Ì====================
+//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“====================
 struct Box {
 	Vector2 pos;
 	float width;

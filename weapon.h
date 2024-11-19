@@ -4,12 +4,12 @@
 
 class Weapon : public Object {
 public:
-	//メンバ変数
+	//繝｡繝ｳ繝仙､画焚
 	Quad bullet_;
 	Quad sword_;
 	int wheelScroll_;
 
-	//コンストラクタ
+	//繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ
 	Weapon();
 };
 

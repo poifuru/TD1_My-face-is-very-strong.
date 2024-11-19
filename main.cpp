@@ -1,70 +1,70 @@
-//<>ƒwƒbƒ_[ƒtƒ@ƒCƒ‹
+//<>ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 #include <Novice.h>
 
-//""ƒwƒbƒ_[ƒtƒ@ƒCƒ‹
+//""ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 #include "struct.h"
 #include "player.h"
 
-const char kWindowTitle[] = "LC1A_25_ƒ}ƒXƒ„_ƒSƒE_ƒ^ƒCƒgƒ‹";
+const char kWindowTitle[] = "LC1A_25_ãƒžã‚¹ãƒ¤_ã‚´ã‚¦_ã‚¿ã‚¤ãƒˆãƒ«";
 
-//ƒRƒƒ“ƒgƒGƒŠƒA
+//ã‚³ãƒ¡ãƒ³ãƒˆã‚¨ãƒªã‚¢
 /**/
 
-// WindowsƒAƒvƒŠ‚Å‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg(mainŠÖ”)
+// Windowsã‚¢ãƒ—ãƒªã§ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ(mainé–¢æ•°)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
-	// ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+	// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 	Novice::Initialize(kWindowTitle, 1920, 1080);
 	Novice::SetWindowMode(kFullscreen);
 
-	//ƒL[“ü—Í‚ðŽó‚¯Žæ‚é” 
+	//ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹ç®±
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
 
 	Player* player = new Player();
 
-	// ƒEƒBƒ“ƒhƒE‚Ì~ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚é‚Ü‚Åƒ‹[ƒv
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®Ã—ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 	while (Novice::ProcessMessage() == 0) {
-		// ƒtƒŒ[ƒ€‚ÌŠJŽn
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®é–‹å§‹
 		Novice::BeginFrame();
 
-		// ƒL[“ü—Í‚ðŽó‚¯Žæ‚é
+		// ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹
 		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
 
 		///
-		/// «XVˆ—‚±‚±‚©‚ç
+		/// â†“æ›´æ–°å‡¦ç†ã“ã“ã‹ã‚‰
 		///
 
 		player->Update(keys, preKeys);
 
 		///
-		/// ªXVˆ—‚±‚±‚Ü‚Å
+		/// â†‘æ›´æ–°å‡¦ç†ã“ã“ã¾ã§
 		///
 
 		///
-		/// «•`‰æˆ—‚±‚±‚©‚ç
+		/// â†“æç”»å‡¦ç†ã“ã“ã‹ã‚‰
 		///
 
-		//’n–Ê
+		//åœ°é¢
 		Novice::DrawLine(0, 900, 1920, 900, BLACK);
 
 		player->Draw();
 		
 		///
-		/// ª•`‰æˆ—‚±‚±‚Ü‚Å
+		/// â†‘æç”»å‡¦ç†ã“ã“ã¾ã§
 		///
 
-		// ƒtƒŒ[ƒ€‚ÌI—¹
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµ‚äº†
 		Novice::EndFrame();
 
-		// ESCƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒ‹[ƒv‚ð”²‚¯‚é
+		// ESCã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		if (preKeys[DIK_ESCAPE] == 0 && keys[DIK_ESCAPE] != 0) {
 			break;
 		}
 	}
 
-	// ƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹
+	// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†
 	Novice::Finalize();
 	return 0;
 }
