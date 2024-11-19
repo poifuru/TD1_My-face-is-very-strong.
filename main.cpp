@@ -1,7 +1,7 @@
-//ソースファイル
+//<>ヘッダーファイル
 #include <Novice.h>
 
-//ヘッダーファイル
+//""ヘッダーファイル
 #include "struct.h"
 #include "player.h"
 
@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, 1920, 1080);
-	//Novice::SetWindowMode(kFullscreen);
+	Novice::SetWindowMode(kFullscreen);
 
 	//キー入力を受け取る箱
 	char keys[256] = { 0 };
@@ -51,7 +51,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		player->Draw();
 		
-
 		///
 		/// ↑描画処理ここまで
 		///

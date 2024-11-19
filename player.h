@@ -1,19 +1,26 @@
 #pragma once
 #include "struct.h"
 #include "Object.h"
+#include "weapon.h"
 
 
-class Player : public FloatObject{
+class Player : public Object{
 public:
 	//メンバ変数
+	int stickX_;
+	int stickY_;
 	Vector2 velocity_;
 	int color_;
+
 	/*パリィ*/
 	int isParry_;
 	int parryFlame_;
+
 	/*ジャンプ*/
 	int isJump_;
-	//int JumpSizeFlame_;
+
+	/*武器*/
+	Weapon* weapon_;
 
 	//コンストラクタ
 	Player();

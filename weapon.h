@@ -1,10 +1,10 @@
 #pragma once
 #include "struct.h"
 
-class Weapon{
+class Weapon : public Object{
+public:
 	//メンバ変数
-	Quad* Gun;
-	Quad* bullet;
-	Quad* sword;
+	Quad bullet;
+	Quad sword;
 };
 
