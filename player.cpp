@@ -19,6 +19,8 @@ Player::Player(){
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
+
+	weapon_ = new Weapon();
 }
 
 Player::~Player(){

@@ -3,7 +3,6 @@
 #include "Object.h"
 #include "weapon.h"
 
-
 class Player : public Object{
 public:
 	//メンバ変数
