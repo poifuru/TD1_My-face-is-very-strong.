@@ -6,31 +6,31 @@
 
 class Player : public Object{
 public:
-	//ãƒ¡ãƒ³ãƒå¤‰æ•°
+	//ƒƒ“ƒo•Ï”
 	int stickX_;
 	int stickY_;
 	Vector2 velocity_;
 	int color_;
 
-	/*ãƒ‘ãƒªã‚£*/
+	/*ƒpƒŠƒB*/
 	int isParry_;
 	int parryFlame_;
 
-	/*ã‚¸ãƒ£ãƒ³ãƒ—*/
+	/*ƒWƒƒƒ“ƒv*/
 	int isJump_;
 
-	/*æ­¦å™¨*/
+	/*•Ší*/
 	int attack_;
 	int attackingTimer_;
 	Weapon* weapon_;
 
-	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	Player();
 
-	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//ƒfƒXƒgƒ‰ƒNƒ^
 	~Player();
 
-	//ãƒ¡ãƒ³ãƒé–¢æ•°
+	//ƒƒ“ƒoŠÖ”
 	void Update(const char keys[], const char preKeys[]);
 	void Draw();
 };

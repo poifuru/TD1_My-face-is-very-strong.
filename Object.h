@@ -3,7 +3,7 @@
 
 class Object {
 protected:
-	//ãƒ¡ãƒ³ãƒå¤‰æ•°
+	//ƒƒ“ƒo•Ï”
 	Box box_;
 	Circle circle_;
 	Quad quad_;
