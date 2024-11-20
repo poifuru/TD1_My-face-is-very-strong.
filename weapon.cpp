@@ -7,8 +7,8 @@ Weapon::Weapon(){
 	bullet_.rightBottom = {};
 	bullet_.rightTop = {};
 	bullet_.imagePos = {};
-	bullet_.width = 32;
-	bullet_.height = 32;
+	bullet_.imageWidth = 32;
+	bullet_.imageHeight = 32;
 	bullet_.image;
 	bullet_.color = WHITE;
 
@@ -18,8 +18,11 @@ Weapon::Weapon(){
 	sword_.rightBottom = {};
 	sword_.rightTop = {};
 	sword_.imagePos = {};
-	sword_.width = 32;
-	sword_.height = 32;
+	sword_.imageWidth = 32;
+	sword_.imageHeight = 32;
 	sword_.image;
 	sword_.color = WHITE;
+
+	wheelScroll_ = -60;
+
 }

@@ -37,14 +37,14 @@ struct Circle {
 
 struct Quad {
 	Vector2 pos;
-	float radius;
+	Vector2 radius;
 	Vector2 leftTop;
 	Vector2 leftBottom;
 	Vector2 rightBottom;
 	Vector2 rightTop;
 	IntVector2 imagePos;
-	int width;
-	int height;
+	int imageWidth;
+	int imageHeight;
 	Images image;
 	int color;
 };
