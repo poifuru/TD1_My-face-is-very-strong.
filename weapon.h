@@ -7,6 +7,7 @@ public:
 	//メンバ変数
 	Quad bullet_;
 	Quad sword_;
+	int wheelScroll_;
 
 	//コンストラクタ
 	Weapon();

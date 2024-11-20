@@ -1,5 +1,6 @@
 #pragma once
 #include "struct.h"
+#include "enum.h"
 #include "Object.h"
 #include "weapon.h"
 
@@ -19,6 +20,8 @@ public:
 	int isJump_;
 
 	/*武器*/
+	int attack_;
+	int attackingTimer_;
 	Weapon* weapon_;
 
 	//コンストラクタ
