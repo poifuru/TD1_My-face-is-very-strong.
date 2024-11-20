@@ -4,6 +4,7 @@
 //""ヘッダーファイル
 #include "struct.h"
 #include "player.h"
+#include "Enemy.h"
 
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
@@ -22,6 +23,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char preKeys[256] = { 0 };
 
 	Player* player = new Player();
+	Enemy* enemy = new Enemy();
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -38,6 +40,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		player->Update(keys, preKeys);
 
+		//敵
+		enemy->Move();
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -51,6 +56,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		player->Draw();
 		
+		//敵
+		enemy->Draw();
+
 		///
 		/// ↑描画処理ここまで
 		///
