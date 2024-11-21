@@ -1,8 +1,8 @@
 #pragma once
 
-enum Attack {
-	none,
-	first,
-	second,
-	third
+enum Scene {
+	Title,
+	Tutorial,
+	Game,
+	Clear
 };
