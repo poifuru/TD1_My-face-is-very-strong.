@@ -10,7 +10,6 @@ public:
 	int stickX_;
 	int stickY_;
 	Vector2 velocity_;
-	int color_;
 	int direction_;
 
 	/*パリィ*/
