@@ -53,6 +53,9 @@
     <ClCompile Include="weapon.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\effect - test\cutIn\ULT.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -152,6 +155,9 @@
       <Filter>ヘッダー入れるとこ</Filter>
     </ClInclude>
     <ClInclude Include="enum.h">
+      <Filter>ヘッダー入れるとこ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\effect - test\cutIn\ULT.h">
       <Filter>ヘッダー入れるとこ</Filter>
     </ClInclude>
   </ItemGroup>
