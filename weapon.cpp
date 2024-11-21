@@ -2,7 +2,7 @@
 #include "player.h"
 #include <Novice.h>
 
-Weapon::Weapon(){
+Weapon::Weapon() {
 	bullet_.pos = {};
 	bullet_.leftTop = {};
 	bullet_.leftBottom = {};
@@ -35,32 +35,36 @@ Weapon::Weapon(){
 	attackingTimer_ = 0;
 }
 
-void Weapon::Update(){
+void Weapon::Update() {
+	//武器をプレイヤーの近くに出すよ
+	sword_.pos = { quad_.pos.x + (quad_.radius.x * 2.0f), quad_.pos.y };
+	sword_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };
+	sword_.rightTop = { quad_.pos.x + quad_.radius.x, quad_.pos.y - quad_.radius.y };
+	sword_.leftBottom = { quad_.pos.x - quad_.radius.x, quad_.pos.y + quad_.radius.y };
+	sword_.rightBottom = { quad_.pos.x + quad_.radius.x, quad_.pos.y + quad_.radius.y };
+	sword_.drawLeftTop = { sword_.leftTop };
+	sword_.drawRightTop = { sword_.rightTop };
+	sword_.drawRightBottom = { sword_.rightBottom };
+	sword_.drawLeftBottom = { sword_.leftBottom };
+
 	//==============攻撃！=================
 	//武器の切り替え
 	wheelScroll_ += Novice::GetWheel();
-	if (wheelScroll_ < 60) {
-		weaponMode_ = 1;
-		wheelScroll_ = -60;
-	}
-	else if (wheelScroll_ > 60) {
+	if (wheelScroll_ == 60) {
 		weaponMode_ = 0;
+	}
+	if (wheelScroll_ > 60) {
 		wheelScroll_ = 60;
+	}
+	if (wheelScroll_ == -60) {
+		weaponMode_ = 1;
+	}
+	if (wheelScroll_ < -60) {
+		wheelScroll_ = -60;
 	}
 
 	//剣モードの処理
 	if (weaponMode_ == 0) {
-		//武器をプレイヤーの近くに出すよ
-		sword_.pos = { quad_.pos.x + quad_.radius.x, quad_.pos.y };
-		sword_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };
-		sword_.rightTop = { quad_.pos.x + quad_.radius.x, quad_.pos.y - quad_.radius.y };
-		sword_.leftBottom = { quad_.pos.x - quad_.radius.x, quad_.pos.y + quad_.radius.y };
-		sword_.rightBottom = { quad_.pos.x + quad_.radius.x, quad_.pos.y + quad_.radius.y };
-		sword_.drawLeftTop = { sword_.leftTop };
-		sword_.drawRightTop = { sword_.rightTop };
-		sword_.drawRightBottom = { sword_.rightBottom };
-		sword_.drawLeftBottom = { sword_.leftBottom };
-
 		//連続攻撃の状態(受付時間を過ぎたら自動的に1段目の攻撃からになる)
 		if (attack_ == 0 && Novice::IsTriggerMouse(0)) {
 			attack_ = 1;
@@ -95,7 +99,7 @@ void Weapon::Update(){
 	}
 }
 
-void Weapon::Draw(){
+void Weapon::Draw() {
 	if (weaponMode_ == 0) {
 		Novice::DrawQuad(
 			int(sword_.drawLeftTop.x), int(sword_.drawLeftTop.y),

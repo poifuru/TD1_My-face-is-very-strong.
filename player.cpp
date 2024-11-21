@@ -4,16 +4,15 @@
 Player::Player(){
 	quad_.pos = { 300.0f, 868.0f };
 	quad_.radius = { 32.0f, 32.0f };
-	quad_.leftTop;
-	quad_.leftBottom;
-	quad_.rightBottom;
-	quad_.rightTop;
+	quad_.leftTop = {};
+	quad_.leftBottom = {};
+	quad_.rightBottom = {};
+	quad_.rightTop = {};
 	quad_.imagePos = { 0, 0 };
 	quad_.imageWidth = 32;
 	quad_.imageHeight = 32;
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
-	color_ = WHITE;
 	direction_ = 1; //0が左向き　1が右向き
 	isParry_ = 0;
 	parryFlame_ = 12;
@@ -36,6 +35,7 @@ void Player::Update(const char keys[], const char preKeys[]) {
 		quad_.pos.x -= velocity_.x;
 	}
 	else if (keys[DIK_D] || stickX_ > 0) {
+		direction_ = 1;
 		quad_.pos.x += velocity_.x;
 	}
 
@@ -96,6 +96,6 @@ void Player::Draw() {
 	Novice::ScreenPrintf(20, 20, "wheelScroll:%d", weapon_->wheelScroll_);
 	Novice::ScreenPrintf(20, 40, "attack:%d", weapon_->attack_);
 	Novice::ScreenPrintf(20, 60, "isParry:%d", isParry_);
-	Novice::ScreenPrintf(20, 80, "ParryFlame:%d", parryFlame_);
-	//Novice::ScreenPrintf(20, 100, ":%d", velocity_.x, velocity_.y);
+	Novice::ScreenPrintf(20, 80, "weaponMode:%d", weapon_->weaponMode_);
+	Novice::ScreenPrintf(20, 100, "weaponPos:X%5.1f weaponPosY:%5.1f", weapon_->sword_.pos.x, weapon_->sword_.pos.y);
 }
