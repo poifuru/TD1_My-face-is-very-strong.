@@ -7,6 +7,7 @@ enum situation_ {
 	moving,
 	fallingAttack,
 	rushAttack,
+	AllderectionShot
 };
 //突進攻撃回数
 enum rushAttackNumber {
