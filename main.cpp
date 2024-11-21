@@ -41,7 +41,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		player->Update(keys, preKeys);
 
 		//敵
-		enemy->Move();
+		enemy->Move(keys, preKeys);
 
 		///
 		/// ↑更新処理ここまで
