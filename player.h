@@ -11,6 +11,7 @@ public:
 	int stickY_;
 	Vector2 velocity_;
 	int color_;
+	int direction_;
 
 	/*パリィ*/
 	int isParry_;
@@ -20,8 +21,6 @@ public:
 	int isJump_;
 
 	/*武器*/
-	int attack_;
-	int attackingTimer_;
 	Weapon* weapon_;
 
 	//コンストラクタ

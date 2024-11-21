@@ -14,14 +14,13 @@ Player::Player(){
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
 	color_ = WHITE;
+	direction_ = 1; //0が左向き　1が右向き
 	isParry_ = 0;
 	parryFlame_ = 12;
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
 
-	attack_ = none;
-	attackingTimer_ = 15;
 	weapon_ = new Weapon();
 }
 
@@ -33,55 +32,28 @@ void Player::Update(const char keys[], const char preKeys[]) {
 	//移動の処理
 	Novice::GetAnalogInputLeft(0, &stickX_, &stickY_);
 	if (keys[DIK_A] || stickX_ < 0) {
+		direction_ = 0;
 		quad_.pos.x -= velocity_.x;
 	}
 	else if (keys[DIK_D] || stickX_ > 0) {
 		quad_.pos.x += velocity_.x;
 	}
 
-	//==============攻撃！=================
-	//武器の切り替え
-	weapon_->wheelScroll_ += Novice::GetWheel();
-	if (weapon_->wheelScroll_ < 60) {
-		weapon_->wheelScroll_ = -60;
-	}
-	else if (weapon_->wheelScroll_ > 60) {
-		weapon_->wheelScroll_ = 60;
-	}
-
-	//剣モードの処理
-	if (weapon_->wheelScroll_ <= 0) {
-		//武器をプレイヤーの近くに出すよ
-		weapon_->sword_.leftTop = { quad_.pos.x + quad_.radius.x, quad_.pos.y + quad_.radius.y };
-		// weapon_->sword_.rihgtTop = {}
-
-		if (attack_ == 0 && Novice::IsTriggerMouse(0)) {
-			attack_ = 1;
-		}
-		else if (attack_ == 1 && Novice::IsTriggerMouse(0)) {
-			attack_ = 2;
-		}
-		else if (attack_ == 2 && Novice::IsTriggerMouse(0)) {
-			attack_ = 3;
-		}
-	}
-	//銃モードの処理
-	else if (weapon_->wheelScroll_ >= 0) {
-
-	}
+	//攻撃処理
+	weapon_->Update();
 
 	//パリィの処理
 	if (!isParry_ && Novice::IsTriggerMouse(1) == 1 ||	!isParry_ && Novice::IsTriggerButton(0, kPadButton10)) {
 		isParry_ = 1;
-		color_ = BLUE;
 	}
 	if (isParry_) {
 		parryFlame_--;
+		quad_.color = BLUE;
 	}
 	if (parryFlame_ <= 0) {
 		isParry_ = 0;
 		parryFlame_ = 12;
-		color_ = WHITE;
+		quad_.color = WHITE;
 	}
 
 	//ジャンプするお＾~＾
@@ -108,6 +80,7 @@ void Player::Update(const char keys[], const char preKeys[]) {
 }
 
 void Player::Draw() {
+	//プレイヤーの描画
 	Novice::DrawQuad(
 		int(quad_.leftTop.x), int(quad_.leftTop.y),
 		int(quad_.rightTop.x), int(quad_.rightTop.y),
@@ -116,10 +89,13 @@ void Player::Draw() {
 		quad_.imagePos.x, quad_.imagePos.y, quad_.imageWidth, quad_.imageHeight, quad_.image.white1x1, quad_.color
 	);
 
+	//武器の描画
+	weapon_->Draw();
+
 	//デバッグ用
 	Novice::ScreenPrintf(20, 20, "wheelScroll:%d", weapon_->wheelScroll_);
-	Novice::ScreenPrintf(20, 40, "attack:%d", attack_);
-	//Novice::ScreenPrintf(20, 60, "isJump%d", isJump_);
-	//Novice::ScreenPrintf(20, 80, "velocity X:%5.1f, Y:%5.1f", velocity_.x, velocity_.y);
+	Novice::ScreenPrintf(20, 40, "attack:%d", weapon_->attack_);
+	Novice::ScreenPrintf(20, 60, "isParry:%d", isParry_);
+	Novice::ScreenPrintf(20, 80, "ParryFlame:%d", parryFlame_);
 	//Novice::ScreenPrintf(20, 100, ":%d", velocity_.x, velocity_.y);
 }
