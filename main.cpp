@@ -9,7 +9,7 @@
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
 //コメントエリア
-/**/
+/*ファイルを訂正しました。11/21(木)*/
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
