@@ -7,7 +7,7 @@ enum situation_ {
 	moving,
 	fallingAttack,
 	rushAttack,
-	AllderectionShot
+	allDerectionShot
 };
 //突進攻撃回数
 enum rushAttackNumber {
@@ -228,6 +228,12 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 				}
 			}
 		}
+	}
+	//==============================================
+
+	//[allDerectionShot]============================
+	if (situation_ == allDerectionShot) {
+
 	}
 	//==============================================
 	
