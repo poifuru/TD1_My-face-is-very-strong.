@@ -14,12 +14,11 @@ Player::Player(){
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
 	direction_ = 1; //0が左向き　1が右向き
-	isParry_ = 0;
-	parryFlame_ = 12;
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
 
+	parry_ = new Parry();
 	weapon_ = new Weapon();
 }
 
@@ -39,23 +38,6 @@ void Player::Update(const char keys[], const char preKeys[]) {
 		quad_.pos.x += velocity_.x;
 	}
 
-	//攻撃処理
-	weapon_->Update();
-
-	//パリィの処理
-	if (!isParry_ && Novice::IsTriggerMouse(1) == 1 ||	!isParry_ && Novice::IsTriggerButton(0, kPadButton10)) {
-		isParry_ = 1;
-	}
-	if (isParry_) {
-		parryFlame_--;
-		quad_.color = BLUE;
-	}
-	if (parryFlame_ <= 0) {
-		isParry_ = 0;
-		parryFlame_ = 12;
-		quad_.color = WHITE;
-	}
-
 	//ジャンプするお＾~＾
 	if (!isJump_ && keys[DIK_SPACE] && !preKeys[DIK_SPACE] || !isJump_ && Novice::IsTriggerButton(0, kPadButton13)) {
 		isJump_ = 1;
@@ -71,6 +53,18 @@ void Player::Update(const char keys[], const char preKeys[]) {
 		velocity_.y = 0;
 		isJump_ = 0;
 	}
+
+	//パリィの処理
+	parry_->Update();
+	if (parry_->isParry_) {
+		quad_.color = BLUE;
+	}
+	else {
+		quad_.color = WHITE;
+	}
+
+	//攻撃処理
+	weapon_->Update(&quad_);
 
 	//4頂点の座標を更新
 	quad_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };
@@ -93,9 +87,9 @@ void Player::Draw() {
 	weapon_->Draw();
 
 	//デバッグ用
-	Novice::ScreenPrintf(20, 20, "wheelScroll:%d", weapon_->wheelScroll_);
+	Novice::ScreenPrintf(20, 20, "player PosX:%5.1f Y:%5.1f", quad_.pos.x, quad_.pos.y);
 	Novice::ScreenPrintf(20, 40, "attack:%d", weapon_->attack_);
-	Novice::ScreenPrintf(20, 60, "isParry:%d", isParry_);
+	Novice::ScreenPrintf(20, 60, "isParry:%d", parry_->isParry_);
 	Novice::ScreenPrintf(20, 80, "weaponMode:%d", weapon_->weaponMode_);
 	Novice::ScreenPrintf(20, 100, "weaponPos:X%5.1f weaponPosY:%5.1f", weapon_->sword_.pos.x, weapon_->sword_.pos.y);
 }
