@@ -117,9 +117,10 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="player.cpp" />
+    <ClCompile Include="Parry.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="System.cpp" />
-    <ClCompile Include="weapon.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
@@ -149,11 +150,12 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
-    <ClInclude Include="enum.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="struct.h" />
+    <ClInclude Include="Parry.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Struct.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="weapon.h" />
   </ItemGroup>

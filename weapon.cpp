@@ -35,7 +35,7 @@ Weapon::Weapon() {
 	attackingTimer_ = 0;
 }
 
-void Weapon::Update() {
+void Weapon::Update(Quad* quad) {
 	//武器をプレイヤーの近くに出すよ
 	sword_.pos = { quad_.pos.x + (quad_.radius.x * 2.0f), quad_.pos.y };
 	sword_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };

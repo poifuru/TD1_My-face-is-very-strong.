@@ -1,6 +1,7 @@
 #pragma once
 #include "struct.h"
 #include "Object.h"
+#include "player.h"
 
 class Weapon : public Object {
 public:
@@ -17,7 +18,7 @@ public:
 	Weapon();
 
 	//メンバ関数
-	void Update();
+	void Update(Quad* quad);
 	void Draw();
 };
 

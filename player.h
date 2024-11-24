@@ -3,6 +3,7 @@
 #include "enum.h"
 #include "Object.h"
 #include "weapon.h"
+#include "Parry.h"
 
 class Player : public Object{
 public:
@@ -12,12 +13,11 @@ public:
 	Vector2 velocity_;
 	int direction_;
 
-	/*パリィ*/
-	int isParry_;
-	int parryFlame_;
-
 	/*ジャンプ*/
 	int isJump_;
+
+	/*パリィ*/
+	Parry* parry_;
 
 	/*武器*/
 	Weapon* weapon_;
