@@ -1,7 +1,7 @@
 #pragma once
-#include "struct.h"
+#include "Struct.h"
 #include "Object.h"
-#include "player.h"
+#include "Player.h"
 
 class Weapon : public Object {
 public:

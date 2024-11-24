@@ -1,8 +1,8 @@
 #pragma once
-#include "struct.h"
-#include "enum.h"
+#include "Struct.h"
+#include "Enum.h"
 #include "Object.h"
-#include "weapon.h"
+#include "Weapon.h"
 #include "Parry.h"
 
 class Player : public Object{

@@ -1,5 +1,5 @@
-﻿#include "parry.h"
-#include "player.h"
+﻿#include "Parry.h"
+#include "Player.h"
 #include <Novice.h>
 
 Parry::Parry(){
