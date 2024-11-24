@@ -1,5 +1,5 @@
 #include <Novice.h>
-#include "player.h"
+#include "Player.h"
 
 Player::Player(){
 	quad_.pos = { 300.0f, 868.0f };

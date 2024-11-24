@@ -1,7 +1,7 @@
 #pragma once
 
-#include "struct.h"
-#include "enum.h"
+#include "Struct.h"
+#include "Enum.h"
 
 class System{
 public:

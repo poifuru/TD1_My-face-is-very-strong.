@@ -1,5 +1,5 @@
-﻿#include "weapon.h"
-#include "player.h"
+﻿#include "Weapon.h"
+#include "Player.h"
 #include <Novice.h>
 
 Weapon::Weapon() {
