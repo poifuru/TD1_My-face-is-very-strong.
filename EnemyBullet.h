@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Object.h"
 
-class Bullet :public Object {
+class EnemyBullet :public Object {
 public://メンバ変数
 	//加速度
 	Vector2 acceleration_;
@@ -15,9 +15,9 @@ public://メンバ変数
 	bool isShotFlag_;
 
 	//コンストラクタ
-	Bullet();
+	EnemyBullet();
 	//デストラクタ
-	~Bullet();
+	~EnemyBullet();
 public://メンバ関数
 	//基本的な動き
 	void Move();

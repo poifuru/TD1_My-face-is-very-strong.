@@ -2,7 +2,7 @@
 #include "EnemyBullet.h"
 
 //コンストラクタ
-Bullet::Bullet() {
+EnemyBullet::EnemyBullet() {
 	//DrawQuadで主に使う
 	quad_.pos = {};
 	quad_.radius = {};
@@ -29,16 +29,16 @@ Bullet::Bullet() {
 }
 
 //デストラクタ
-Bullet::~Bullet() {
+EnemyBullet::~EnemyBullet() {
 
 }
 
 //敵の弾の基本的な動き
-void Bullet::Move() {
+void EnemyBullet::Move() {
 
 }
 
 //弾の描画
-void Bullet::Draw() {
+void EnemyBullet::Draw() {
 
 }
