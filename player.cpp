@@ -23,6 +23,7 @@ Player::Player(){
 }
 
 Player::~Player(){
+	delete parry_;
 	delete weapon_;
 }
 
@@ -64,7 +65,9 @@ void Player::Update(const char keys[], const char preKeys[]) {
 	}
 
 	//攻撃処理
-	weapon_->Update(&quad_);
+	weapon_->sword_.pos = { quad_.pos };
+	weapon_->gun_.pos = { quad_.pos };
+	weapon_->Update();
 
 	//4頂点の座標を更新
 	quad_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };
