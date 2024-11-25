@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <math.h>
 #include "struct.h"
 #include <Novice.h>
@@ -11,4 +11,4 @@ void startCutIn();
 
 void DrawCutIn();
 
-void ULTUpdate(char* keys, char* preKeys);
+void ULTUpdate(char* keys, char* preKeys); 
