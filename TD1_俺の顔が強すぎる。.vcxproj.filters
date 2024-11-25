@@ -1,150 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
+    <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
+    <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
+    <ClCompile Include="C:\KamataEngine\DirectXGame\scene\GameScene.cpp" />
+    <ClCompile Include="C:\KamataEngine\DirectXGame\base\TextureManager.cpp" />
+    <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
+    <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp">
-      <Filter>KamataEngine\Adapter</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
-      <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\scene\GameScene.cpp">
-      <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\base\TextureManager.cpp">
-      <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp">
-      <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
-      <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>ソースは中濃</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソースは中濃\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソースは中濃\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>ソースは中濃\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Parry.cpp">
-      <Filter>ソースは中濃\Player</Filter>
-    </ClCompile>
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="System.cpp" />
+    <ClCompile Include="weapon.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="Ultimate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enum.h">
-      <Filter>ヘッダー入れるとこ</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>ヘッダー入れるとこ</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>ヘッダー入れるとこ</Filter>
-    </ClInclude>
-    <ClInclude Include="Struct.h">
-      <Filter>ヘッダー入れるとこ</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\Adapter\Novice.h">
-      <Filter>KamataEngine\Adapter</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\CircleShadow.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\DebugCamera.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\DebugText.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\DirectionalLight.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\LightGroup.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Material.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\PointLight.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\SpotLight.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Model.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\Sprite.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\base\SafeDelete.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\ViewProjection.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\base\TextureManager.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\base\WinApp.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Mesh.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\WorldTransform.h">
-      <Filter>KamataEngine\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h">
-      <Filter>古参勢</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector3.h">
-      <Filter>古参勢</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector4.h">
-      <Filter>古参勢</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h">
-      <Filter>古参勢</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.h">
-      <Filter>KamataEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Parry.h">
-      <Filter>ヘッダー入れるとこ\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー入れるとこ\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>ヘッダー入れるとこ\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="weapon.h">
-      <Filter>ヘッダー入れるとこ\Player</Filter>
-    </ClInclude>
+    <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector3.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector4.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\CircleShadow.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\DebugCamera.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\DirectionalLight.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\LightGroup.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Material.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Mesh.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\PointLight.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\SpotLight.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\DebugText.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\Sprite.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\Model.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\ViewProjection.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\3d\WorldTransform.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\base\SafeDelete.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\base\TextureManager.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\base\WinApp.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h" />
+    <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
+    <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
+    <ClInclude Include="enum.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="struct.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="weapon.h" />
+    <ClInclude Include="EnemyBullet.h" />
+    <ClInclude Include="Ultimate.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー入れるとこ">
