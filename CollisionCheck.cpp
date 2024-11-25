@@ -7,7 +7,7 @@ void collisionCheck(Player* player, Enemy* enemy)
 		player->quad_.pos.x - player->quad_.radius.x < enemy->quad_.pos.x + enemy->quad_.radius.x &&
 		player->quad_.pos.y + player->quad_.radius.y > enemy->quad_.pos.y - enemy->quad_.radius.y &&
 		player->quad_.pos.y - player->quad_.radius.y < enemy->quad_.pos.y + enemy->quad_.radius.y) {
-		if (player->isParry_) {
+		if (player->parry_->isParry_) {
 			//プレイヤーがパリィしているとき
 
 		} else {
