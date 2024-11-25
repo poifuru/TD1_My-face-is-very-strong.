@@ -14,6 +14,7 @@
     <ClCompile Include="System.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="Ultimate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
@@ -51,5 +52,6 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="weapon.h" />
     <ClInclude Include="EnemyBullet.h" />
+    <ClInclude Include="Ultimate.h" />
   </ItemGroup>
 </Project>
