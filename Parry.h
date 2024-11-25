@@ -1,15 +1,12 @@
-#pragma once
-
-#include "Struct.h"
-#include "Enum.h"
-
-class System{
+﻿#pragma once
+class Parry{
 public:
 	//メンバ変数
-	Scene scene;
+	int isParry_;
+	int parryFlame_;
 
 	//コンストラクタ
-	System();
+	Parry();
 
 	//メンバ関数
 	void Update();

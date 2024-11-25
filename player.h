@@ -1,8 +1,9 @@
 #pragma once
-#include "struct.h"
-#include "enum.h"
+#include "Struct.h"
+#include "Enum.h"
 #include "Object.h"
-#include "weapon.h"
+#include "Weapon.h"
+#include "Parry.h"
 
 class Player : public Object{
 public:
@@ -10,15 +11,13 @@ public:
 	int stickX_;
 	int stickY_;
 	Vector2 velocity_;
-	int color_;
 	int direction_;
-
-	/*パリィ*/
-	int isParry_;
-	int parryFlame_;
 
 	/*ジャンプ*/
 	int isJump_;
+
+	/*パリィ*/
+	Parry* parry_;
 
 	/*武器*/
 	Weapon* weapon_;

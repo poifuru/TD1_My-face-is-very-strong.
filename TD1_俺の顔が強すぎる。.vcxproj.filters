@@ -54,4 +54,39 @@
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="Ultimate.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ヘッダー入れるとこ">
+      <UniqueIdentifier>{7f88eb23-cc7e-4fc3-936a-cab93b738d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KamataEngine">
+      <UniqueIdentifier>{12be2b9e-5549-4c25-946e-058819569f94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KamataEngine\Adapter">
+      <UniqueIdentifier>{3f61bd92-b800-40e9-a883-571295a1469f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KamataEngine\Include">
+      <UniqueIdentifier>{381a5fac-e724-4f07-bf38-22d2a20178a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KamataEngine\Source">
+      <UniqueIdentifier>{474790d0-a514-4abd-9cca-b7bfeb035de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースは中濃">
+      <UniqueIdentifier>{9ffb0d3b-9093-4d76-92ac-f87516943521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="古参勢">
+      <UniqueIdentifier>{78492c2e-4fb1-46f6-982e-339594b054c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースは中濃\Player">
+      <UniqueIdentifier>{54215948-46d3-48c3-8c04-0d7f21b42edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースは中濃\Enemy">
+      <UniqueIdentifier>{507d9709-99dc-43f3-9afc-ec83c96befea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー入れるとこ\Player">
+      <UniqueIdentifier>{9ce8ca22-9ca3-472c-a00f-2ea51938458e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー入れるとこ\Enemy">
+      <UniqueIdentifier>{9ee79f41-8fcf-47fb-95cd-4c0e4d1efff6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>
