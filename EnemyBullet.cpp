@@ -1,9 +1,9 @@
-#include <Novice.h>
+ï»¿#include <Novice.h>
 #include "EnemyBullet.h"
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-Bullet::Bullet() {
-	//DrawQuad‚Åå‚Ég‚¤
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+EnemyBullet::EnemyBullet() {
+	//DrawQuadã§ä¸»ã«ä½¿ã†
 	quad_.pos = {};
 	quad_.radius = {};
 	quad_.radius = { 10.0f,10.0f };
@@ -16,29 +16,29 @@ Bullet::Bullet() {
 	quad_.imageHeight = {};
 	quad_.image = {};
 	quad_.color = {};
-	//‰Á‘¬“x
+	//åŠ é€Ÿåº¦
 	acceleration_ = {};
-	//‘¬“x
+	//é€Ÿåº¦
 	velocity_ = {};
-	//”­ËŠp“x
+	//ç™ºå°„è§’åº¦
 	angle_ = {};
-	//’e”
+	//å¼¾æ•°
 	ammo_ = 48;
-	//Œ‚‚Á‚Ä‚¢‚é‚©
+	//æ’ƒã£ã¦ã„ã‚‹ã‹
 	isShotFlag_ = false;
 }
 
-//ƒfƒXƒgƒ‰ƒNƒ^
-Bullet::~Bullet() {
+//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+EnemyBullet::~EnemyBullet() {
 
 }
 
-//“G‚Ì’e‚ÌŠî–{“I‚È“®‚«
-void Bullet::Move() {
+//æ•µã®å¼¾ã®åŸºæœ¬çš„ãªå‹•ã
+void EnemyBullet::Move() {
 
 }
 
-//’e‚Ì•`‰æ
-void Bullet::Draw() {
+//å¼¾ã®æç”»
+void EnemyBullet::Draw() {
 
 }

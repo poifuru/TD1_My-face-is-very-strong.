@@ -1,3 +1,4 @@
+﻿#pragma once
 #include <math.h>
 #include <Vector2.h>
 #include <Novice.h>
@@ -10,4 +11,4 @@ void startCutIn();
 
 void DrawCutIn();
 
-void ULTUpdate(char* keys, char* preKeys); #pragma once
+void ULTUpdate(char* keys, char* preKeys); 
