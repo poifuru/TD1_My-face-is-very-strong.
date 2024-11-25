@@ -16,8 +16,10 @@ public://メンバ変数
 
 	//コンストラクタ
 	EnemyBullet();
+  
 	//デストラクタ
 	~EnemyBullet();
+
 public://メンバ関数
 	//基本的な動き
 	void Move();

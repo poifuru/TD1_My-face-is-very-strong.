@@ -1,6 +1,6 @@
-﻿#pragma once
+#pragma once
 #include <math.h>
-#include <Vector2.h>
+#include "struct.h"
 #include <Novice.h>
 
 float easeInExpo(float x);
