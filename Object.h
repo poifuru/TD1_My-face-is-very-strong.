@@ -2,7 +2,7 @@
 #include "Struct.h"
 
 class Object {
-protected:
+public:
 	//メンバ変数
 	Box box_;
 	Circle circle_;
