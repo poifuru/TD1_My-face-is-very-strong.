@@ -182,6 +182,4 @@ void DrawCutIn()
 		static_cast<int>(cutInHeight), 0.0f, BLUE, kFillModeSolid);
 
 	Novice::DrawEllipse(1500, 80, 50, 50, 0.0f, BLUE, kFillModeWireFrame);
-
-	Novice::ScreenPrintf(32, 32, "CutInPos : %f", cutInPos.x);
 }
