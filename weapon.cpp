@@ -2,6 +2,24 @@
 #include <Novice.h>
 
 Weapon::Weapon() {
+	sword_.pos = { 300.0f, 868.0f };
+	sword_.radius = { 32.0f, 32.0f };
+	sword_.leftTop = {};
+	sword_.leftBottom = {};
+	sword_.rightBottom = {};
+	sword_.rightTop = {};
+	sword_.drawLeftTop = {};
+	sword_.drawLeftBottom = {};
+	sword_.drawRightBottom = {};
+	sword_.drawRightTop = {};
+	sword_.imagePos = {};
+	sword_.imageWidth = 32;
+	sword_.imageHeight = 32;
+	sword_.image;
+	sword_.color = RED;
+	attack_ = 0;
+	attackingTimer_ = 0;
+
 	gun_.pos = { 300.0f, 868.0f };
 	gun_.radius = { 32.0f, 32.0f };
 	gun_.leftTop = {};
@@ -18,26 +36,49 @@ Weapon::Weapon() {
 	gun_.image;
 	gun_.color = BLUE;
 
-	sword_.pos = { 300.0f, 868.0f };
-	sword_.radius = { 32.0f, 32.0f };
-	sword_.leftTop = {};
-	sword_.leftBottom = {};
-	sword_.rightBottom = {};
-	sword_.rightTop = {};
-	sword_.drawLeftTop = {};
-	sword_.drawLeftBottom = {};
-	sword_.drawRightBottom = {};
-	sword_.drawRightTop = {};
-	sword_.imagePos = {};
-	sword_.imageWidth = 32;
-	sword_.imageHeight = 32;
-	sword_.image;
-	sword_.color = RED;
+	for (int i = 0; i < kBulletNum; i++) {
+		bullet_[i].pos = { 300.0f, 868.0f };
+		bullet_[i].radius = { 10.0f, 10.0f };
+		bullet_[i].leftTop = {};
+		bullet_[i].leftBottom = {};
+		bullet_[i].rightBottom = {};
+		bullet_[i].rightTop = {};
+		bullet_[i].drawLeftTop = {};
+		bullet_[i].drawLeftBottom = {};
+		bullet_[i].drawRightBottom = {};
+		bullet_[i].drawRightTop = {};
+		bullet_[i].imagePos = {};
+		bullet_[i].imageWidth = 32;
+		bullet_[i].imageHeight = 32;
+		bullet_[i].image;
+		bullet_[i].color = BLUE;
+		isShot_[i] = false;
+		readyToFire_ = true;
+		targetPos_[i] = {};
+		vectorToTarget_[i] = {};
+	}
+	/*bullet_.pos = { 300.0f, 868.0f };
+	bullet_.radius = { 10.0f, 10.0f };
+	bullet_.leftTop = {};
+	bullet_.leftBottom = {};
+	bullet_.rightBottom = {};
+	bullet_.rightTop = {};
+	bullet_.drawLeftTop = {};
+	bullet_.drawLeftBottom = {};
+	bullet_.drawRightBottom = {};
+	bullet_.drawRightTop = {};
+	bullet_.imagePos = {};
+	bullet_.imageWidth = 32;
+	bullet_.imageHeight = 32;
+	bullet_.image;
+	bullet_.color = BLUE;
+	isShot_ = false;
+	readyToFire_ = true;
+	targetPos_ = {};
+	vectorToTarget_ = {};*/
 
 	weaponMode_ = 0; //0が剣　1が銃
 	wheelScroll_ = 60;
-	attack_ = 0;
-	attackingTimer_ = 0;
 }
 
 void Weapon::Update() {
@@ -51,6 +92,19 @@ void Weapon::Update() {
 	gun_.rightTop = { gun_.pos.x + (gun_.radius.x * 4), gun_.pos.y - (gun_.radius.y / 2) };
 	gun_.leftBottom = { gun_.pos.x + (gun_.radius.x * 2), gun_.pos.y + (gun_.radius.y / 2) };
 	gun_.rightBottom = { gun_.pos.x + (gun_.radius.x * 4), gun_.pos.y + (gun_.radius.y / 2) };
+
+	for (int i = 0; i < kBulletNum; i++) {
+		bullet_[i].pos = {gun_.pos};
+		bullet_[i].leftTop = {gun_.pos.x - gun_.radius.x, gun_.pos.y - gun_.radius.y};
+		bullet_[i].rightTop = {gun_.pos.x + gun_.radius.x, gun_.pos.y - gun_.radius.y};
+		bullet_[i].leftBottom = {gun_.pos.x - gun_.radius.x, gun_.pos.y + gun_.radius.y};
+		bullet_[i].rightBottom = {gun_.pos.x + gun_.radius.x, gun_.pos.y + gun_.radius.y};
+	}
+	/*bullet_.pos = { gun_.pos };
+	bullet_.leftTop = { gun_.pos.x - gun_.radius.x, gun_.pos.y - gun_.radius.y };
+	bullet_.rightTop = { gun_.pos.x + gun_.radius.x, gun_.pos.y - gun_.radius.y };
+	bullet_.leftBottom = { gun_.pos.x - gun_.radius.x, gun_.pos.y + gun_.radius.y };
+	bullet_.rightBottom = { gun_.pos.x + gun_.radius.x, gun_.pos.y + gun_.radius.y };*/
 
 	//==============攻撃！=================
 	//武器の切り替え
@@ -100,7 +154,7 @@ void Weapon::Update() {
 	}
 	//銃モードの処理
 	else if (wheelScroll_ == 1) {
-
+		//
 	}
 
 	//描画用に座標を更新

@@ -141,7 +141,7 @@ void ULTUpdate(char* keys, char* preKeys)
 	}
 
 	if (isULTReady) {
-		if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
+		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
 			isULT = true;
 			Ultimate = 0;
 		}
