@@ -5,6 +5,7 @@
 #include "struct.h"
 #include "player.h"
 #include "Enemy.h"
+#include "Ultimate.h"
 
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
@@ -38,9 +39,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
+		//プレイヤーの更新
 		player->Update(keys, preKeys);
 
-		//敵
+		//ULTの更新
+		ULTUpdate(keys, preKeys);
+
+		//敵の更新
 		enemy->Move(keys, preKeys);
 
 		///
@@ -53,11 +58,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		//地面
 		Novice::DrawLine(0, 900, 1920, 900, BLACK);
-
+			
+		//プレイヤーの描画
 		player->Draw();
 		
-		//敵
+		//敵の描画
 		enemy->Draw();
+
+
+		//カットインの描画
+		DrawCutIn();
 
 		///
 		/// ↑描画処理ここまで

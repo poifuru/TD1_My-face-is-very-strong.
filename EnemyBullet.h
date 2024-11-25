@@ -1,26 +1,26 @@
-#pragma once
+ï»¿#pragma once
 #include "Object.h"
 
 class Bullet :public Object {
-public://ƒƒ“ƒo•Ï”
-	//‰Á‘¬“x
+public://ãƒ¡ãƒ³ãƒå¤‰æ•°
+	//åŠ é€Ÿåº¦
 	Vector2 acceleration_;
-	//‘¬“x
+	//é€Ÿåº¦
 	Vector2 velocity_;
-	//”­ËŠp“x
+	//ç™ºå°„è§’åº¦
 	float angle_;
-	//’e”
+	//å¼¾æ•°
 	int ammo_;
-	//Œ‚‚Á‚Ä‚¢‚é‚©
+	//æ’ƒã£ã¦ã„ã‚‹ã‹
 	bool isShotFlag_;
 
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Bullet();
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~Bullet();
-public://ƒƒ“ƒoŠÖ”
-	//Šî–{“I‚È“®‚«
+public://ãƒ¡ãƒ³ãƒé–¢æ•°
+	//åŸºæœ¬çš„ãªå‹•ã
 	void Move();
-	//•`‰æ
+	//æç”»
 	void Draw();
 };

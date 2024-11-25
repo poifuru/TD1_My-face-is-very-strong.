@@ -1,5 +1,6 @@
+﻿#pragma once
 #include <math.h>
-#include <Vector2.h>
+#include "struct.h"
 #include <Novice.h>
 
 float easeInExpo(float x);
@@ -10,4 +11,4 @@ void startCutIn();
 
 void DrawCutIn();
 
-void ULTUpdate(char* keys, char* preKeys); #pragma once
+void ULTUpdate(char* keys, char* preKeys);
