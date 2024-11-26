@@ -15,6 +15,7 @@ public:
 	int stickY_;
 	Vector2 velocity_;
 	int direction_;
+	int HP_;
 
 	/*ジャンプ*/
 	int isJump_;

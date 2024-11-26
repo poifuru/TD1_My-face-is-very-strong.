@@ -11,12 +11,14 @@ Player::Player() {
 	quad_.imagePos = { 0, 0 };
 	quad_.imageWidth = 32;
 	quad_.imageHeight = 32;
+	quad_.image = quad_.imageName.white1x1;
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
 	direction_ = 1; //0が左向き　1が右向き
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
+	HP_ = 100;
 
 	parry_ = new Parry();
 	weapon_ = new Weapon();
@@ -37,6 +39,11 @@ void Player::Update(const char keys[], const char preKeys[], Enemy enemy) {
 	else if ((keys[DIK_D] || stickX_ > 0) && quad_.pos.x + quad_.radius.x < 1920) {
 		direction_ = 1;
 		quad_.pos.x += velocity_.x;
+	}
+
+	//プレイヤーの向きで半径をいじいじ
+	if (direction_ == 0) {
+
 	}
 
 	//ジャンプするお＾~＾
@@ -92,7 +99,7 @@ void Player::Draw() {
 		int(quad_.leftBottom.x), int(quad_.leftBottom.y),
 		int(quad_.rightBottom.x), int(quad_.rightBottom.y),
 		quad_.imagePos.x, quad_.imagePos.y, quad_.imageWidth, quad_.imageHeight,
-		quad_.image.white1x1, quad_.color
+		quad_.image, quad_.color
 	);
 
 	//武器の描画

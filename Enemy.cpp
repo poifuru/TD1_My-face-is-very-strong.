@@ -270,6 +270,6 @@ void Enemy::Draw() {
 		int(quad_.rightBottom.x), int(quad_.rightBottom.y),
 		quad_.imagePos.x, quad_.imagePos.y,
 		quad_.imageWidth, quad_.imageHeight,
-		quad_.image.white1x1, WHITE
+		quad_.image, WHITE
 	);
 }

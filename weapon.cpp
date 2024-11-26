@@ -16,7 +16,7 @@ Weapon::Weapon() {
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
 	sword_.imageHeight = 32;
-	sword_.image;
+	sword_.image = sword_.imageName.white1x1;
 	sword_.color = RED;
 	attack_ = 0;
 	attackingTimer_ = 0;
@@ -34,7 +34,7 @@ Weapon::Weapon() {
 	gun_.imagePos = {};
 	gun_.imageWidth = 32;
 	gun_.imageHeight = 32;
-	gun_.image;
+	gun_.image = gun_.imageName.white1x1;
 	gun_.color = BLUE;
 
 	for (int i = 0; i < kBulletNum; i++) {
@@ -52,8 +52,8 @@ Weapon::Weapon() {
 		bullet_[i].imagePos = { 0, 0 };
 		bullet_[i].imageWidth = 32;
 		bullet_[i].imageHeight = 32;
-		bullet_[i].image;
-		bullet_[i].color = BLUE;
+		bullet_[i].image = bullet_[i].imageName.white1x1;
+		bullet_[i].color = GREEN;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
 		vectorToTarget_[i] = {};
@@ -79,10 +79,10 @@ void Weapon::Update(Enemy enemy/*, const char* keys*/) {
 
 	for (int i = 0; i < kBulletNum; i++) {
 		bullet_[i].pos = { gun_.pos };
-		bullet_[i].leftTop = { gun_.pos.x - gun_.radius.x, gun_.pos.y - gun_.radius.y };
-		bullet_[i].rightTop = { gun_.pos.x + gun_.radius.x, gun_.pos.y - gun_.radius.y };
-		bullet_[i].leftBottom = { gun_.pos.x - gun_.radius.x, gun_.pos.y + gun_.radius.y };
-		bullet_[i].rightBottom = { gun_.pos.x + gun_.radius.x, gun_.pos.y + gun_.radius.y };
+		bullet_[i].leftTop = { bullet_[i].pos.x - bullet_[i].radius.x, bullet_[i].pos.y - bullet_[i].radius.y };
+		bullet_[i].rightTop = { bullet_[i].pos.x + bullet_[i].radius.x, bullet_[i].pos.y - bullet_[i].radius.y };
+		bullet_[i].leftBottom = { bullet_[i].pos.x - bullet_[i].radius.x, bullet_[i].pos.y + bullet_[i].radius.y };
+		bullet_[i].rightBottom = { bullet_[i].pos.x + bullet_[i].radius.x, bullet_[i].pos.y + bullet_[i].radius.y };
 	}
 
 	//==============攻撃！=================
@@ -211,7 +211,7 @@ void Weapon::Draw() {
 			int(sword_.drawLeftBottom.x), int(sword_.drawLeftBottom.y),
 			int(sword_.drawRightBottom.x), int(sword_.drawRightBottom.y),
 			sword_.imagePos.x, sword_.imagePos.y, sword_.imageWidth, sword_.imageHeight,
-			sword_.image.white1x1, sword_.color
+			sword_.image, sword_.color
 		);
 	}
 	else if (weaponMode_ == 1) {
@@ -221,7 +221,7 @@ void Weapon::Draw() {
 			int(gun_.drawLeftBottom.x), int(gun_.drawLeftBottom.y),
 			int(gun_.drawRightBottom.x), int(gun_.drawRightBottom.y),
 			gun_.imagePos.x, gun_.imagePos.y, gun_.imageWidth, gun_.imageHeight,
-			gun_.image.white1x1, gun_.color
+			gun_.image, gun_.color
 		);
 	}
 
@@ -233,7 +233,7 @@ void Weapon::Draw() {
 				int(bullet_[i].drawLeftBottom.x), int(bullet_[i].drawLeftBottom.y),
 				int(bullet_[i].drawRightBottom.x), int(bullet_[i].drawRightBottom.y),
 				bullet_[i].imagePos.x, bullet_[i].imagePos.y, bullet_[i].imageWidth, bullet_[i].imageHeight,
-				bullet_[i].image.white1x1, bullet_[i].color
+				bullet_[i].image, bullet_[i].color
 			);
 		}
 	}

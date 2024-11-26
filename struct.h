@@ -52,7 +52,8 @@ struct Quad {
 	IntVector2 imagePos;
 	int imageWidth;
 	int imageHeight;
-	Images image;
+	int image;
+	Images imageName;
 	int color;
 };
 //=====================================
