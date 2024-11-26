@@ -1,7 +1,7 @@
 #include <Novice.h>
 #include "Player.h"
 
-Player::Player(){
+Player::Player() {
 	quad_.pos = { 300.0f, 868.0f };
 	quad_.radius = { 32.0f, 32.0f };
 	quad_.leftTop = {};
@@ -18,26 +18,32 @@ Player::Player(){
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
+	HP_ = 100;
 
 	parry_ = new Parry();
 	weapon_ = new Weapon();
 }
 
-Player::~Player(){
+Player::~Player() {
 	delete parry_;
 	delete weapon_;
 }
 
-void Player::Update(const char keys[], const char preKeys[]) {
+void Player::Update(const char keys[], const char preKeys[], Enemy enemy) {
 	//移動の処理
 	Novice::GetAnalogInputLeft(0, &stickX_, &stickY_);
-	if (keys[DIK_A] || stickX_ < 0) {
+	if ((keys[DIK_A] || stickX_ < 0) && quad_.pos.x - quad_.radius.x > 0) {
 		direction_ = 0;
 		quad_.pos.x -= velocity_.x;
 	}
-	else if (keys[DIK_D] || stickX_ > 0) {
+	else if ((keys[DIK_D] || stickX_ > 0) && quad_.pos.x + quad_.radius.x < 1920) {
 		direction_ = 1;
 		quad_.pos.x += velocity_.x;
+	}
+
+	//プレイヤーの向きで半径をいじいじ
+	if (direction_ == 0) {
+
 	}
 
 	//ジャンプするお＾~＾
@@ -68,7 +74,15 @@ void Player::Update(const char keys[], const char preKeys[]) {
 	//攻撃処理
 	weapon_->sword_.pos = { quad_.pos };
 	weapon_->gun_.pos = { quad_.pos };
-	weapon_->Update();
+	for (int i = 0; i < kBulletNum; i++) {
+		//撃ってない間は弾の座標をプレイヤーに合わせる
+		if (!weapon_->isShot_[i]) {
+			weapon_->bullet_[i].pos = { quad_.pos };
+			
+
+		}
+	}
+	weapon_->Update(enemy/*, keys*/);
 
 	//4頂点の座標を更新
 	quad_.leftTop = { quad_.pos.x - quad_.radius.x, quad_.pos.y - quad_.radius.y };
@@ -91,9 +105,9 @@ void Player::Draw() {
 	weapon_->Draw();
 
 	//デバッグ用
-	Novice::ScreenPrintf(20, 20, "player PosX:%5.1f Y:%5.1f", quad_.pos.x, quad_.pos.y);
-	Novice::ScreenPrintf(20, 40, "attack:%d", weapon_->attack_);
-	Novice::ScreenPrintf(20, 60, "isParry:%d", parry_->isParry_);
-	Novice::ScreenPrintf(20, 80, "weaponMode:%d", weapon_->weaponMode_);
-	Novice::ScreenPrintf(20, 100, "weaponPos:X%5.1f weaponPosY:%5.1f", weapon_->sword_.pos.x, weapon_->sword_.pos.y);
+	Novice::ScreenPrintf(20, 20, "Bullet PosX:%5.1f Y:%5.1f", weapon_->bullet_[0].pos.x, weapon_->bullet_[0].pos.y);
+	Novice::ScreenPrintf(20, 40, "weaponMode:%d", weapon_->weaponMode_);
+	Novice::ScreenPrintf(20, 60, "coolTime:%d", weapon_->shotCoolTime_);
+	Novice::ScreenPrintf(20, 80, "readyToFire:%d", weapon_->readyToFire_);
+	Novice::ScreenPrintf(20, 100, "isParry%d", parry_->isParry_);
 }
