@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Object.h"
 
-class EnemyBullet :public Object {
+class EnemyBullet : public Object {
 public://メンバ変数
 	//加速度
 	Vector2 acceleration_;

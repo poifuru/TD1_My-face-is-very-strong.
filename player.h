@@ -4,8 +4,11 @@
 #include "Object.h"
 #include "Weapon.h"
 #include "Parry.h"
+#include "Enemy.h"
 
-class Player : public Object{
+class Weapon;//前方宣言
+
+class Player : public Object {
 public:
 	//メンバ変数
 	int stickX_;
@@ -29,6 +32,6 @@ public:
 	~Player();
 
 	//メンバ関数
-	void Update(const char keys[], const char preKeys[]);
+	void Update(const char keys[], const char preKeys[], Enemy enemy);
 	void Draw();
 };

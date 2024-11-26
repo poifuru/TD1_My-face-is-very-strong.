@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 
 		//プレイヤーの更新
-		player->Update(keys, preKeys);
+		player->Update(keys, preKeys, *enemy);
 
 		//ULTの更新
 		ULTUpdate(keys, preKeys);
