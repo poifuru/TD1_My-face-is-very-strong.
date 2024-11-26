@@ -81,7 +81,11 @@ Enemy::Enemy() {
 	//全部の弾がfalseになったら
 	allShotFalseFlag_ = false;
 	//HP
-	hp_ = 1000;
+	hp_ = 10000;
+	//攻撃力
+	fallingAttackPower_ = 200;//落下攻撃
+	rushAttackPower_ = 100;//突進攻撃
+	allDerectionShotPower_ = 20;//全方向弾
 }
 
 //デストラクタ
