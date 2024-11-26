@@ -133,7 +133,7 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 	}
 
 	//銃モードの処理
-	else if (wheelScroll_ == 1) {
+	else if (weaponMode_ == 1) {
 		for (int i = 0; i < kBulletNum; i++) {
 			//!isShotの時に敵に向かうベクトルを作っておく
 			if (!isShot_[i]) {
@@ -142,37 +142,28 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 				//正規化
 				float length = sqrtf(enemy->quad_.pos.x * bullet_[i].pos.x + enemy->quad_.pos.y * bullet_[i].pos.y);
 
-				bulletVec_[i] = { vectorToTarget_[i] };
-
 				if (length != 0.0f) {
-					bulletVec_[i].x = { vectorToTarget_[i].x / length };
-					bulletVec_[i].y = { vectorToTarget_[i].y / length };
+					bulletVec_[i].x = vectorToTarget_[i].x / length;
+					bulletVec_[i].y = vectorToTarget_[i].y / length;
+				}
+			}
+
+			//連射弾
+			if (readyToFire_ == 1)
+			{
+				if (Novice::IsPressMouse(0)/*keys[DIK_C]*/)
+				{
+					if (!isShot_[i])
+					{
+						readyToFire_ = 0;
+						isShot_[i] = 1;
+						break;
+					}
 				}
 			}
 		}
 	}
 
-	
-	for (int i = 0; i < kBulletNum; i++) {
-		//連射弾
-		if (readyToFire_ == 1)
-		{
-			if (Novice::IsPressMouse(0)/*keys[DIK_C]*/)
-			{
-				if (!isShot_[i])
-				{
-					readyToFire_ = 0;
-					isShot_[i] = 1;
-					break;
-				}
-			}
-		}
-		//弾の移動処理
-		if (isShot_[i]) {
-			bullet_[i].pos.x += bulletVec_[i].x * bulletSpeed_[i].x;
-			bullet_[i].pos.y += bulletVec_[i].y * bulletSpeed_[i].y;
-		}
-	}
 	//クールタイムの処理
 	if (readyToFire_ == 0)
 	{
@@ -183,6 +174,15 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			readyToFire_ = 1;
 		}
 	}
+
+	for (int i = 0; i < kBulletNum; i++) {
+		//弾の移動処理
+		if (isShot_[i]) {
+			bullet_[i].pos.x += bulletVec_[i].x * bulletSpeed_[i].x;
+			bullet_[i].pos.y += bulletVec_[i].y * bulletSpeed_[i].y;
+		}
+	}
+
 
 	//描画用に座標を更新
 	sword_.drawLeftTop = { sword_.leftTop };

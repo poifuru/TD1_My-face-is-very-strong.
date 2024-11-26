@@ -32,7 +32,7 @@ Player::~Player() {
 void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	//移動の処理
 	Novice::GetAnalogInputLeft(0, &stickX_, &stickY_);
-	if ((keys[DIK_A] || stickX_ < 0) && quad_.pos.x - quad_.radius.x > 0) {
+	if ((keys[DIK_A] || stickX_ < 0) && quad_.pos.x + quad_.radius.x > 0) {
 		direction_ = 0;
 		quad_.pos.x -= velocity_.x;
 	}
@@ -43,7 +43,20 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 
 	//プレイヤーの向きで半径をいじいじ
 	if (direction_ == 0) {
-
+		quad_.radius.x = -32.0f;
+		//quad_.radius.y = -32.0f;
+		weapon_->sword_.radius.x = -32.0f;
+		//weapon_->sword_.radius.y = -32.0f;
+		weapon_->gun_.radius.x = -32.0f;
+		//weapon_->gun_.radius.y = -32.0f;
+	}
+	else if (direction_ == 1) {
+		quad_.radius.x = 32.0f;
+		//quad_.radius.y = 32.0f;
+		weapon_->sword_.radius.x = 32.0f;
+		//weapon_->sword_.radius.y = 32.0f;
+		weapon_->gun_.radius.x = 32.0f;
+		//weapon_->gun_.radius.y = 32.0f;
 	}
 
 	//ジャンプするお＾~＾
@@ -78,8 +91,6 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 		//撃ってない間は弾の座標をプレイヤーに合わせる
 		if (!weapon_->isShot_[i]) {
 			weapon_->bullet_[i].pos = { quad_.pos };
-			
-
 		}
 	}
 	weapon_->Update(enemy/*, keys*/);
