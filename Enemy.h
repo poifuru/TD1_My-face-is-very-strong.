@@ -54,6 +54,10 @@ public://メンバ変数
 	bool allShotFalseFlag_;
 	//HP
 	int hp_;
+	//攻撃力
+	int fallingAttackPower_;//落下攻撃
+	int rushAttackPower_;//突進攻撃
+	int allDerectionShotPower_;//全方向弾
 
 	//コンストラクタの宣言
 	Enemy();
