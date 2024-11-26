@@ -6,6 +6,7 @@
 #include "player.h"
 #include "Enemy.h"
 #include "Ultimate.h"
+#include "CollisionCheck.h"
 
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
@@ -44,6 +45,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		//ULTの更新
 		ULTUpdate(keys, preKeys);
+
+		//敵とプレイヤーの当たり判定
+		collisionCheck(player, enemy);
 
 		//敵の更新
 		enemy->Move(keys, preKeys);
