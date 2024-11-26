@@ -18,7 +18,7 @@ Player::Player() {
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
-	HP_ = 100;
+	HP_ = 1000;
 
 	parry_ = new Parry();
 	weapon_ = new Weapon();
@@ -103,11 +103,4 @@ void Player::Draw() {
 
 	//武器の描画
 	weapon_->Draw();
-
-	//デバッグ用
-	Novice::ScreenPrintf(20, 20, "Bullet PosX:%5.1f Y:%5.1f", weapon_->bullet_[0].pos.x, weapon_->bullet_[0].pos.y);
-	Novice::ScreenPrintf(20, 40, "weaponMode:%d", weapon_->weaponMode_);
-	Novice::ScreenPrintf(20, 60, "coolTime:%d", weapon_->shotCoolTime_);
-	Novice::ScreenPrintf(20, 80, "readyToFire:%d", weapon_->readyToFire_);
-	Novice::ScreenPrintf(20, 100, "isParry%d", parry_->isParry_);
 }

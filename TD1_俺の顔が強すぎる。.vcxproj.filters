@@ -38,12 +38,10 @@
     <ClCompile Include="Parry.cpp">
       <Filter>ソースは中濃\Player</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyBullet.cpp">
-      <Filter>ソースは中濃\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Ultimate.cpp">
-      <Filter>ソースは中濃\Player</Filter>
-    </ClCompile>
+    <ClCompile Include="CollisionCheck.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="Ultimate.cpp" />
+    <ClCompile Include="debug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
@@ -151,12 +149,10 @@
     <ClInclude Include="weapon.h">
       <Filter>ヘッダー入れるとこ\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Ultimate.h">
-      <Filter>ヘッダー入れるとこ\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBullet.h">
-      <Filter>ヘッダー入れるとこ\Enemy</Filter>
-    </ClInclude>
+    <ClInclude Include="CollisionCheck.h" />
+    <ClInclude Include="EnemyBullet.h" />
+    <ClInclude Include="Ultimate.h" />
+    <ClInclude Include="debug.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー入れるとこ">
