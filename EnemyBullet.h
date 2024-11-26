@@ -1,24 +1,26 @@
 ﻿#pragma once
-#include "Object.h"
+#include "struct.h"
 
-class EnemyBullet :public Object {
+class Bullet {
 public://メンバ変数
+	//quad
+	Quad quad_[16];
 	//加速度
-	Vector2 acceleration_;
+	Vector2 acceleration_[16];
 	//速度
-	Vector2 velocity_;
+	Vector2 velocity_[16];
 	//発射角度
 	float angle_;
 	//弾数
 	int ammo_;
 	//撃っているか
-	bool isShotFlag_;
+	bool isShotFlag_[16];
 
 	//コンストラクタ
-	EnemyBullet();
+	Bullet();
   
 	//デストラクタ
-	~EnemyBullet();
+	~Bullet();
 
 public://メンバ関数
 	//基本的な動き
