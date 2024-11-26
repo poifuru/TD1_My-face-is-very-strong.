@@ -1,4 +1,6 @@
 #include <Novice.h>
+#include <corecrt_math_defines.h>
+#include <math.h>
 #include "Player.h"
 #include "Enemy.h"
 
@@ -67,6 +69,16 @@ Enemy::Enemy() {
 	isShaked_ = false;//シェイクしましたよフラグ
 	//Movingの速度
 	movingVelocity_ = {};
+	//弾
+	bullet_ = {};
+	//波の幅
+	amplitude_ = 400.0f;
+	//波の速度
+	waveSpeed_ = {};
+	//撃った数
+	shotNumber_ = 0;
+	//全部の弾がfalseになったら
+	allShotFalseFlag_ = false;
 }
 
 //デストラクタ
@@ -77,7 +89,7 @@ Enemy::~Enemy() {
 //敵の基本的な動き
 void Enemy::Move(const char keys[], const char preKeys[]) {
 	//実験用(ホントはタイマーで管理)
-	if(keys[DIK_E] && !preKeys[DIK_E] && situation_ == moving) {
+	if (keys[DIK_E] && !preKeys[DIK_E] && situation_ == moving) {
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//落下攻撃を始める
@@ -96,7 +108,13 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		rushStartPoint_.x = quad_.pos.x;
 		rushStartPoint_.y = quad_.pos.y;
 	}
-	
+	if (keys[DIK_T] && !preKeys[DIK_T] && situation_ == moving) {
+		//元の速度の記録
+		movingVelocity_.x = velocity_.x;
+		//全方向弾を放ち始める
+		situation_ = allDerectionShot;
+	}
+
 	//[moving]======================================
 	//左右移動
 	if (situation_ == moving) {
@@ -151,7 +169,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	//[rushAttack]==================================
 	if (situation_ == rushAttack) {
 		//加速度を設定
-		acceleration_.x = -1.0f;
+		acceleration_.x = -4.0f;
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;
@@ -232,11 +250,73 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	//==============================================
 
 	//[allDerectionShot]============================
-	if (situation_ == allDerectionShot) {
+	if (situation_ == allDerectionShot) {	
+		//シェイクフラグ
+		if (!isShaked_) {
+			shakeFlag_ = true;
+			isShaked_ = true;
+		}
+		
+		if (!shakeFlag_ && isShaked_) {
+			//左右移動
+			quad_.pos.x += velocity_.x;
+			//両端に着いたら反射する
+			if (quad_.pos.x - quad_.radius.x <= 0.0f || quad_.pos.x + quad_.radius.x >= 1920.0f) {
+				velocity_.x *= -1;
+			}
+			//上下の波移動
+			waveSpeed_ += float(M_PI) / 60.0f;//120fpsで1波
+			quad_.pos.y = sinf(waveSpeed_) * amplitude_ + 450.0f;
 
+			//弾が撃たれていなかったら発射する
+			if (shotNumber_ < 100) {
+				for (int i = 0; i < bullet_.ammo_; i++) {
+					if (!bullet_.isShotFlag_[i]) {
+						//フラグを立てる
+						bullet_.isShotFlag_[i] = true;
+						//
+						shotNumber_++;
+
+						//敵のposに代入
+						bullet_.quad_[i].pos.x = quad_.pos.x;
+						bullet_.quad_[i].pos.y = quad_.pos.y;
+						break;
+					}
+				}
+			}
+
+			//弾の動き
+			bullet_.Move();
+
+			//タイマー
+			if (shotNumber_ >= 100) {
+				//すべての弾がでているかの確認
+				for (bool flag : bullet_.isShotFlag_) {
+					allShotFalseFlag_ = true;
+					if (flag) {
+						allShotFalseFlag_ = false;
+						break;
+					}
+				}
+			}
+
+			//Novice::ScreenPrintf(1000, 0, "Number = %d", shotNumber_);
+
+			//撃った弾数がNを超えたら
+			if (allShotFalseFlag_ && quad_.pos.y >= 530.0f && quad_.pos.y <= 550.0f) {
+				//初期化
+				allShotFalseFlag_ = false;
+				isShaked_ = false;
+				quad_.pos.y = 540.0f;
+				waveSpeed_ = 0.0f;
+				shotNumber_ = 0;
+				velocity_.x = movingVelocity_.x;
+				situation_ = moving;
+			}
+		}
 	}
 	//==============================================
-	
+
 	//シェイクフラグ
 	if (shakeFlag_) {
 		if (shakeTimer_ > 0 && randMax_ > 0) {
@@ -272,4 +352,5 @@ void Enemy::Draw() {
 		quad_.imageWidth, quad_.imageHeight,
 		quad_.image.white1x1, WHITE
 	);
+	bullet_.Draw();
 }

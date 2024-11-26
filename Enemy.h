@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "EnemyBullet.h"
 
 class Enemy : public Object {
 public://メンバ変数
@@ -39,6 +40,16 @@ public://メンバ変数
 	bool isShaked_;//シェイクしましたよフラグ
 	//Movingの速度
 	Vector2 movingVelocity_;
+	//弾
+	Bullet bullet_;
+	//波の幅
+	float amplitude_;
+	//波の速度
+	float waveSpeed_;
+	//撃った数
+	int shotNumber_;
+	//全部の弾がfalseになったら
+	bool allShotFalseFlag_;
 
 	//コンストラクタの宣言
 	Enemy();
