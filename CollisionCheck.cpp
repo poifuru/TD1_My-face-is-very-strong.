@@ -13,6 +13,7 @@ void collisionCheck(Player* player, Enemy* enemy)
 		} else {
 			//プレイヤーがパリィしていないとき
             //プレイヤーのHPを減らす
+
 		}
 	}
 }
