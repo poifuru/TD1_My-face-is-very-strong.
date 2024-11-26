@@ -9,7 +9,8 @@ enum situation_ {
 	moving,
 	fallingAttack,
 	rushAttack,
-	allDerectionShot
+	allDerectionShot,
+	beam,
 };
 //突進攻撃回数
 enum rushAttackNumber {
@@ -28,10 +29,10 @@ Enemy::Enemy() {
 	quad_.leftBottom = {};
 	quad_.rightBottom = {};
 	quad_.rightTop = {};
-	quad_.imagePos = {};
-	quad_.imageWidth = {};
-	quad_.imageHeight = {};
-	quad_.image = {};
+	quad_.imagePos = {0,0};
+	quad_.imageWidth = {105};
+	quad_.imageHeight = {105};
+	quad_.image = images_.bossStupidFace;
 	quad_.color = {};
 	//プレイヤーとの距離
 	length_ = 0.0f;
@@ -79,6 +80,8 @@ Enemy::Enemy() {
 	shotNumber_ = 0;
 	//全部の弾がfalseになったら
 	allShotFalseFlag_ = false;
+	//HP
+	hp_ = 1000;
 }
 
 //デストラクタ
@@ -317,6 +320,12 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	}
 	//==============================================
 
+	//[beam]========================================
+	if (situation_ == beam) {
+
+	}
+	//==============================================
+	
 	//シェイクフラグ
 	if (shakeFlag_) {
 		if (shakeTimer_ > 0 && randMax_ > 0) {
@@ -335,10 +344,10 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	}
 
 	//矩形4点の更新
-	quad_.leftTop = { quad_.pos.x - quad_.radius.x + randNumber_.x,quad_.pos.y - quad_.radius.y + randNumber_.y };
-	quad_.rightTop = { quad_.pos.x + quad_.radius.x + randNumber_.x,quad_.pos.y - quad_.radius.y + randNumber_.y };
-	quad_.leftBottom = { quad_.pos.x - quad_.radius.x + randNumber_.x,quad_.pos.y + quad_.radius.y + randNumber_.y };
-	quad_.rightBottom = { quad_.pos.x + quad_.radius.x + randNumber_.x,quad_.pos.y + quad_.radius.y + randNumber_.y };
+	quad_.leftTop = { quad_.pos.x - quad_.radius.x + randNumber_.x - 2.5f,quad_.pos.y - quad_.radius.y + randNumber_.y - 2.5f };
+	quad_.rightTop = { quad_.pos.x + quad_.radius.x + randNumber_.x + 2.5f,quad_.pos.y - quad_.radius.y + randNumber_.y - 2.5f };
+	quad_.leftBottom = { quad_.pos.x - quad_.radius.x + randNumber_.x - 2.5f,quad_.pos.y + quad_.radius.y + randNumber_.y + 2.5f};
+	quad_.rightBottom = { quad_.pos.x + quad_.radius.x + randNumber_.x + 2.5f,quad_.pos.y + quad_.radius.y + randNumber_.y + 2.5f };
 }
 
 //敵を描画する関数
@@ -350,7 +359,7 @@ void Enemy::Draw() {
 		int(quad_.rightBottom.x), int(quad_.rightBottom.y),
 		quad_.imagePos.x, quad_.imagePos.y,
 		quad_.imageWidth, quad_.imageHeight,
-		quad_.image.white1x1, WHITE
+		quad_.image, WHITE
 	);
 	bullet_.Draw();
 }

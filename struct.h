@@ -15,6 +15,10 @@ struct IntVector2 {
 //画像を入れておく構造体
 struct Images {
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
+	int bossStupidFace = Novice::LoadTexture("./Resources./Images./AHO.png");
+	int bossNormalFace = Novice::LoadTexture("./Resources./Images./normalFace.png");
+	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOyellow.png");
+	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKOred.png");
 };
 
 //オブジェクトの構造体====================
@@ -52,7 +56,7 @@ struct Quad {
 	IntVector2 imagePos;
 	int imageWidth;
 	int imageHeight;
-	Images image;
+	int image;
 	int color;
 };
 //=====================================

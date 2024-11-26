@@ -3,6 +3,8 @@
 
 class Bullet {
 public://メンバ変数
+	//画像
+	Images images_;
 	//quad
 	Quad quad_[16];
 	//加速度

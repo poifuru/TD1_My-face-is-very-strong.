@@ -15,7 +15,7 @@ Weapon::Weapon() {
 	gun_.imagePos = {};
 	gun_.imageWidth = 32;
 	gun_.imageHeight = 32;
-	gun_.image;
+	gun_.image = images_.white1x1;
 	gun_.color = BLUE;
 
 	sword_.pos = { 300.0f, 868.0f };
@@ -31,7 +31,7 @@ Weapon::Weapon() {
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
 	sword_.imageHeight = 32;
-	sword_.image;
+	sword_.image = images_.white1x1;
 	sword_.color = RED;
 
 	weaponMode_ = 0; //0が剣　1が銃
@@ -123,7 +123,7 @@ void Weapon::Draw() {
 			int(sword_.drawLeftBottom.x), int(sword_.drawLeftBottom.y),
 			int(sword_.drawRightBottom.x), int(sword_.drawRightBottom.y),
 			sword_.imagePos.x, sword_.imagePos.y, sword_.imageWidth, sword_.imageHeight,
-			sword_.image.white1x1, sword_.color
+			sword_.image, sword_.color
 		);
 	}
 	else if (weaponMode_ == 1) {
@@ -133,7 +133,7 @@ void Weapon::Draw() {
 			int(gun_.drawLeftBottom.x), int(gun_.drawLeftBottom.y),
 			int(gun_.drawRightBottom.x), int(gun_.drawRightBottom.y),
 			gun_.imagePos.x, gun_.imagePos.y, gun_.imageWidth, gun_.imageHeight,
-			gun_.image.white1x1, gun_.color
+			gun_.image, gun_.color
 		);
 	}
 }
