@@ -21,7 +21,7 @@ Bullet::Bullet() {
 		quad_[i].imagePos = {};
 		quad_[i].imageWidth = {};
 		quad_[i].imageHeight = {};
-		quad_[i].image = {};
+		quad_[i].image = images_.white1x1;
 		quad_[i].color = {};
 		//加速度
 		acceleration_[i] = { 0.1f,0.1f };
@@ -90,7 +90,7 @@ void Bullet::Draw() {
 				int(quad_[i].rightBottom.x), int(quad_[i].rightBottom.y),
 				quad_[i].imagePos.x, quad_[i].imagePos.y,
 				quad_[i].imageWidth, quad_[i].imageHeight,
-				quad_[i].image.white1x1, WHITE
+				quad_[i].image, WHITE
 			);
 		}
 	}

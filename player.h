@@ -7,6 +7,9 @@
 
 class Player : public Object{
 public:
+	//画像
+	Images images_;
+
 	//メンバ変数
 	int stickX_;
 	int stickY_;

@@ -7,5 +7,6 @@ public:
 	Box box_;
 	Circle circle_;
 	Quad quad_;
+	Images image_;
 };
 

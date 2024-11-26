@@ -6,6 +6,9 @@ const int kBulletNum = 30;
 
 class Weapon : public Object {
 public:
+	//画像
+	Images images_;
+	
 	//メンバ変数
 	Quad gun_;
 	Quad sword_;

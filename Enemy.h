@@ -4,6 +4,8 @@
 
 class Enemy : public Object {
 public://メンバ変数
+	//画像
+	Images images_;
 	//速度
 	Vector2 velocity_;
 	//加速度
@@ -50,6 +52,8 @@ public://メンバ変数
 	int shotNumber_;
 	//全部の弾がfalseになったら
 	bool allShotFalseFlag_;
+	//HP
+	int hp_;
 
 	//コンストラクタの宣言
 	Enemy();
