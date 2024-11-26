@@ -4,6 +4,7 @@
 
 class Enemy : public Object {
 public://メンバ変数
+
 	//画像
 	Images images_;
 	//速度
@@ -43,7 +44,7 @@ public://メンバ変数
 	//Movingの速度
 	Vector2 movingVelocity_;
 	//弾
-	Bullet bullet_;
+	Bullet bullet_ = {};
 	//波の幅
 	float amplitude_;
 	//波の速度
@@ -58,6 +59,7 @@ public://メンバ変数
 	int fallingAttackPower_;//落下攻撃
 	int rushAttackPower_;//突進攻撃
 	int allDerectionShotPower_;//全方向弾
+	int allDerectionPower_;//全方向弾時の突進
 
 	//コンストラクタの宣言
 	Enemy();

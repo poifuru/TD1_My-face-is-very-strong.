@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Ultimate.h"
 #include "CollisionCheck.h"
+#include "debug.h"
 
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
@@ -69,9 +70,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//敵の描画
 		enemy->Draw();
 
-
 		//カットインの描画
 		DrawCutIn();
+
+		//デバッグ用
+		debugprint(player, enemy);
 
 		///
 		/// ↑描画処理ここまで

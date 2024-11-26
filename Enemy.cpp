@@ -3,22 +3,7 @@
 #include <math.h>
 #include "Player.h"
 #include "Enemy.h"
-
-//攻撃手段
-enum situation_ {
-	moving,
-	fallingAttack,
-	rushAttack,
-	allDerectionShot,
-	beam,
-};
-//突進攻撃回数
-enum rushAttackNumber {
-	firstAttack,
-	secondAttack,
-	thirdAttack,
-	remove
-};
+#include "enum.h"
 
 //コンストラクタ
 Enemy::Enemy() {
@@ -86,6 +71,7 @@ Enemy::Enemy() {
 	fallingAttackPower_ = 200;//落下攻撃
 	rushAttackPower_ = 100;//突進攻撃
 	allDerectionShotPower_ = 20;//全方向弾
+	allDerectionPower_ = 50;//全方向弾時の突進
 }
 
 //デストラクタ

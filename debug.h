@@ -4,6 +4,6 @@
 #include "Enemy.h"
 #include "Parry.h"
 #include "enum.h"
+#include "Ultimate.h"
 
-void collisionCheck(Player* player, Enemy* enemy);
-	
+void debugprint(Player* player,Enemy* enemy);
