@@ -1,6 +1,8 @@
 #pragma once
 #include "Struct.h"
 #include "Object.h"
+#include "Enemy.h"
+#include "Player.h"
 
 const int kBulletNum = 30;
 
@@ -10,8 +12,8 @@ public:
 	Images images_;
 	
 	//メンバ変数
-	Quad gun_;
 	Quad sword_;
+	Quad gun_;
 
 	int weaponMode_;
 
@@ -21,14 +23,19 @@ public:
 	int wheelScroll_;
 
 	/*銃モードの変数*/
-	
-
+	Quad bullet_[kBulletNum];
+	Vector2 bulletSpeed_[kBulletNum];
+	int isShot_[kBulletNum];
+	Vector2 bulletVec_[kBulletNum];
+	Vector2 vectorToTarget_[kBulletNum]; //弾発射時の座標と敵の座標を結ぶベクトル
+	int readyToFire_;
+	int shotCoolTime_;
 
 	//コンストラクタ
 	Weapon();
 
 	//メンバ関数
-	void Update();
+	void Update(Enemy enemy/*, const char* keys*/);
 	void Draw();
 };
 

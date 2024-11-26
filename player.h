@@ -4,8 +4,11 @@
 #include "Object.h"
 #include "Weapon.h"
 #include "Parry.h"
+#include "Enemy.h"
 
-class Player : public Object{
+class Weapon;//前方宣言
+
+class Player : public Object {
 public:
 	//画像
 	Images images_;
@@ -15,6 +18,7 @@ public:
 	int stickY_;
 	Vector2 velocity_;
 	int direction_;
+	int HP_;
 
 	/*ジャンプ*/
 	int isJump_;
@@ -32,6 +36,6 @@ public:
 	~Player();
 
 	//メンバ関数
-	void Update(const char keys[], const char preKeys[]);
+	void Update(const char keys[], const char preKeys[], Enemy enemy);
 	void Draw();
 };
