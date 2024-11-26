@@ -16,7 +16,7 @@ Weapon::Weapon() {
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
 	sword_.imageHeight = 32;
-	sword_.image = sword_.imageName.white1x1;
+	sword_.image = images_.white1x1;
 	sword_.color = RED;
 	attack_ = 0;
 	attackingTimer_ = 0;
@@ -34,7 +34,7 @@ Weapon::Weapon() {
 	gun_.imagePos = {};
 	gun_.imageWidth = 32;
 	gun_.imageHeight = 32;
-	gun_.image = gun_.imageName.white1x1;
+	gun_.image = images_.white1x1;
 	gun_.color = BLUE;
 
 	for (int i = 0; i < kBulletNum; i++) {
@@ -52,7 +52,7 @@ Weapon::Weapon() {
 		bullet_[i].imagePos = { 0, 0 };
 		bullet_[i].imageWidth = 32;
 		bullet_[i].imageHeight = 32;
-		bullet_[i].image = bullet_[i].imageName.white1x1;
+		bullet_[i].image = images_.white1x1;
 		bullet_[i].color = GREEN;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
