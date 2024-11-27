@@ -92,6 +92,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				enemy->quad_.pos.y = 540.0f;
 				//enemyのHP
 				enemy->hp_ = 10000;
+				//enemyの状態変化
+				enemy->situation_ = moving;
 
 				//Lets game
 				scene = game;
