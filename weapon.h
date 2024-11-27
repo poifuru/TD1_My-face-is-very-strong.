@@ -10,43 +10,44 @@ const int kMaxAttack = 3;
 
 class Weapon : public Object {
 public:
-	//画像
-	Images images_;
-	
-	//メンバ変数
-	Quad sword_;
-	Quad gun_;
+    //画像
+    Images images_;
 
-	int weaponMode_;
+    //メンバ変数
+    Quad sword_;
+    Quad gun_;
 
-	/*剣モードの変数*/
-	int attack_;
-	int kattackingTime_;
-	int attackingTimer_;
-	int wheelScroll_;
-	int swordAttackPower_;
-	//動作の始点と終点
-	Vector2 startPos[kMaxAttack];
-	Vector2 endPos[kMaxAttack];
-	float easeT[kMaxAttack];
-	int isPush[kMaxAttack];
-	int isEase[kMaxAttack];
+    int weaponMode_;
 
-	/*銃モードの変数*/
-	Quad bullet_[kBulletNum];
-	Vector2 bulletSpeed_[kBulletNum];
-	int isShot_[kBulletNum];
-	Vector2 bulletVec_[kBulletNum];
-	Vector2 vectorToTarget_[kBulletNum]; //弾発射時の座標と敵の座標を結ぶベクトル
-	int readyToFire_;
-	int shotCoolTime_;
-	int bulletAttackPower_;
+    // 剣モードの変数 /
+    int attack_;
+    int attackingTimer_;
+    int wheelScroll_;
+    int swordAttackPower_;
 
-	//コンストラクタ
-	Weapon();
+    //動作の始点と終点
+    Vector2 startPos[kMaxAttack];
+    Vector2 endPos[kMaxAttack];
+    Vector2 easeT[kMaxAttack];
+    int isPushX[kMaxAttack];
+    int isPushY[kMaxAttack];
+    int isEaseX[kMaxAttack];
+    int isEaseY[kMaxAttack];
 
-	//メンバ関数
-	void Update(Enemy* enemy);
-	void Draw();
+   // 銃モードの変数 /
+    Quad bullet_[kBulletNum];
+    Vector2 bulletSpeed_[kBulletNum];
+    int isShot_[kBulletNum];
+    Vector2 bulletVec_[kBulletNum];
+    Vector2 vectorToTarget_[kBulletNum]; //弾発射時の座標と敵の座標を結ぶベクトル
+    int readyToFire_;
+    int shotCoolTime_;
+    int bulletAttackPower_;
+
+    //コンストラクタ
+    Weapon();
+
+    //メンバ関数
+    void Update(Enemy* enemy);
+    void Draw();
 };
-
