@@ -27,7 +27,7 @@ enum rushAttackNumber {
 };
 
 //敵の向き
-enum enemyDirection {
+enum Direction {
 	left,
 	right,
 	front

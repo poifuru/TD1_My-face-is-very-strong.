@@ -120,6 +120,7 @@ Enemy::Enemy() {
 	prevDirection_ = front;//前の向き
 	direction_ = right;//向き
 
+
 	//==============================================
 
 	//AI

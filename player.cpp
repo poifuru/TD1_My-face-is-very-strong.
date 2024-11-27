@@ -15,10 +15,13 @@ Player::Player() {
 	quad_.imagePos = { 0, 0 };
 	quad_.imageWidth = 32;
 	quad_.imageHeight = 32;
-	quad_.image = 0;
+	quad_.image = images_.playerStand;
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
-	direction_ = 1; //0が左向き　1が右向き
+	direction_ = front;
+	ghPos_ = 0;
+	playerTime_ = 10;
+	playerTimer_ = playerTime_;
 	isJump_ = 0;
 	stickX_ = 0;
 	stickY_ = 0;
@@ -36,14 +39,40 @@ Player::~Player() {
 }
 
 void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
+	isMove_ = false;
 	//移動の処理
 	Novice::GetAnalogInputLeft(0, &stickX_, &stickY_);
 	if ((keys[DIK_A] || stickX_ < 0) && quad_.pos.x - quad_.radius.x > 0) {
-		direction_ = 0;
+		isMove_ = true;
+		direction_ = left;
 		quad_.pos.x -= velocity_.x;
 	} else if ((keys[DIK_D] || stickX_ > 0) && quad_.pos.x + quad_.radius.x < 1920) {
-		direction_ = 1;
+		isMove_ = true;
+		direction_ = right;
 		quad_.pos.x += velocity_.x;
+	}
+
+	//プレイヤーの向き管理
+	if (!isMove_) {
+		quad_.image = images_.playerStand;
+	} else {
+		if (direction_ == left) {
+			quad_.image = images_.playerLeft;
+		} else if (direction_ == right) {
+			quad_.image = images_.playerRight;
+		}
+	}
+
+	if (isMove_) {
+		playerTimer_--;
+		if (playerTimer_ == 0) {
+
+			ghPos_ += 64;
+			if (ghPos_ >= 448) {
+				ghPos_ = 0;
+			}
+			playerTimer_ = playerTime_;
+		}
 	}
 
 	//プレイヤーの向きで半径をいじいじ
@@ -119,27 +148,47 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 }
 
 void Player::Draw() {
-	//プレイヤーの描画
-	if (!invincible_) {
-		Novice::DrawQuad(
-			int(quad_.leftTop.x), int(quad_.leftTop.y),
-			int(quad_.rightTop.x), int(quad_.rightTop.y),
-			int(quad_.leftBottom.x), int(quad_.leftBottom.y),
-			int(quad_.rightBottom.x), int(quad_.rightBottom.y),
-			quad_.imagePos.x, quad_.imagePos.y, quad_.imageWidth, quad_.imageHeight, quad_.image, quad_.color
-		);
-		//武器の描画
-		weapon_->Draw();
-	} else if (invincible_ && invincibleTimer_ % 3 == 0) {
-		Novice::DrawQuad(
-			int(quad_.leftTop.x), int(quad_.leftTop.y),
-			int(quad_.rightTop.x), int(quad_.rightTop.y),
-			int(quad_.leftBottom.x), int(quad_.leftBottom.y),
-			int(quad_.rightBottom.x), int(quad_.rightBottom.y),
-			quad_.imagePos.x, quad_.imagePos.y, quad_.imageWidth, quad_.imageHeight, quad_.image, quad_.color
-		);
-		//武器の描画
-		weapon_->Draw();
+	if (isMove_) {
+		//プレイヤーの描画
+		if (!invincible_) {
+			Novice::DrawSpriteRect(
+				int(quad_.leftTop.x), int(quad_.leftTop.y),
+				int(ghPos_), 0,
+				int(quad_.radius.x * 2), int(quad_.radius.y * 2),
+				quad_.image, 1.0f / 7.0f, 1.0f, 0.0f, quad_.color
+			);
+			//武器の描画
+			weapon_->Draw();
+		} else if (invincible_ && invincibleTimer_ % 3 == 0) {
+			Novice::DrawSpriteRect(
+				int(quad_.leftTop.x), int(quad_.leftTop.y),
+				int(ghPos_), 0,
+				int(quad_.radius.x * 2), int(quad_.radius.y * 2),
+				quad_.image, 1.0f / 7.0f, 1.0f, 0.0f, quad_.color
+			);
+			//武器の描画
+			weapon_->Draw();
+		}
+
+	} else {
+
+		//プレイヤーの描画
+		if (!invincible_) {
+			Novice::DrawSprite(
+				int(quad_.leftTop.x), int(quad_.leftTop.y),
+				quad_.image, 1.0f, 1.0f, 0.0f, quad_.color
+			);
+			//武器の描画
+			weapon_->Draw();
+		} else if (invincible_ && invincibleTimer_ % 3 == 0) {
+			Novice::DrawSprite(
+				int(quad_.leftTop.x), int(quad_.leftTop.y),
+				quad_.image, 1.0f, 1.0f, 0.0f, quad_.color
+			);
+			//武器の描画
+			weapon_->Draw();
+		}
+
 	}
 
 	//プレイヤーのHPバーの描画

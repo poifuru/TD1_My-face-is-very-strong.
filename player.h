@@ -17,8 +17,12 @@ public:
 	int stickX_;
 	int stickY_;
 	Vector2 velocity_;
-	int direction_;
+	Direction direction_;
 	int HP_;
+	int isMove_;
+	int ghPos_;
+	int playerTime_;
+	int playerTimer_;
 	int invincible_;//無敵時間に使うよ
 	int invincibleTimer_;
 
