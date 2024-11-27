@@ -34,6 +34,8 @@ int ULTTimer = chargeTime;
 int isCutInEase = false;
 int isCutInPush = false;
 
+int notULTTimer = 0;
+int isNotULT = false;
 
 Vector2 cutInPos = {
 	-1 * cutInWidth - 5,margin
@@ -202,7 +204,24 @@ void DrawCutIn(int ghCutIn)
 
 }
 
-void DrawBar(int ULTGo) {
+void DrawBar(int ULTGo, int notULT,char* keys, char* preKeys) {
+
+	if (!isULTReady) {
+		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
+			isNotULT = true;
+			
+		}
+	}
+
+	if (isNotULT) {
+		notULTTimer++;
+		if (notULTTimer >= 60) {
+			notULTTimer = 0;
+			isNotULT = false;
+		}
+		Novice::DrawSprite(0, 300, notULT, 1.0f, 1.0f, 0.0f, 0xFFFFFFFF);
+	}
+
 	//ULTバーの背景
 	Novice::DrawBox(480, 928, 96, 96, 0.0f, 0x847e87FF, kFillModeSolid);
 	Novice::DrawBox(480, 932 + (96 - Ultimate), 96, 96, 0.0f, BLUE, kFillModeSolid);

@@ -28,6 +28,7 @@ struct Images {
 	//ウルト
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
 	int ULTGo = Novice::LoadTexture("./Resources./Images./ULT.png");
+	int notULT = Novice::LoadTexture("./Resources./Images./notULT.png");
 	//プレイヤーの動き
 	int playerStand = Novice::LoadTexture("./Resources./Images./stand.png");
 	int playerLeft = Novice::LoadTexture("./Resources./Images./walk_left.png");

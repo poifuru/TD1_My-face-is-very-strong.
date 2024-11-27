@@ -35,6 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int cutIn_image = image.playerUlt;
 	//ULT
 	int ULTGo_image = image.ULTGo;
+	int notULT_image = image.notULT;
 	//背景
 	int backGround_image = image.backGround;
 	//game背景
@@ -185,7 +186,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			enemy->Draw();
 
 			//Barの描画
-			DrawBar(ULTGo_image);
+			DrawBar(ULTGo_image,notULT_image,keys,preKeys);
 
 			//地面
 			//Novice::DrawBox(0, 900, 1920, 180, 0.0f, WHITE, kFillModeSolid);
