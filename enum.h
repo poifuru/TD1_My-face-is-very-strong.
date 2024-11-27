@@ -26,3 +26,17 @@ enum rushAttackNumber {
 	thirdAttack,
 	remove
 };
+
+//敵の向き
+enum enemyDirection {
+	left,
+	right,
+	front
+};
+
+//敵の状態
+enum enemyState {
+	normal,
+	halfAngry,
+	angry
+};
