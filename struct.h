@@ -25,6 +25,10 @@ struct Images {
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
 	//ウルト
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
+	//プレイヤーの動き
+	int playerStand = Novice::LoadTexture("./Resources./Images./stand.png");
+	int playerLeft = Novice::LoadTexture("./Resources./Images./walk_left.png");
+	int playerRight = Novice::LoadTexture("./Resources./Images./walk_right.png");
 	//playerBullet
 	int playerBullet = Novice::LoadTexture("./Resources./Images./playerBullet.png");
 	//enemyBullet
