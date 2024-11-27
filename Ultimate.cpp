@@ -58,7 +58,7 @@ float easeT[2] = {
 // カットイン用関数
 //=======================================
 
-void startCutIn()
+void startCutIn(Enemy* enemy)
 {
 	isCutInTimer = true;
 	int is2ndEase = false;
@@ -111,6 +111,7 @@ void startCutIn()
 			isCutIn = false;
 			easeT[0] = 0.0f;
 			easeT[1] = 0.0f;
+			enemy->hp_ -= 500;
 		}
 	}
 
@@ -148,14 +149,13 @@ void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
 			isULT = true;
 			Ultimate = 0;
-			enemy->hp_ -= 500;
 		}
 	}
 
 	if (isULT) {
 		isCutInEase = true;
 		isCutInPush = true;
-		startCutIn();
+		startCutIn(enemy);
 	}
 
 
