@@ -16,9 +16,9 @@ Enemy::Enemy() {
 	quad_.leftBottom = {};
 	quad_.rightBottom = {};
 	quad_.rightTop = {};
-	quad_.imagePos = {0,0};
-	quad_.imageWidth = {105};
-	quad_.imageHeight = {105};
+	quad_.imagePos = { 0,0 };
+	quad_.imageWidth = { 105 };
+	quad_.imageHeight = { 105 };
 	quad_.image = images_.bossStupidFace;
 	quad_.color = {};
 	//プレイヤーとの距離
@@ -53,7 +53,7 @@ Enemy::Enemy() {
 	//落下後に上昇する速度
 	risingVelocity_ = 1.0f;
 	//==============================================
-	
+
 	//[rushAttack]==================================
 	//突進攻撃後の戻る場所
 	rushStartPoint_ = {};
@@ -65,7 +65,7 @@ Enemy::Enemy() {
 	//テレポートのフラグ
 	teleportFlag_ = false;
 	//==============================================
-	
+
 	//[allDerectionShot]============================
 	//弾
 	bullet_ = {};
@@ -78,7 +78,7 @@ Enemy::Enemy() {
 	//全部の弾がfalseになったら
 	allShotFalseFlag_ = false;
 	//==============================================
-	
+
 	//[beam]========================================
 	//ビーム
 	beam_ = {};
@@ -107,6 +107,14 @@ Enemy::Enemy() {
 	isShaked_ = false;//シェイクしましたよフラグ
 	//==============================================
 
+	//[status]======================================
+
+	status_ = normal;//状態
+	prevDirection_ = front;//前の向き
+	direction_ = right;//向き
+
+	//==============================================
+
 	//AI
 	attackCoolTimeSet_ = 5 * 60;//行動パターンのタイマー(秒数 x fps)
 	attackCoolTimer_ = attackCoolTimeSet_;//タイマー部分
@@ -120,6 +128,7 @@ Enemy::~Enemy() {
 
 //敵の基本的な動き
 void Enemy::Move(const char keys[], const char preKeys[]) {
+
 	//ランダム
 	unsigned int currentTime = unsigned(time(nullptr));//乱数
 	srand(currentTime);
@@ -129,12 +138,14 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 			attackCoolTimer_--;
 		} else {
 			attackNumber_ = rand() % 100 + 1;//確率
-			
+
 		}
 	}
-	
+
 	//実験用(ホントはタイマーで管理)
 	if (keys[DIK_E] && !preKeys[DIK_E] && situation_ == moving) {
+
+		prevDirection_ = direction_;
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//落下攻撃を始める
@@ -143,6 +154,8 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		fallingStartPoint_ = quad_.pos.y;
 	}
 	if (keys[DIK_R] && !preKeys[DIK_R] && situation_ == moving) {
+
+		prevDirection_ = direction_;
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//突進攻撃を始める
@@ -154,12 +167,16 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		rushStartPoint_.y = quad_.pos.y;
 	}
 	if (keys[DIK_T] && !preKeys[DIK_T] && situation_ == moving) {
+
+		prevDirection_ = direction_;
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//全方向弾を放ち始める
 		situation_ = allDerectionShot;
 	}
 	if (keys[DIK_Y] && !preKeys[DIK_Y] && situation_ == moving) {
+
+		prevDirection_ = direction_;
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//ビーム後に戻るポイントの設定
@@ -174,6 +191,8 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		}
 	}
 	if (keys[DIK_U] && !preKeys[DIK_U] && situation_ == moving) {
+
+		prevDirection_ = direction_;
 		//元の速度の記録
 		movingVelocity_.x = velocity_.x;
 		//ビーム後に戻るポイントの設定
@@ -191,12 +210,18 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		//両端に着いたら反射する
 		if (quad_.pos.x - quad_.radius.x <= 0.0f || quad_.pos.x + quad_.radius.x >= 1920.0f) {
 			velocity_.x *= -1;
+			if (direction_ == left) {
+				direction_ = right;
+			} else if (direction_ == right) {
+				direction_ = left;
+			}
 		}
 	}
 	//==============================================
 
 	//[fallingAttack]===============================
 	if (situation_ == fallingAttack) {
+		direction_ = front;
 		//加速度を設定
 		acceleration_.y = 5.0f;
 		//シェイクフラグ
@@ -223,6 +248,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 			//落下し始めるポイントに戻ったら
 			if (quad_.pos.y <= fallingStartPoint_ && fellFlag_) {
 				//初期化
+				direction_ = prevDirection_;
 				quad_.pos.y = fallingStartPoint_;
 				velocity_.x = movingVelocity_.x;
 				velocity_.y = 0.0f;
@@ -236,6 +262,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 	//[rushAttack]==================================
 	if (situation_ == rushAttack) {
+		direction_ = front;
 		//加速度を設定
 		acceleration_.x = -4.0f;
 		//シェイクフラグ
@@ -252,6 +279,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		}
 		if (teleportFlag_) {
 			if (rushAttackNumber_ == firstAttack) {//1回目の攻撃
+				direction_ = left;
 				//突進攻撃させる
 				if (quad_.pos.x >= -100.0f) {
 					velocity_.x += acceleration_.x;
@@ -266,6 +294,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 					rushAttackNumber_ = secondAttack;
 				}
 			} else if (rushAttackNumber_ == secondAttack) {//2回目の攻撃
+				direction_ = right;
 				//突進攻撃させる
 				if (quad_.pos.x >= -100.0f) {
 					velocity_.x += acceleration_.x;
@@ -280,6 +309,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 					rushAttackNumber_ = thirdAttack;
 				}
 			} else if (rushAttackNumber_ == thirdAttack) {//3回目の攻撃
+				direction_ = left;
 				//突進攻撃させる
 				if (quad_.pos.x >= -100.0f) {
 					velocity_.x += acceleration_.x;
@@ -295,6 +325,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 					rushAttackNumber_ = remove;
 				}
 			} else if (rushAttackNumber_ == remove) {//元の位置に戻る
+				direction_ = right;
 				//突進攻撃させる
 				if (quad_.pos.x >= -100.0f) {
 					velocity_.x += acceleration_.x;
@@ -304,6 +335,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 				if (quad_.pos.x >= rushStartPoint_.x) {
 					//初期化
+					direction_ = prevDirection_;
 					quad_.pos.x = rushStartPoint_.x;
 					quad_.pos.y = rushStartPoint_.y;
 					velocity_.x = movingVelocity_.x;
@@ -318,13 +350,16 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	//==============================================
 
 	//[allDerectionShot]============================
-	if (situation_ == allDerectionShot) {	
+	if (situation_ == allDerectionShot) {
+
+		direction_ = front;
+
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;
 			isShaked_ = true;
 		}
-		
+
 		if (!shakeFlag_ && isShaked_) {
 			//左右移動
 			quad_.pos.x += velocity_.x;
@@ -380,6 +415,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 				shotNumber_ = 0;
 				velocity_.x = movingVelocity_.x;
 				situation_ = moving;
+				direction_ = prevDirection_;
 			}
 		}
 	}
@@ -387,6 +423,9 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 	//[beam]========================================
 	if (situation_ == beam) {
+
+		direction_ = front;
+
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;
@@ -430,15 +469,18 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 						beam_.transitionTimer_ = beam_.transitionTimeSet_;//危険信号からビームに変わる為のタイマー
 						beam_.duringBeamTimer_ = beam_.duringBeamTimeSet_;//ビーム中のタイマー
 						situation_ = moving;//シチュエーション
+						direction_ = prevDirection_;
 					}
 				}
 			}
 		}
 	}
 	//==============================================
-	
+
 	//[bom]=========================================
 	if (situation_ == bom) {
+
+		direction_ = front;
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;
@@ -464,11 +506,12 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 				bom_.quad_.radius.y = 0.0f;
 				bom_.bomFlag_ = false;
 				situation_ = moving;//シチュエーション
+				direction_ = prevDirection_;
 			}
 		}
 	}
 	//==============================================
-	
+
 	//シェイクフラグ
 	if (shakeFlag_) {
 		if (shakeTimer_ > 0 && randMax_ > 0) {
@@ -489,8 +532,45 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	//矩形4点の更新
 	quad_.leftTop = { quad_.pos.x - quad_.radius.x + randNumber_.x - 2.5f,quad_.pos.y - quad_.radius.y + randNumber_.y - 2.5f };
 	quad_.rightTop = { quad_.pos.x + quad_.radius.x + randNumber_.x + 2.5f,quad_.pos.y - quad_.radius.y + randNumber_.y - 2.5f };
-	quad_.leftBottom = { quad_.pos.x - quad_.radius.x + randNumber_.x - 2.5f,quad_.pos.y + quad_.radius.y + randNumber_.y + 2.5f};
+	quad_.leftBottom = { quad_.pos.x - quad_.radius.x + randNumber_.x - 2.5f,quad_.pos.y + quad_.radius.y + randNumber_.y + 2.5f };
 	quad_.rightBottom = { quad_.pos.x + quad_.radius.x + randNumber_.x + 2.5f,quad_.pos.y + quad_.radius.y + randNumber_.y + 2.5f };
+	//==============================================
+
+	//[status]=========================================
+	//HPが50%以上の時
+	if (hp_ > 5000) {
+		status_ = normal;
+	} else if (hp_ <= 5000 && hp_ > 3000) {
+		status_ = halfAngry;
+	} else if (hp_ <= 3000) {
+		status_ = angry;
+	}
+
+	if (status_ == normal) {
+		if (direction_ == front) {
+			quad_.image = images_.bossStupidFace;
+		} else if (direction_ == right) {
+			quad_.image = images_.bossStupidRightFace;
+		} else if (direction_ == left) {
+			quad_.image = images_.bossStupidLeftFace;
+		}
+	} else if (status_ == halfAngry) {
+		if (direction_ == front) {
+			quad_.image = images_.bossAngryYellowFace;
+		} else if (direction_ == right) {
+			quad_.image = images_.bossAngryYellowFace;
+		} else if (direction_ == left) {
+			quad_.image = images_.bossAngryYellowFace;
+		}
+	} else if (status_ == angry) {
+		if (direction_ == front) {
+			quad_.image = images_.bossAngryRedFace;
+		} else if (direction_ == right) {
+			quad_.image = images_.bossAngryRedFace;
+		} else if (direction_ == left) {
+			quad_.image = images_.bossAngryRedFace;
+		}
+	}
 }
 
 //敵を描画する関数
@@ -506,7 +586,7 @@ void Enemy::Draw() {
 		quad_.imagePos.x, quad_.imagePos.y,
 		quad_.imageWidth, quad_.imageHeight,
 		quad_.image, WHITE
-	);	
+	);
 	//弾
 	bullet_.Draw();
 	//ボム
