@@ -17,13 +17,10 @@ public://メンバ変数
 	int ammo_;
 	//撃っているか
 	bool isShotFlag_[16];
-
 	//コンストラクタ
 	Bullet();
-  
 	//デストラクタ
 	~Bullet();
-
 public://メンバ関数
 	//基本的な動き
 	void Move();

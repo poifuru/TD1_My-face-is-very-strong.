@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+//画面遷移
 enum Scene {
 	Title,
 	Tutorial,
@@ -14,6 +15,8 @@ enum situation_ {
 	rushAttack,
 	allDerectionShot,
 	beam,
+	bom,
+	ult
 };
 
 //突進攻撃回数

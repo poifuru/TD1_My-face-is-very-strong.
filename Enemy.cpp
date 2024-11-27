@@ -4,9 +4,11 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "enum.h"
+#include <time.h>
 
 //コンストラクタ
 Enemy::Enemy() {
+	//[基本]=======================================
 	//DrawQuadで主に使う
 	quad_.pos = { 980.0f,540.0f };
 	quad_.radius = { 50.0f,50.0f };
@@ -27,12 +29,30 @@ Enemy::Enemy() {
 	acceleration_ = {};
 	//敵の状態
 	situation_ = moving;
+	//Movingの速度
+	movingVelocity_ = {};
+	//==============================================
+
+	//[status]======================================
+	//HP
+	hp_ = 10000;
+	//攻撃力
+	fallingAttackPower_ = 200;//落下攻撃
+	rushAttackPower_ = 100;//突進攻撃
+	allDerectionShotPower_ = 20;//全方向弾
+	allDerectionPower_ = 50;//全方向弾時の突進
+	//==============================================
+
+	//[fallingAttack]===============================
 	//落下し始めるポイント
 	fallingStartPoint_ = 0.0f;
 	//落下し終わったのかを確認するフラグ
 	fellFlag_ = false;
 	//落下後に上昇する速度
 	risingVelocity_ = 1.0f;
+	//==============================================
+	
+	//[rushAttack]==================================
 	//突進攻撃後の戻る場所
 	rushStartPoint_ = {};
 	//突進前の時間
@@ -42,6 +62,31 @@ Enemy::Enemy() {
 	rushAttackNumber_ = {};
 	//テレポートのフラグ
 	teleportFlag_ = false;
+	//==============================================
+	
+	//[allDerectionShot]============================
+	//弾
+	bullet_ = {};
+	//波の幅
+	amplitude_ = 400.0f;
+	//波の速度
+	waveSpeed_ = {};
+	//撃った数
+	shotNumber_ = 0;
+	//全部の弾がfalseになったら
+	allShotFalseFlag_ = false;
+	//==============================================
+	
+	//[beam]========================================
+	//ビーム
+	beam_ = {};
+	//ビーム前の場所の記録
+	beamStartPoint_ = {};
+	//ビーム中のボスの速度
+	duringBeamSpeed_ = { 5.0f,10.0f };
+	//==============================================
+
+	//[shake]=======================================
 	//ランダム
 	randNumber_ = {};//ランダムな値xとy
 	kRandMax_ = 21.0f;//ランダムな値のMAX値(固定)
@@ -53,25 +98,12 @@ Enemy::Enemy() {
 	shakeTimeSet_ = shakeTimeSecond_ * 60;//シェイクの時間設定
 	shakeTimer_ = shakeTimeSet_;//シェイクの時間
 	isShaked_ = false;//シェイクしましたよフラグ
-	//Movingの速度
-	movingVelocity_ = {};
-	//弾
-	bullet_ = {};
-	//波の幅
-	amplitude_ = 400.0f;
-	//波の速度
-	waveSpeed_ = {};
-	//撃った数
-	shotNumber_ = 0;
-	//全部の弾がfalseになったら
-	allShotFalseFlag_ = false;
-	//HP
-	hp_ = 10000;
-	//攻撃力
-	fallingAttackPower_ = 200;//落下攻撃
-	rushAttackPower_ = 100;//突進攻撃
-	allDerectionShotPower_ = 20;//全方向弾
-	allDerectionPower_ = 50;//全方向弾時の突進
+	//==============================================
+
+	//AI
+	attackCoolTimeSet_ = 5 * 60;//行動パターンのタイマー(秒数 x fps)
+	attackCoolTimer_ = attackCoolTimeSet_;//タイマー部分
+	attackNumber_ = 0;//確率
 }
 
 //デストラクタ
@@ -81,6 +113,19 @@ Enemy::~Enemy() {
 
 //敵の基本的な動き
 void Enemy::Move(const char keys[], const char preKeys[]) {
+	//ランダム
+	unsigned int currentTime = unsigned(time(nullptr));//乱数
+	srand(currentTime);
+	//AI
+	if (situation_ == moving) {
+		if (attackCoolTimer_ > 0) {
+			attackCoolTimer_--;
+		} else {
+			attackNumber_ = rand() % 100 + 1;//確率
+			
+		}
+	}
+	
 	//実験用(ホントはタイマーで管理)
 	if (keys[DIK_E] && !preKeys[DIK_E] && situation_ == moving) {
 		//元の速度の記録
@@ -106,6 +151,20 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		movingVelocity_.x = velocity_.x;
 		//全方向弾を放ち始める
 		situation_ = allDerectionShot;
+	}
+	if (keys[DIK_Y] && !preKeys[DIK_Y] && situation_ == moving) {
+		//元の速度の記録
+		movingVelocity_.x = velocity_.x;
+		//ビーム後に戻るポイントの設定
+		beamStartPoint_.x = quad_.pos.x;
+		beamStartPoint_.y = quad_.pos.y;
+		//ビームを放ち始める
+		situation_ = beam;
+		//ビームのposXを決める
+		for (int i = 0; i < beam_.beamNumber_; i++) {
+			//ランダムなposX
+			beam_.beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
+		}
 	}
 
 	//[moving]======================================
@@ -312,7 +371,53 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 	//[beam]========================================
 	if (situation_ == beam) {
+		//シェイクフラグ
+		if (!isShaked_) {
+			shakeFlag_ = true;
+			isShaked_ = true;
+		}
+		//ボス
+		if (!shakeFlag_ && isShaked_) {
+			if (quad_.pos.y >= -100.0f) {
+				quad_.pos.y -= duringBeamSpeed_.y;
+			}
 
+			//ビーム
+			for (int i = 0; i < beam_.beamNumber_; i++) {
+				//危険信号のフラグ
+				if (!beam_.dangerSignalFlag_[i]) {
+					beam_.dangerSignalFlag_[i] = true;
+				}
+				//ビームのフラグ
+				if (!beam_.beamFlag_[i]) {
+					beam_.beamFlag_[i] = true;
+				}
+			}
+
+			//ビームの動き
+			beam_.Move();
+
+			for (int i = 0; i < beam_.beamNumber_; i++) {
+				if (beam_.beam_[i].pos.y >= 1080.0f + beam_.beam_[i].radius.y) {
+					if (quad_.pos.y < 540.0f) {
+						quad_.pos.y += duringBeamSpeed_.y;
+					} else {
+						//初期化
+						quad_.pos.x = beamStartPoint_.x;
+						quad_.pos.y = beamStartPoint_.y;
+						isShaked_ = false;
+						velocity_.x = movingVelocity_.x;
+						beam_.beamFlag_[i] = false;//ビームフラグ
+						beam_.beam_[0].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_.beam_[1].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_.beam_[2].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_.transitionTimer_ = beam_.transitionTimeSet_;//危険信号からビームに変わる為のタイマー
+						beam_.duringBeamTimer_ = beam_.duringBeamTimeSet_;//ビーム中のタイマー
+						situation_ = moving;//シチュエーション
+					}
+				}
+			}
+		}
 	}
 	//==============================================
 	
@@ -351,5 +456,8 @@ void Enemy::Draw() {
 		quad_.imageWidth, quad_.imageHeight,
 		quad_.image, WHITE
 	);
+	//弾
 	bullet_.Draw();
+	//ビーム
+	beam_.Draw();
 }
