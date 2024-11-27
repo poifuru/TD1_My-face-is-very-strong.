@@ -114,7 +114,7 @@ void startCutIn(Enemy* enemy)
 			isCutIn = false;
 			easeT[0] = 0.0f;
 			easeT[1] = 0.0f;
-			enemy->hp_ -= 500;
+			enemy->hp_ -= 1000;
 		}
 	}
 
