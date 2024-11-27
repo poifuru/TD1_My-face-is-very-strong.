@@ -92,9 +92,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				enemy->quad_.pos.y = 540.0f;
 				//enemyのHP
 				enemy->hp_ = 10000;
-				//enemyの状態変化
-				enemy->situation_ = moving;
-
+				
 				//Lets game
 				scene = game;
 
@@ -152,12 +150,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//ULTの更新
 			ULTUpdate(keys, preKeys, enemy);
 
+			//playerのHPが0以下にならない
+			if (player->HP_ <= 0) {
+				player->HP_ = 0;
+			}
+
 			//gameClearへ
-			if (enemy->hp_ <= 0) {
+			if (enemy->hp_ <= 0 && enemy->situation_ == moving) {
 				scene = gameClear;
 			}
 			//gameOverへ
-			if (player->HP_ <= 0) {
+			if (player->HP_ <= 0 && enemy->situation_ == moving) {
 				scene = gameOver;
 				player->invincibleTimer_ = 120;
 				player->invincible_ = 0;
