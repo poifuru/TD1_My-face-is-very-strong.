@@ -50,10 +50,10 @@ Weapon::Weapon() {
 		bullet_[i].drawRightBottom = {};
 		bullet_[i].drawRightTop = {};
 		bullet_[i].imagePos = { 0, 0 };
-		bullet_[i].imageWidth = 32;
-		bullet_[i].imageHeight = 32;
-		bullet_[i].image = 0;
-		bullet_[i].color = GREEN;
+		bullet_[i].imageWidth = 20;
+		bullet_[i].imageHeight = 20;
+		bullet_[i].image = images_.playerBullet;
+		bullet_[i].color = WHITE;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
 		vectorToTarget_[i] = {};
