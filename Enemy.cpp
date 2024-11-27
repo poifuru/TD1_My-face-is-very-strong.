@@ -38,6 +38,26 @@ Enemy::Enemy() {
 
 	//==============================================
 
+	//[SE]==========================================
+	//fallingAttack
+	fallingAttackSE_ = SE.enemyFallingAttack;
+	fallingAttackHandle_ = -1;
+	//rushAttack
+	rushAttackSE_ = SE.enemyRushAttack;
+	rushAttackHandle_ = -1;
+	//allDerectionShot
+	allDerectionShotSE_ = SE.enemyAllDerectionShot;
+	allDerectionShotHandle_ = -1;
+	bulletSE_ = SE.enemyBullet;
+	bulletHandle_ = -1;
+	//beam
+	beamSE_ = SE.enemyBeam;
+	beamHandle_ = -1;
+	//bom
+	bomSE_ = SE.enemyBom;
+	bomHandle_ = -1;
+	//==============================================
+
 	//[status]======================================
 	//HP
 	hp_ = 10000;
@@ -152,6 +172,9 @@ void Enemy::Move() {
 			attackNumber_ = rand() % 100 + 1;//確率
 			if (hp_ >= 5000 && hp_ <= 10000) {//HP100%以下HP50%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 40) {//落下攻撃40%
+					//fallingAttack
+					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -162,6 +185,9 @@ void Enemy::Move() {
 					fallingStartPoint_ = quad_.pos.y;
 				}
 				if (attackNumber_ >= 41  && attackNumber_ <= 70) {//突進攻撃30%
+					//rushAttack
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -175,6 +201,9 @@ void Enemy::Move() {
 					rushStartPoint_.y = quad_.pos.y;
 				}
 				if (attackNumber_ >= 71 && attackNumber_ <= 90) {//全方向弾20%
+					//allDerectionShot
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -183,6 +212,9 @@ void Enemy::Move() {
 					situation_ = allDerectionShot;
 				}
 				if (attackNumber_ >= 91 && attackNumber_ <= 95) {//ビーム5%
+					//beam
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -199,6 +231,9 @@ void Enemy::Move() {
 					}
 				}
 				if (attackNumber_ >= 96 && attackNumber_ <= 100) {//ボム5%
+					//bom
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -211,6 +246,9 @@ void Enemy::Move() {
 				}
 			} else if (hp_ >= 3000 && hp_ < 5000) {//HP50%未満HP30%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 10) {//落下攻撃10%
+					//fallingAttack
+					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -221,6 +259,9 @@ void Enemy::Move() {
 					fallingStartPoint_ = quad_.pos.y;
 				}
 				if (attackNumber_ >= 11 && attackNumber_ <= 50) {//突進攻撃40%
+					//rushAttack
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -234,6 +275,9 @@ void Enemy::Move() {
 					rushStartPoint_.y = quad_.pos.y;
 				}
 				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//全方向弾30%
+					//allDerectionShot
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -242,6 +286,9 @@ void Enemy::Move() {
 					situation_ = allDerectionShot;
 				}
 				if (attackNumber_ >= 81 && attackNumber_ <= 90) {//ビーム10%
+					//beam
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -258,6 +305,9 @@ void Enemy::Move() {
 					}
 				}
 				if (attackNumber_ >= 91 && attackNumber_ <= 100) {//ボム10%
+					//bom
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -270,6 +320,9 @@ void Enemy::Move() {
 				}
 			} else if (hp_ >= 0 && hp_ < 3000) {//HP30%未満HP0%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 30) {//突進攻撃30%
+					//rushAttack
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -283,6 +336,9 @@ void Enemy::Move() {
 					rushStartPoint_.y = quad_.pos.y;
 				}
 				if (attackNumber_ >= 31 && attackNumber_ <= 50) {//全方向弾20%
+					//allDerectionShot
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -291,6 +347,9 @@ void Enemy::Move() {
 					situation_ = allDerectionShot;
 				}
 				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//ビーム30%
+					//beam
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -307,6 +366,9 @@ void Enemy::Move() {
 					}
 				}
 				if (attackNumber_ >= 81 && attackNumber_ <= 100) {//ボム20%
+					//bom
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					
 					//顔の向き
 					prevDirection_ = direction_;
 					//元の速度の記録
@@ -496,6 +558,9 @@ void Enemy::Move() {
 			if (shotNumber_ < 100) {
 				for (int i = 0; i < bullet_->ammo_; i++) {
 					if (!bullet_->isShotFlag_[i]) {
+						//enemyBullet
+						bulletHandle_ = Novice::PlayAudio(bulletSE_, false, 0.02f);
+						
 						//フラグを立てる
 						bullet_->isShotFlag_[i] = true;
 						//

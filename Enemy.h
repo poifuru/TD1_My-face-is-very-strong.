@@ -9,6 +9,8 @@ public://メンバ変数
 	//[基本]=======================================
 	//画像
 	Images images_;
+	//SE
+	SEs SE;
 	//速度
 	Vector2 velocity_;
 	//加速度
@@ -21,6 +23,26 @@ public://メンバ変数
 	Vector2 movingVelocity_;
 	//==============================================
 	
+	//[SE]==========================================
+	//fallingAttack
+	int fallingAttackSE_;
+	int fallingAttackHandle_;
+	//rushAttack
+	int rushAttackSE_;
+	int rushAttackHandle_;
+	//allDerectionShot
+	int allDerectionShotSE_;
+	int allDerectionShotHandle_;
+	int bulletSE_;
+	int bulletHandle_;
+	//beam
+	int beamSE_;
+	int beamHandle_;
+	//bom
+	int bomSE_;
+	int bomHandle_;
+	//==============================================
+
 	//[fallingAttack]===============================
 	//落下攻撃後の戻る場所
 	float fallingStartPoint_;
