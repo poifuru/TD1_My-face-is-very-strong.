@@ -54,8 +54,8 @@ Weapon::Weapon() {
 		bullet_[i].imagePos = { 0, 0 };
 		bullet_[i].imageWidth = 32;
 		bullet_[i].imageHeight = 32;
-		bullet_[i].image = images_.white1x1;
-		bullet_[i].color = GREEN;
+		bullet_[i].image = images_.playerBullet;
+		bullet_[i].color = WHITE;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
 		vectorToTarget_[i] = {};
