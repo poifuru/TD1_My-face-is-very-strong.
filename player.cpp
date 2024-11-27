@@ -20,7 +20,7 @@ Player::Player() {
 	velocity_ = { 8.0f, 0.0f };
 	direction_ = front;
 	ghPos_ = 0;
-	playerTime_ = 10;
+	playerTime_ = 3;
 	playerTimer_ = playerTime_;
 	isJump_ = 0;
 	stickX_ = 0;
