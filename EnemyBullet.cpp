@@ -18,10 +18,10 @@ Bullet::Bullet() {
 		quad_[i].leftBottom = {};
 		quad_[i].rightBottom = {};
 		quad_[i].rightTop = {};
-		quad_[i].imagePos = {};
-		quad_[i].imageWidth = {};
-		quad_[i].imageHeight = {};
-		quad_[i].image = images_.white1x1;
+		quad_[i].imagePos = {0,0};
+		quad_[i].imageWidth = {20};
+		quad_[i].imageHeight = {20};
+		quad_[i].image = images_.enemyBullet;
 		quad_[i].color = {};
 		//加速度
 		acceleration_[i] = { 0.1f,0.1f };

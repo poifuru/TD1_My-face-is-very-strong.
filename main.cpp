@@ -157,6 +157,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//gameOverへ
 			if (player->HP_ <= 0) {
 				scene = gameOver;
+				player->invincibleTimer_ = 120;
+				player->invincible_ = 0;
 			}
 
 			///===========================
