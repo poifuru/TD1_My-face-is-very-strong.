@@ -34,7 +34,7 @@ Enemy::Enemy() {
 
 	//無敵時間
 	invincible_ = 0;
-	invincibleTime_ = 1 * 60;//無敵時間(秒数 x fps)
+	invincibleTime_ = 1 * 30;//無敵時間(秒数 x fps)
 
 	//==============================================
 

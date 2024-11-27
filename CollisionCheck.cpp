@@ -37,7 +37,7 @@ void collisionCheck(Player* player, Enemy* enemy)
 	if (!enemy->invincible_) {
 		//剣と敵の当たり判定
 		if (player->weapon_->weaponMode_ == 0) {
-			if (player->weapon_->attack_ == 1) {
+			if (player->weapon_->attack_ != 0) {
 				if (player->weapon_->sword_.pos.x + player->weapon_->sword_.radius.x > enemy->quad_.pos.x - enemy->quad_.radius.x &&
 					player->weapon_->sword_.pos.x - player->weapon_->sword_.radius.x < enemy->quad_.pos.x + enemy->quad_.radius.x &&
 					player->weapon_->sword_.pos.y + player->weapon_->sword_.radius.y > enemy->quad_.pos.y - enemy->quad_.radius.y &&
