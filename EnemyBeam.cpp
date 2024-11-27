@@ -81,8 +81,8 @@ void Beam::Move() {
 			}
 		}
 
-		Novice::ScreenPrintf(1800, 20, "timer = %d", transitionTimer_ / 60 / beamNumber_);
-		Novice::ScreenPrintf(1000, i * 20, "flag = %d , rand = %f , pos = {%f,%f}", dangerSignalFlag_[i], beamRandNumberX_[i], dangerSignal_[i].pos.x, dangerSignal_[i].pos.y);
+		//Novice::ScreenPrintf(1800, 20, "timer = %d", transitionTimer_ / 60 / beamNumber_);
+		//Novice::ScreenPrintf(1000, i * 20, "flag = %d , rand = %f , pos = {%f,%f}", dangerSignalFlag_[i], beamRandNumberX_[i], dangerSignal_[i].pos.x, dangerSignal_[i].pos.y);
 
 		//矩形4点の更新(危険信号)
 		dangerSignal_[i].leftTop = { dangerSignal_[i].pos.x - dangerSignal_[i].radius.x - 160.0f,dangerSignal_[i].pos.y - dangerSignal_[i].radius.y };
