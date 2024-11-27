@@ -4,7 +4,7 @@
 #include <Novice.h>
 #include "Easing.h"
 
-void startCutIn();
+void startCutIn(Enemy* enemy);
 
 void DrawCutIn(int ghCutIn);
 
