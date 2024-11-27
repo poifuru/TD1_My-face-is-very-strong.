@@ -9,7 +9,7 @@
 #include "CollisionCheck.h"
 #include "hud.h"
 
-const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
+const char kWindowTitle[] = "1223_俺の顔が強すぎる。";
 
 //コメントエリア
 /*ファイルを訂正しました。11/21(木)*/
@@ -28,7 +28,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int isStop = false;
 
 	//scene
-	int scene = title;
+	int scene =title;
 
 	//画像
 	Images image;
