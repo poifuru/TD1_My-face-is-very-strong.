@@ -39,7 +39,7 @@ Weapon::Weapon() {
 
 	for (int i = 0; i < kBulletNum; i++) {
 		bullet_[i].pos = { 300.0f, 868.0f };
-		bulletSpeed_[i] = { 20.0f, 20.0f };
+		bulletSpeed_[i] = { 50.0f, 50.0f };
 		bullet_[i].radius = { 10.0f, 10.0f };
 		bullet_[i].leftTop = {};
 		bullet_[i].leftBottom = {};
@@ -59,6 +59,14 @@ Weapon::Weapon() {
 		vectorToTarget_[i] = {};
 	}
 
+	for (int i = 0; i < kMaxAttack; i++) {
+		startPos[i] = {};
+		endPos[i] = {};
+		easeT[i] = {};
+		isPush[i] = {};
+		isEase[i] = {};
+	}
+
 	weaponMode_ = 0; //0が剣　1が銃
 	wheelScroll_ = 60;
 	readyToFire_ = true;
@@ -67,10 +75,10 @@ Weapon::Weapon() {
 
 void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 	//プレイヤーの近くに武器をだすよ
-	sword_.leftTop = { sword_.pos.x + (sword_.radius.x * 2), sword_.pos.y - sword_.radius.y };
-	sword_.rightTop = { sword_.pos.x + (sword_.radius.x * 3), sword_.pos.y - sword_.radius.y };
-	sword_.leftBottom = { sword_.pos.x + (sword_.radius.x * 2), sword_.pos.y + sword_.radius.y };
-	sword_.rightBottom = { sword_.pos.x + (sword_.radius.x * 3), sword_.pos.y + sword_.radius.y };
+	sword_.leftTop = { sword_.pos.x - (sword_.radius.x / 2), sword_.pos.y - sword_.radius.y };
+	sword_.rightTop = { sword_.pos.x + (sword_.radius.x / 2), sword_.pos.y - sword_.radius.y };
+	sword_.leftBottom = { sword_.pos.x - (sword_.radius.x / 2), sword_.pos.y + sword_.radius.y };
+	sword_.rightBottom = { sword_.pos.x + (sword_.radius.x / 2), sword_.pos.y + sword_.radius.y };
 
 	gun_.leftTop = { gun_.pos.x + (gun_.radius.x * 2), gun_.pos.y - (gun_.radius.y / 2) };
 	gun_.rightTop = { gun_.pos.x + (gun_.radius.x * 4), gun_.pos.y - (gun_.radius.y / 2) };
@@ -78,7 +86,6 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 	gun_.rightBottom = { gun_.pos.x + (gun_.radius.x * 4), gun_.pos.y + (gun_.radius.y / 2) };
 
 	for (int i = 0; i < kBulletNum; i++) {
-		bullet_[i].pos = { gun_.pos };
 		bullet_[i].leftTop = { bullet_[i].pos.x - bullet_[i].radius.x, bullet_[i].pos.y - bullet_[i].radius.y };
 		bullet_[i].rightTop = { bullet_[i].pos.x + bullet_[i].radius.x, bullet_[i].pos.y - bullet_[i].radius.y };
 		bullet_[i].leftBottom = { bullet_[i].pos.x - bullet_[i].radius.x, bullet_[i].pos.y + bullet_[i].radius.y };
@@ -120,44 +127,83 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			attack_ = 0;
 		}
 
+		//attack_が0の時にイージングに使う変数の初期化
+		if (attack_ == 0) {
+			startPos[0] = { sword_.pos.x - (sword_.radius.x * 3), sword_.pos.y - (sword_.radius.y * 3) };
+			endPos[0] = { sword_.pos.x, sword_.pos.y };
+			easeT[0] = {};
+			isPush[0] = {};
+			isEase[0] = {};
+			startPos[1] = {};
+			endPos[1] = {};
+			easeT[1] = {};
+			isPush[1] = {};
+			isEase[1] = {};
+			startPos[2] = {};
+			endPos[2] = {};
+			easeT[2] = {};
+			isPush[2] = {};
+			isEase[2] = {};
+		}
+
 		//連続攻撃一個一個の処理
 		if (attack_ == 1) {
 			attackingTimer_--;
+
+			//イージングでうごかす1
+			isPush[0] = 1;
+			isEase[0] = 1;
+			
+
+			if (isPush[0] == 1) {
+				if (isEase[0] == 1) {
+					easeT[0] += 1.0f / 60.0f;
+				}
+				if (easeT[0] > 1.0f) {
+					easeT[0] = 1.0f;
+				}
+				if (easeT[0] == 1.0f) {
+					isEase[0] = 0;
+					isPush[0] = 0;
+				}
+			}
+			lerp(startPos[0], endPos[0], sword_.pos, easeInBack(easeT[0]));
+
+			//sword_.pos.x = startPos[0].x * (1 - float(t[0])) + (endPos[0].x * float(t[0]));
 		}
 		else if (attack_ == 2) {
 			attackingTimer_--;
+
+			//イージングでうごかす2
+
 		}
 		else if (attack_ == 3) {
 			attackingTimer_--;
+
+			//イージングでうごかす3
+
 		}
+
 	}
 
 	//銃モードの処理
-	else if (wheelScroll_ == 1) {
+	else if (weaponMode_ == 1) {
 		for (int i = 0; i < kBulletNum; i++) {
 			//!isShotの時に敵に向かうベクトルを作っておく
 			if (!isShot_[i]) {
 				vectorToTarget_[i] = { enemy->quad_.pos.x - bullet_[i].pos.x , enemy->quad_.pos.y - bullet_[i].pos.y };
 
 				//正規化
-				float length = sqrtf(enemy->quad_.pos.x * bullet_[i].pos.x + enemy->quad_.pos.y * bullet_[i].pos.y);
-
-				bulletVec_[i] = { vectorToTarget_[i] };
+				float length = sqrtf(vectorToTarget_[i].x * vectorToTarget_[i].x + vectorToTarget_[i].y * vectorToTarget_[i].y);
 
 				if (length != 0.0f) {
-					bulletVec_[i].x = { vectorToTarget_[i].x / length };
-					bulletVec_[i].y = { vectorToTarget_[i].y / length };
+					bulletVec_[i].x = vectorToTarget_[i].x / length;
+					bulletVec_[i].y = vectorToTarget_[i].y / length;
 				}
 			}
-		}
-	}
 
-	
-	for (int i = 0; i < kBulletNum; i++) {
-		//連射弾
-		if (readyToFire_ == 1)
-		{
-			if (Novice::IsPressMouse(0)/*keys[DIK_C]*/)
+			//連射弾
+			if (readyToFire_ == 1)
 			{
 				if (!isShot_[i])
 				{
@@ -167,12 +213,8 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 				}
 			}
 		}
-		//弾の移動処理
-		if (isShot_[i]) {
-			bullet_[i].pos.x += bulletVec_[i].x * bulletSpeed_[i].x;
-			bullet_[i].pos.y += bulletVec_[i].y * bulletSpeed_[i].y;
-		}
 	}
+
 	//クールタイムの処理
 	if (readyToFire_ == 0)
 	{
@@ -181,6 +223,22 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 		{
 			shotCoolTime_ = 6;
 			readyToFire_ = 1;
+		}
+	}
+
+	for (int i = 0; i < kBulletNum; i++) {
+		//弾の移動処理
+		if (isShot_[i]) {
+			bullet_[i].pos.x += bulletVec_[i].x * bulletSpeed_[i].x;
+			bullet_[i].pos.y += bulletVec_[i].y * bulletSpeed_[i].y;
+		}
+
+		//弾が画面外に出た時にfalseにする処理
+		if (bullet_[i].pos.x + bullet_[i].radius.x >= 1920 ||
+			bullet_[i].pos.x - bullet_[i].radius.x <= 0 ||
+			bullet_[i].pos.y + bullet_[i].radius.y >= 1080 ||
+			bullet_[i].pos.y - bullet_[i].radius.y <= 0) {
+			isShot_[i] = 0;
 		}
 	}
 

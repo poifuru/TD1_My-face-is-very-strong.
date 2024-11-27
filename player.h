@@ -19,6 +19,8 @@ public:
 	Vector2 velocity_;
 	int direction_;
 	int HP_;
+	int invincible_;//無敵時間に使うよ
+	int invincibleTimer_;
 
 	/*ジャンプ*/
 	int isJump_;

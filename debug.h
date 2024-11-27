@@ -6,4 +6,4 @@
 #include "enum.h"
 #include "Ultimate.h"
 
-void debugprint(Player* player,Enemy* enemy);
+void debugprint(Player* player, Enemy* enemy);

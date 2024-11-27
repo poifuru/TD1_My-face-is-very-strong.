@@ -53,6 +53,18 @@
     <ClCompile Include="Ultimate.cpp">
       <Filter>ソースは中濃\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Easing.cpp">
+      <Filter>ソースは中濃\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>ソースは中濃\Player\システム関連</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionCheck.cpp">
+      <Filter>ソースは中濃\Player\システム関連</Filter>
+    </ClCompile>
+    <ClCompile Include="Ultimate.cpp">
+      <Filter>ソースは中濃\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
@@ -166,11 +178,26 @@
     <ClInclude Include="EnemyBom.h">
       <Filter>ヘッダー入れるとこ\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Easing.h">
+      <Filter>ヘッダー入れるとこ\Player</Filter>
+    </ClInclude>
     <ClInclude Include="CollisionCheck.h">
-      <Filter>ヘッダー入れるとこ</Filter>
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
     </ClInclude>
     <ClInclude Include="debug.h">
-      <Filter>ヘッダー入れるとこ</Filter>
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>ヘッダー入れるとこ\システム関連</Filter>
     </ClInclude>
     <ClInclude Include="Ultimate.h">
       <Filter>ヘッダー入れるとこ\Player</Filter>
@@ -209,6 +236,12 @@
     </Filter>
     <Filter Include="ヘッダー入れるとこ\Enemy">
       <UniqueIdentifier>{9ee79f41-8fcf-47fb-95cd-4c0e4d1efff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー入れるとこ\システム関連">
+      <UniqueIdentifier>{59a7b865-90a3-4a14-8000-720a9d3f47dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースは中濃\Player\システム関連">
+      <UniqueIdentifier>{29048f0c-fa5d-416a-94c7-2964abe9e78d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
