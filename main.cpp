@@ -86,6 +86,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				player->quad_.pos.y = 868.0f;
 				//playerのHP
 				player->HP_ = 1000;
+				player->weapon_->weaponMode_ = 0;
 				//enemyの座標
 				enemy->quad_.pos.x = 980.0f;
 				enemy->quad_.pos.y = 540.0f;
@@ -94,6 +95,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 				//Lets game
 				scene = game;
+
+				//ULTのリセット
+				resetULT();
 			}
 
 			//titleの画像入れ替え

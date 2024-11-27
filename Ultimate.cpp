@@ -217,3 +217,16 @@ int Stop(int isStop)
 		return isStop = false;
 	}
 }
+
+void resetULT() {
+	ghCutInPos = { 0.0f,0.0f };
+	cutInTimer = 0;
+	isCutInTimer = false;
+	isCutIn = false;
+	isULT = false;
+	isULTReady = false;
+	Ultimate = 0;
+	ULTTimer = chargeTime;
+	isCutInEase = false;
+	isCutInPush = false;
+}
