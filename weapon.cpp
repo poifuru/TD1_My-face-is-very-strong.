@@ -32,10 +32,10 @@ Weapon::Weapon() {
 	gun_.drawRightBottom = {};
 	gun_.drawRightTop = {};
 	gun_.imagePos = {};
-	gun_.imageWidth = 32;
+	gun_.imageWidth = 64;
 	gun_.imageHeight = 32;
-	gun_.image = 0;
-	gun_.color = BLUE;
+	gun_.image = images_.GUN;
+	gun_.color = WHITE;
 
 	for (int i = 0; i < kBulletNum; i++) {
 		bullet_[i].pos = { 300.0f, 868.0f };
@@ -50,10 +50,10 @@ Weapon::Weapon() {
 		bullet_[i].drawRightBottom = {};
 		bullet_[i].drawRightTop = {};
 		bullet_[i].imagePos = { 0, 0 };
-		bullet_[i].imageWidth = 32;
-		bullet_[i].imageHeight = 32;
-		bullet_[i].image = 0;
-		bullet_[i].color = GREEN;
+		bullet_[i].imageWidth = 20;
+		bullet_[i].imageHeight = 20;
+		bullet_[i].image = images_.playerBullet;
+		bullet_[i].color = WHITE;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
 		vectorToTarget_[i] = {};
