@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//BGM
 	BGMs BGM;
 	//SE
-	//SEs SE;
+	SEs SE;
 
 	//カットイン
 	int cutIn_image = image.playerUlt;
@@ -101,6 +101,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//gameOver
 	int gameOverBGM = BGM.gameOver;
 	int gameOverHandle = -1;
+	//sistemClick
+	int sistemClickSE = SE.sistemClick;
+	int sistemClickHandle = -1;
 
 	Player* player = new Player();
 	Enemy* enemy = new Enemy();
@@ -124,6 +127,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			/// ↓↓↓ 更新処理 ↓↓↓
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
+				//sistemClick
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				
 				//初期化
 				//playerの座標
 				player->quad_.pos.x = 300.0f;
@@ -253,6 +259,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			/// ↓↓↓ 更新処理 ↓↓↓
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
+				//sistemClick
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				
 				scene = title;
 			}
 
@@ -286,6 +295,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			/// ↓↓↓ 更新処理 ↓↓↓
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
+				//sistemClick
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				
 				scene = title;
 			}
 

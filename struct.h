@@ -87,7 +87,8 @@ struct BGMs {
 };
 
 struct SEs {
-	
+	//sistemClick
+	int sistemClick = Novice::LoadAudio("./Resources./Audios./SEs./sistemClick.mp3");
 };
 
 //オブジェクトの構造体====================
