@@ -2,10 +2,10 @@
 
 //画面遷移
 enum Scene {
-	Title,
-	Tutorial,
-	Game,
-	Clear
+	title,
+	game,
+	gameClear,
+	gameOver
 };
 
 //攻撃手段

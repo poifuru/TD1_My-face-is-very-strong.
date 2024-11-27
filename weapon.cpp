@@ -65,7 +65,7 @@ Weapon::Weapon() {
 	shotCoolTime_ = 6;
 }
 
-void Weapon::Update(Enemy enemy/*, const char* keys*/) {
+void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 	//プレイヤーの近くに武器をだすよ
 	sword_.leftTop = { sword_.pos.x + (sword_.radius.x * 2), sword_.pos.y - sword_.radius.y };
 	sword_.rightTop = { sword_.pos.x + (sword_.radius.x * 3), sword_.pos.y - sword_.radius.y };
@@ -137,10 +137,10 @@ void Weapon::Update(Enemy enemy/*, const char* keys*/) {
 		for (int i = 0; i < kBulletNum; i++) {
 			//!isShotの時に敵に向かうベクトルを作っておく
 			if (!isShot_[i]) {
-				vectorToTarget_[i] = { enemy.quad_.pos.x - bullet_[i].pos.x , enemy.quad_.pos.y - bullet_[i].pos.y };
+				vectorToTarget_[i] = { enemy->quad_.pos.x - bullet_[i].pos.x , enemy->quad_.pos.y - bullet_[i].pos.y };
 
 				//正規化
-				float length = sqrtf(enemy.quad_.pos.x * bullet_[i].pos.x + enemy.quad_.pos.y * bullet_[i].pos.y);
+				float length = sqrtf(enemy->quad_.pos.x * bullet_[i].pos.x + enemy->quad_.pos.y * bullet_[i].pos.y);
 
 				bulletVec_[i] = { vectorToTarget_[i] };
 

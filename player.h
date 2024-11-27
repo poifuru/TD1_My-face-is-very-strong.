@@ -36,6 +36,6 @@ public:
 	~Player();
 
 	//メンバ関数
-	void Update(const char keys[], const char preKeys[], Enemy enemy);
+	void Update(const char keys[], const char preKeys[], Enemy* enemy);
 	void Draw();
 };

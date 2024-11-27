@@ -16,6 +16,10 @@ struct IntVector2 {
 struct Images {
 	//サンプル
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
+	//BackGround
+	int backGround = Novice::LoadTexture("./Resources./Images./backGround.png");
+	int gameBackGround = Novice::LoadTexture("./Resources./Images./gameBackground.png");
+	int gameBackGroundCover = Novice::LoadTexture("./Resources./Images./gameBackGround_cover.png");
 	//boss
 	int bossStupidFace = Novice::LoadTexture("./Resources./Images./AHO.png");//stupid
 	int bossStupidLeftFace = Novice::LoadTexture("./Resources./Images./AHOLeft.png");//stupidLeft

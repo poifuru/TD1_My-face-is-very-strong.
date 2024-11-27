@@ -44,7 +44,7 @@ public://メンバ変数
 
 	//[allDerectionShot]============================
 	//弾
-	Bullet bullet_;
+	Bullet* bullet_;
 	//波の幅
 	float amplitude_;
 	//波の速度
@@ -57,7 +57,7 @@ public://メンバ変数
 	
 	//[beam]========================================
 	//ビーム
-	Beam beam_;
+	Beam* beam_;
 	//ビーム前の場所の記録
 	Vector2 beamStartPoint_;
 	//ビーム中のボスの速度
@@ -66,7 +66,7 @@ public://メンバ変数
 
 	//[bom]=========================================
 	//ボム
-	Bom bom_;
+	Bom* bom_;
 	//ボム前の場所の記録
 	Vector2 bomStartPoint_;
 	//==============================================
