@@ -16,12 +16,10 @@ Weapon::Weapon() {
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
 	sword_.imageHeight = 32;
-	sword_.image = images_.white1x1;
+	sword_.image = 0;
 	sword_.color = RED;
 	attack_ = 0;
-	kattackingTime_ = 30;
 	attackingTimer_ = 0;
-	swordAttackPower_ = 100;
 
 	gun_.pos = { 300.0f, 868.0f };
 	gun_.radius = { 32.0f, 32.0f };
@@ -36,7 +34,7 @@ Weapon::Weapon() {
 	gun_.imagePos = {};
 	gun_.imageWidth = 32;
 	gun_.imageHeight = 32;
-	gun_.image = images_.white1x1;
+	gun_.image = 0;
 	gun_.color = BLUE;
 
 	for (int i = 0; i < kBulletNum; i++) {
@@ -52,10 +50,10 @@ Weapon::Weapon() {
 		bullet_[i].drawRightBottom = {};
 		bullet_[i].drawRightTop = {};
 		bullet_[i].imagePos = { 0, 0 };
-		bullet_[i].imageWidth = 20;
-		bullet_[i].imageHeight = 20;
-		bullet_[i].image = images_.playerBullet;
-		bullet_[i].color = WHITE;
+		bullet_[i].imageWidth = 32;
+		bullet_[i].imageHeight = 32;
+		bullet_[i].image = 0;
+		bullet_[i].color = GREEN;
 		isShot_[i] = false;
 		bulletVec_[i] = {};
 		vectorToTarget_[i] = {};
@@ -65,18 +63,21 @@ Weapon::Weapon() {
 		startPos[i] = {};
 		endPos[i] = {};
 		easeT[i] = {};
-		isPush[i] = {};
-		isEase[i] = {};
+		isPushX[i] = {};
+		isPushY[i] = {};
+		isEaseX[i] = {};
+		isEaseY[i] = {};
 	}
 
 	weaponMode_ = 0; //0が剣　1が銃
 	wheelScroll_ = 60;
 	readyToFire_ = true;
 	shotCoolTime_ = 6;
-	bulletAttackPower_ = 3;
+
+	swordAttackPower_ = 50;
 }
 
-void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
+void Weapon::Update(Enemy* enemy) {
 	//プレイヤーの近くに武器をだすよ
 	sword_.leftTop = { sword_.pos.x - (sword_.radius.x / 2), sword_.pos.y - sword_.radius.y };
 	sword_.rightTop = { sword_.pos.x + (sword_.radius.x / 2), sword_.pos.y - sword_.radius.y };
@@ -116,15 +117,13 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 		//連続攻撃の状態(受付時間を過ぎたら自動的に1段目の攻撃からになる)
 		if (attack_ == 0 && Novice::IsTriggerMouse(0)) {
 			attack_ = 1;
-			attackingTimer_ = kattackingTime_;
-		}
-		else if (attack_ == 1 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
+			attackingTimer_ = 60;
+		} else if (attack_ == 1 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 2;
-			attackingTimer_ = kattackingTime_;
-		}
-		else if (attack_ == 2 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
+			attackingTimer_ = 60;
+		} else if (attack_ == 2 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 3;
-			attackingTimer_ = kattackingTime_;
+			attackingTimer_ = 60;
 		}
 		if (attack_ >= 1 && attackingTimer_ == 0) {
 			attack_ = 0;
@@ -132,21 +131,21 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 
 		//attack_が0の時にイージングに使う変数の初期化
 		if (attack_ == 0) {
-			startPos[0] = { sword_.pos.x - (sword_.radius.x * 3), sword_.pos.y - (sword_.radius.y * 3) };
-			endPos[0] = { sword_.pos.x, sword_.pos.y };
 			easeT[0] = {};
-			isPush[0] = {};
-			isEase[0] = {};
-			startPos[1] = {};
-			endPos[1] = {};
+			isPushX[0] = {};
+			isPushY[0] = {};
+			isEaseX[0] = {};
+			isEaseY[0] = {};
 			easeT[1] = {};
-			isPush[1] = {};
-			isEase[1] = {};
-			startPos[2] = {};
-			endPos[2] = {};
+			isPushX[1] = {};
+			isPushY[1] = {};
+			isEaseX[1] = {};
+			isEaseY[1] = {};
 			easeT[2] = {};
-			isPush[2] = {};
-			isEase[2] = {};
+			isPushX[2] = {};
+			isPushY[2] = {};
+			isEaseX[2] = {};
+			isEaseY[2] = {};
 		}
 
 		//連続攻撃一個一個の処理
@@ -154,37 +153,113 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			attackingTimer_--;
 
 			//イージングでうごかす1
-			isPush[0] = 1;
-			isEase[0] = 1;
-			
+			isPushX[0] = 1;
+			isPushY[0] = 1;
+			isEaseX[0] = 1;
+			isEaseY[0] = 1;
 
-			if (isPush[0] == 1) {
-				if (isEase[0] == 1) {
-					easeT[0] += 1.0f / kattackingTime_;
+			if (isPushX[0] == 1) {
+				if (isEaseX[0] == 1) {
+					easeT[0].x += 1.0f / 30.0f;
 				}
-				if (easeT[0] > 1.0f) {
-					easeT[0] = 1.0f;
+				if (easeT[0].x > 1.0f) {
+					easeT[0].x = 1.0f;
 				}
-				if (easeT[0] == 1.0f) {
-					isEase[0] = 0;
-					isPush[0] = 0;
+				if (easeT[0].x == 1.0f) {
+					isEaseX[0] = 0;
+					isPushX[0] = 0;
 				}
 			}
-			lerp(startPos[0], endPos[0], sword_.pos, easeInBack(easeT[0]));
 
-			//sword_.pos.x = startPos[0].x * (1 - float(t[0])) + (endPos[0].x * float(t[0]));
-		}
-		else if (attack_ == 2) {
+			if (isPushY[0] == 1) {
+				if (isEaseY[0] == 1) {
+					easeT[0].y += 1.0f / 30.0f;
+				}
+				if (easeT[0].y > 1.0f) {
+					easeT[0].y = 1.0f;
+				}
+				if (easeT[0].y == 1.0f) {
+					isEaseY[0] = 0;
+					isPushY[0] = 0;
+				}
+			}
+
+			lerpX(startPos[0].x, endPos[0].x, sword_.pos.x, easeOutQuint(easeT[0].x));
+			lerpY(startPos[0].y, endPos[0].y, sword_.pos.y, easeInSine(easeT[0].y));
+		} else if (attack_ == 2) {
 			attackingTimer_--;
 
 			//イージングでうごかす2
+			isPushX[1] = 1;
+			isPushY[1] = 1;
+			isEaseX[1] = 1;
+			isEaseY[1] = 1;
 
-		}
-		else if (attack_ == 3) {
+			if (isPushX[1] == 1) {
+				if (isEaseX[1] == 1) {
+					easeT[1].x += 1.0f / 30.0f;
+				}
+				if (easeT[1].x > 1.0f) {
+					easeT[1].x = 1.0f;
+				}
+				if (easeT[1].x == 1.0f) {
+					isEaseX[1] = 0;
+					isPushX[1] = 0;
+				}
+			}
+
+			if (isPushY[1] == 1) {
+				if (isEaseY[1] == 1) {
+					easeT[1].y += 1.0f / 30.0f;
+				}
+				if (easeT[1].y > 1.0f) {
+					easeT[1].y = 1.0f;
+				}
+				if (easeT[1].y == 1.0f) {
+					isEaseY[1] = 0;
+					isPushY[1] = 0;
+				}
+			}
+
+			lerpX(startPos[1].x, endPos[1].x, sword_.pos.x, easeInBack(easeT[1].x));
+			lerpX(startPos[1].y, endPos[1].y, sword_.pos.y, easeOutQuint(easeT[1].y));
+		} else if (attack_ == 3) {
 			attackingTimer_--;
 
 			//イージングでうごかす3
+			isPushX[2] = 1;
+			isPushY[2] = 1;
+			isEaseX[2] = 1;
+			isEaseY[2] = 1;
 
+			if (isPushX[2] == 1) {
+				if (isEaseX[2] == 1) {
+					easeT[2].x += 1.0f / 30.0f;
+				}
+				if (easeT[2].x > 1.0f) {
+					easeT[2].x = 1.0f;
+				}
+				if (easeT[2].x == 1.0f) {
+					isEaseX[2] = 0;
+					isPushX[2] = 0;
+				}
+			}
+
+			if (isPushY[2] == 1) {
+				if (isEaseY[2] == 1) {
+					easeT[2].y += 1.0f / 30.0f;
+				}
+				if (easeT[2].y > 1.0f) {
+					easeT[2].y = 1.0f;
+				}
+				if (easeT[2].y == 1.0f) {
+					isEaseY[2] = 0;
+					isPushY[2] = 0;
+				}
+			}
+
+			lerpX(startPos[2].x, endPos[2].x, sword_.pos.x, easeInBack(easeT[2].x));
+			lerpX(startPos[2].y, endPos[2].y, sword_.pos.y, easeOutQuint(easeT[2].y));
 		}
 
 	}
@@ -206,10 +281,8 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			}
 
 			//連射弾
-			if (readyToFire_ == 1)
-			{
-				if (!isShot_[i])
-				{
+			if (readyToFire_ == 1) {
+				if (!isShot_[i]) {
 					readyToFire_ = 0;
 					isShot_[i] = 1;
 					break;
@@ -219,11 +292,9 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 	}
 
 	//クールタイムの処理
-	if (readyToFire_ == 0)
-	{
+	if (readyToFire_ == 0) {
 		shotCoolTime_--;
-		if (shotCoolTime_ <= 0)
-		{
+		if (shotCoolTime_ <= 0) {
 			shotCoolTime_ = 6;
 			readyToFire_ = 1;
 		}
@@ -274,8 +345,7 @@ void Weapon::Draw() {
 			sword_.imagePos.x, sword_.imagePos.y, sword_.imageWidth, sword_.imageHeight,
 			sword_.image, sword_.color
 		);
-	}
-	else if (weaponMode_ == 1) {
+	} else if (weaponMode_ == 1) {
 		Novice::DrawQuad(
 			int(gun_.drawLeftTop.x), int(gun_.drawLeftTop.y),
 			int(gun_.drawRightTop.x), int(gun_.drawRightTop.y),
@@ -300,3 +370,4 @@ void Weapon::Draw() {
 	}
 
 }
+
