@@ -19,7 +19,9 @@ Weapon::Weapon() {
 	sword_.image = images_.white1x1;
 	sword_.color = RED;
 	attack_ = 0;
+	kattackingTime_ = 30;
 	attackingTimer_ = 0;
+	swordAttackPower_ = 100;
 
 	gun_.pos = { 300.0f, 868.0f };
 	gun_.radius = { 32.0f, 32.0f };
@@ -71,6 +73,7 @@ Weapon::Weapon() {
 	wheelScroll_ = 60;
 	readyToFire_ = true;
 	shotCoolTime_ = 6;
+	bulletAttackPower_ = 3;
 }
 
 void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
@@ -113,15 +116,15 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 		//連続攻撃の状態(受付時間を過ぎたら自動的に1段目の攻撃からになる)
 		if (attack_ == 0 && Novice::IsTriggerMouse(0)) {
 			attack_ = 1;
-			attackingTimer_ = 60;
+			attackingTimer_ = kattackingTime_;
 		}
 		else if (attack_ == 1 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 2;
-			attackingTimer_ = 60;
+			attackingTimer_ = kattackingTime_;
 		}
 		else if (attack_ == 2 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 3;
-			attackingTimer_ = 60;
+			attackingTimer_ = kattackingTime_;
 		}
 		if (attack_ >= 1 && attackingTimer_ == 0) {
 			attack_ = 0;
@@ -157,7 +160,7 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 
 			if (isPush[0] == 1) {
 				if (isEase[0] == 1) {
-					easeT[0] += 1.0f / 60.0f;
+					easeT[0] += 1.0f / kattackingTime_;
 				}
 				if (easeT[0] > 1.0f) {
 					easeT[0] = 1.0f;

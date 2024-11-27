@@ -31,6 +31,11 @@ Enemy::Enemy() {
 	situation_ = moving;
 	//Movingの速度
 	movingVelocity_ = {};
+
+	//無敵時間
+	invincible_ = 0;
+	invincibleTime_ = 2 * 60;//無敵時間(秒数 x fps)
+
 	//==============================================
 
 	//[status]======================================
