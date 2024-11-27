@@ -24,11 +24,11 @@ struct Images {
 	int bossNormalLeftFace = Novice::LoadTexture("./Resources./Images./normalLeft.png");//NormalLeft
 	int bossNormalRightFace = Novice::LoadTexture("./Resources./Images./normalRight.png");//NormalRight
 	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOyellow.png");//angry
-	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOLeft.png");//angryLeft
-	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKORight.png");//angryRight
+	int bossAngryYellowLeftFace = Novice::LoadTexture("./Resources./Images./OKOLeft.png");//angryLeft
+	int bossAngryYellowRightFace = Novice::LoadTexture("./Resources./Images./OKORight.png");//angryRight
 	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKOred.png");//angryRed
-	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKORedLeft.png");//angryRedLeft
-	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKORedRight.png");//angryRedRight
+	int bossAngryRedLeftFace = Novice::LoadTexture("./Resources./Images./OKORedLeft.png");//angryRedLeft
+	int bossAngryRedRightFace = Novice::LoadTexture("./Resources./Images./OKORedRight.png");//angryRedRight
 	//beam
 	int dangerSignal = Novice::LoadTexture("./Resources./Images./dangerSignal.png");
 	int beam = Novice::LoadTexture("./Resources./Images./beam.png");
