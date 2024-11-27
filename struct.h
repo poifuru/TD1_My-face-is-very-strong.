@@ -118,9 +118,9 @@ struct SEs {
 	int sword = Novice::LoadAudio("./Resources./Audios./SEs./sword.mp3");
 
 	//斬撃
-	int slash1 = Novice::LoadAudio("./Resources/Audios/SEs/slash1.mp3");
-	int slash2 = Novice::LoadAudio("./Resources/Audios/SEs/slash2.mp3");
-	int slash3 = Novice::LoadAudio("./Resources/Audios/SEs/slash3.mp3");
+	int airSlash = Novice::LoadAudio("./Resources/Audios/SEs/airSlash.mp3");
+	//int slash2 = Novice::LoadAudio("./Resources/Audios/SEs/slash2.mp3");
+	//int slash3 = Novice::LoadAudio("./Resources/Audios/SEs/slash3.mp3");
 
 	//ジャンプ
 	int jump = Novice::LoadAudio("./Resources/Audios/SEs/jump.mp3");

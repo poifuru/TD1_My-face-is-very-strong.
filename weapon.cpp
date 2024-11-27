@@ -119,15 +119,15 @@ void Weapon::Update(Enemy* enemy) {
 		if (attack_ == 0 && Novice::IsTriggerMouse(0)) {
 			attack_ = 1;
 			attackingTimer_ = 60;
-			slash1Handle = Novice::PlayAudio(SE.slash1, 0, 0.5f);
+			slash1Handle = Novice::PlayAudio(SE.airSlash, 0, 0.5f);
 		} else if (attack_ == 1 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 2;
 			attackingTimer_ = 60;
-			slash2Handle = Novice::PlayAudio(SE.slash2, 0, 0.5f);
+			slash1Handle = Novice::PlayAudio(SE.airSlash, 0, 0.5f);
 		} else if (attack_ == 2 && Novice::IsTriggerMouse(0) && attackingTimer_ <= 30) {
 			attack_ = 3;
 			attackingTimer_ = 60;
-			slash3Handle = Novice::PlayAudio(SE.slash3, 0, 0.5f);
+			slash1Handle = Novice::PlayAudio(SE.airSlash, 0, 0.5f);
 		}
 		if (attack_ >= 1 && attackingTimer_ == 0) {
 			attack_ = 0;

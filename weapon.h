@@ -15,12 +15,12 @@ public:
     
     SEs SE;
     //slash
-    int slash1 = SE.slash1;
+    int slash1 = SE.airSlash;
     int slash1Handle = -1;
-    int slash2 = SE.slash2;
+   /* int slash2 = SE.slash2;
     int slash2Handle = -1;
     int slash3 = SE.slash3;
-    int slash3Handle = -1;
+    int slash3Handle = -1;*/
 
     //メンバ変数
     Quad sword_;
