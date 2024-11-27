@@ -100,6 +100,7 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	if (!isJump_ && keys[DIK_SPACE] && !preKeys[DIK_SPACE] || !isJump_ && Novice::IsTriggerButton(0, kPadButton13)) {
 		isJump_ = 1;
 		velocity_.y = -20.0f;
+		jumpHandle = Novice::PlayAudio(SE.jump, 0, 0.5f);
 	}
 	if (isJump_) {
 		velocity_.y += 0.8f;

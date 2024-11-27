@@ -103,6 +103,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//sistemClick
 	int sistemClickSE = SE.sistemClick;
 	int sistemClickHandle = -1;
+	
 
 	Player* player = new Player();
 	Enemy* enemy = new Enemy();

@@ -13,6 +13,11 @@ public:
 	//画像
 	Images images_;
 
+	//音
+	SEs SE;
+	int jump = SE.jump;
+	int jumpHandle = -1;
+
 	//メンバ変数
 	int stickX_;
 	int stickY_;
