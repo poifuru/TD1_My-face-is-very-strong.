@@ -159,18 +159,18 @@ void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 	}
 
 
-	//デバック用
-	if (keys[DIK_1]) {
-		Ultimate = 0;
-	}
+	////デバック用
+	//if (keys[DIK_1]) {
+	//	Ultimate = 0;
+	//}
 
-	if (keys[DIK_2]) {
-		Ultimate = 50;
-	}
+	//if (keys[DIK_2]) {
+	//	Ultimate = 50;
+	//}
 
-	if (keys[DIK_3]) {
-		Ultimate = 100;
-	}
+	//if (keys[DIK_3]) {
+	//	Ultimate = 100;
+	//}
 
 
 }
@@ -198,14 +198,17 @@ void DrawCutIn(int ghCutIn)
 		static_cast<int>(cutInWidth),
 		static_cast<int>(cutInHeight), 0.0f, BLUE, kFillModeSolid);*/
 
-	
+
 
 }
 
-void DrawBar() {
+void DrawBar(int ULTGo) {
 	//ULTバーの背景
 	Novice::DrawBox(480, 928, 96, 96, 0.0f, 0x847e87FF, kFillModeSolid);
 	Novice::DrawBox(480, 932 + (96 - Ultimate), 96, 96, 0.0f, BLUE, kFillModeSolid);
+	if (isULTReady) {
+		Novice::DrawSprite(480, 928, ULTGo, 1.0f, 1.0f, 0.0f, 0xFFFFFFFF);
+	}
 }
 
 int Stop(int isStop)

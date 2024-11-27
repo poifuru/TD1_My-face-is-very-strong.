@@ -10,7 +10,7 @@ void DrawCutIn(int ghCutIn);
 
 void ULTUpdate(char* keys, char* preKeys,Enemy* enemy); 
 
-void DrawBar();
+void DrawBar(int ULTGo);
 
 int Stop(int isStop);
 
