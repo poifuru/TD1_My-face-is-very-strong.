@@ -27,7 +27,7 @@ public:
 	Vector2 startPos[kMaxAttack];
 	Vector2 endPos[kMaxAttack];
 	Vector2 easePos[kMaxAttack];
-	float t[kMaxAttack];
+	double t[kMaxAttack];
 
 	/*銃モードの変数*/
 	Quad bullet_[kBulletNum];

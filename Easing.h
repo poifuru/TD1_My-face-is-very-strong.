@@ -2,4 +2,5 @@
 #include "struct.h"
 #include "player.h"
 
-void easeInQuintX(Vector2 easePos);
+double easeInBack(double x) {
+}

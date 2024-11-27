@@ -24,7 +24,7 @@ Player::Player() {
 	stickY_ = 0;
 	HP_ = 1000;
 	invincible_ = 0;
-	invincibleTimer_ = 60;
+	invincibleTimer_ = 120;
 
 	parry_ = new Parry();
 	weapon_ = new Weapon();
