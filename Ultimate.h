@@ -6,7 +6,7 @@
 
 void startCutIn();
 
-void DrawCutIn();
+void DrawCutIn(int ghCutIn);
 
 void ULTUpdate(char* keys, char* preKeys); 
 

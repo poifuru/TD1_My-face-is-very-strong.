@@ -176,7 +176,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			player->Draw();
 
 			//カットインの描画
-			DrawCutIn();
+			DrawCutIn(playerUlt_image);
 
 			//デバッグ用
 			//debugprint(player, enemy);
