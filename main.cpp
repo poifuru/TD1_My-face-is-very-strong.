@@ -99,7 +99,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			collisionCheck(player, enemy);
 
 			//敵の更新
-			enemy->Move(keys, preKeys);
+			enemy->Move();
 
 			//gameClearへ
 			if (enemy->hp_ <= 0) {
