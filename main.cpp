@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//BGM
 	BGMs BGM;
 	//SE
-	SEs SE;
+	//SEs SE;
 
 	//カットイン
 	int cutIn_image = image.playerUlt;
