@@ -89,6 +89,19 @@ struct BGMs {
 struct SEs {
 	//sistemClick
 	int sistemClick = Novice::LoadAudio("./Resources./Audios./SEs./sistemClick.mp3");
+	//Enemy
+	//fallingAttack
+	int enemyFallingAttack = Novice::LoadAudio("./Resources./Audios./SEs./enemyFallingAttack.mp3");
+	//rushAttack
+	int enemyRushAttack = Novice::LoadAudio("./Resources./Audios./SEs./enemyRushAttack.mp3");
+	//allDerectionShot
+	int enemyAllDerectionShot = Novice::LoadAudio("./Resources./Audios./SEs./enemyAllDerectionShot.mp3");
+	//bullet
+	int enemyBullet = Novice::LoadAudio("./Resources./Audios./SEs./enemyBullet.mp3");
+	//beam
+	int enemyBeam = Novice::LoadAudio("./Resources./Audios./SEs./enemyBeam.mp3");
+	//bom
+	int enemyBom = Novice::LoadAudio("./Resources./Audios./SEs./enemyBom.mp3");
 };
 
 //オブジェクトの構造体====================
