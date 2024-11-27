@@ -43,7 +43,7 @@ public:
 	Weapon();
 
 	//メンバ関数
-	void Update(Enemy* enemy/*, const char* keys*/);
+	void Update(Enemy* enemy);
 	void Draw();
 };
 
