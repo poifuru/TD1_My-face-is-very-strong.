@@ -27,6 +27,8 @@ struct Images {
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
 	//playerBullet
 	int playerBullet = Novice::LoadTexture("./Resources./Images./playerBullet.png");
+	//enemyBullet
+	int enemyBullet = Novice::LoadTexture("./Resources./Images./enemyBullet.png");
 	//BackGround
 	int backGround = Novice::LoadTexture("./Resources./Images./backGround.png");
 	int gameBackGround = Novice::LoadTexture("./Resources./Images./gameBackground.png");
