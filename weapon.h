@@ -3,8 +3,10 @@
 #include "Object.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Easing.h"
 
 const int kBulletNum = 30;
+const int kMaxAttack = 3;
 
 class Weapon : public Object {
 public:
@@ -21,6 +23,11 @@ public:
 	int attack_;
 	int attackingTimer_;
 	int wheelScroll_;
+	//動作の始点と終点
+	Vector2 startPos[kMaxAttack];
+	Vector2 endPos[kMaxAttack];
+	Vector2 easePos[kMaxAttack];
+	float t[kMaxAttack];
 
 	/*銃モードの変数*/
 	Quad bullet_[kBulletNum];

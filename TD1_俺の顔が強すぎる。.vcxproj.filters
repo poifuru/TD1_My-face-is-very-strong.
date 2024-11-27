@@ -210,6 +210,12 @@
     <Filter Include="ヘッダー入れるとこ\Enemy">
       <UniqueIdentifier>{9ee79f41-8fcf-47fb-95cd-4c0e4d1efff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー入れるとこ\システム関連">
+      <UniqueIdentifier>{59a7b865-90a3-4a14-8000-720a9d3f47dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースは中濃\システム関連">
+      <UniqueIdentifier>{29048f0c-fa5d-416a-94c7-2964abe9e78d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー入れるとこ">
