@@ -141,7 +141,7 @@ Enemy::Enemy() {
 	//==============================================
 
 	//AI
-	attackCoolTimeSet_ = 2 * 60;//行動パターンのタイマー(秒数 x fps)
+	attackCoolTimeSet_ = 1 * 60;//行動パターンのタイマー(秒数 x fps)
 	attackCoolTimer_ = attackCoolTimeSet_;//タイマー部分
 	attackNumber_ = 0;//確率
 }
@@ -444,7 +444,7 @@ void Enemy::Move() {
 	if (situation_ == rushAttack) {
 		direction_ = front;
 		//加速度を設定
-		acceleration_.x = -3.0f;
+		acceleration_.x = -2.5f;
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;
