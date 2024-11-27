@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "EnemyBullet.h"
 #include "EnemyBeam.h"
+#include "EnemyBom.h"
 
 class Enemy : public Object {
 public://メンバ変数
@@ -63,6 +64,13 @@ public://メンバ変数
 	Vector2 duringBeamSpeed_;
 	//==============================================
 
+	//[bom]=========================================
+	//ボム
+	Bom bom_;
+	//ボム前の場所の記録
+	Vector2 bomStartPoint_;
+	//==============================================
+	
 	//[shake]=======================================
 	//ランダム
 	Vector2 randNumber_;//ランダムな値xとy
@@ -84,6 +92,8 @@ public://status
 	int rushAttackPower_;//突進攻撃
 	int allDerectionShotPower_;//全方向弾
 	int allDerectionPower_;//全方向弾時の突進
+	int beamPower_;//ビーム
+	int bomPower_;//ボム
 public://AI
 	//敵の攻撃のタイマー
 	int attackCoolTimeSet_;

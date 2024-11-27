@@ -47,6 +47,9 @@
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>ソースは中濃\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBom.cpp">
+      <Filter>ソースは中濃\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
@@ -161,6 +164,9 @@
       <Filter>ヘッダー入れるとこ\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBeam.h">
+      <Filter>ヘッダー入れるとこ\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBom.h">
       <Filter>ヘッダー入れるとこ\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
