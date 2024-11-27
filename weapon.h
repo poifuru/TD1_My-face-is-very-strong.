@@ -26,8 +26,9 @@ public:
 	//動作の始点と終点
 	Vector2 startPos[kMaxAttack];
 	Vector2 endPos[kMaxAttack];
-	Vector2 easePos[kMaxAttack];
-	double t[kMaxAttack];
+	float easeT[kMaxAttack];
+	int isPush[kMaxAttack];
+	int isEase[kMaxAttack];
 
 	/*銃モードの変数*/
 	Quad bullet_[kBulletNum];

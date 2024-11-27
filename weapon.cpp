@@ -62,8 +62,9 @@ Weapon::Weapon() {
 	for (int i = 0; i < kMaxAttack; i++) {
 		startPos[i] = {};
 		endPos[i] = {};
-		easePos[i] = {};
-		t[i] = {};
+		easeT[i] = {};
+		isPush[i] = {};
+		isEase[i] = {};
 	}
 
 	weaponMode_ = 0; //0が剣　1が銃
@@ -130,16 +131,19 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 		if (attack_ == 0) {
 			startPos[0] = { sword_.pos.x - (sword_.radius.x * 3), sword_.pos.y - (sword_.radius.y * 3) };
 			endPos[0] = { sword_.pos.x, sword_.pos.y };
-			easePos[0] = {};
-			t[0] = {1.70158f};
+			easeT[0] = {};
+			isPush[0] = {};
+			isEase[0] = {};
 			startPos[1] = {};
 			endPos[1] = {};
-			easePos[1] = {};
-			t[1] = {};
+			easeT[1] = {};
+			isPush[1] = {};
+			isEase[1] = {};
 			startPos[2] = {};
 			endPos[2] = {};
-			easePos[2] = {};
-			t[2] = {};
+			easeT[2] = {};
+			isPush[2] = {};
+			isEase[2] = {};
 		}
 
 		//連続攻撃一個一個の処理
@@ -147,16 +151,25 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			attackingTimer_--;
 
 			//イージングでうごかす1
-			//x座標
-			/*const float c1 = 1.70158f;
-			const float c3 = c1 + 1.0f;
-			t[0].x = c3 * t[0].x * t[0].x * t[0].x - c1 * t[0].x * t[0].x;*/
+			isPush[0] = 1;
+			isEase[0] = 1;
+			
 
-			//easeInQuintX(easePos[0].x);
+			if (isPush[0] == 1) {
+				if (isEase[0] == 1) {
+					easeT[0] += 1.0f / 60.0f;
+				}
+				if (easeT[0] > 1.0f) {
+					easeT[0] = 1.0f;
+				}
+				if (easeT[0] == 1.0f) {
+					isEase[0] = 0;
+					isPush[0] = 0;
+				}
+			}
+			lerp(startPos[0], endPos[0], sword_.pos, easeInBack(easeT[0]));
 
-
-
-			sword_.pos.x = startPos[0].x * (1 - t[0]) + (endPos[0].x * t[0]);
+			//sword_.pos.x = startPos[0].x * (1 - float(t[0])) + (endPos[0].x * float(t[0]));
 		}
 		else if (attack_ == 2) {
 			attackingTimer_--;
@@ -170,6 +183,7 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 			//イージングでうごかす3
 
 		}
+
 	}
 
 	//銃モードの処理
