@@ -118,7 +118,7 @@ Enemy::Enemy() {
 	//==============================================
 
 	//AI
-	attackCoolTimeSet_ = 5 * 60;//行動パターンのタイマー(秒数 x fps)
+	attackCoolTimeSet_ = 2 * 60;//行動パターンのタイマー(秒数 x fps)
 	attackCoolTimer_ = attackCoolTimeSet_;//タイマー部分
 	attackNumber_ = 0;//確率
 }
@@ -134,8 +134,7 @@ Enemy::~Enemy() {
 }
 
 //敵の基本的な動き
-void Enemy::Move(const char keys[], const char preKeys[]) {
-
+void Enemy::Move() {
 	//ランダム
 	unsigned int currentTime = unsigned(time(nullptr));//乱数
 	srand(currentTime);
@@ -145,68 +144,177 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 			attackCoolTimer_--;
 		} else {
 			attackNumber_ = rand() % 100 + 1;//確率
-
+			if (hp_ >= 5000 && hp_ <= 10000) {//HP100%以下HP50%以上
+				if (attackNumber_ >= 1 && attackNumber_ <= 40) {//落下攻撃40%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//落下攻撃を始める
+					situation_ = fallingAttack;
+					//落下し始めるポイントを設定
+					fallingStartPoint_ = quad_.pos.y;
+				}
+				if (attackNumber_ >= 41  && attackNumber_ <= 70) {//突進攻撃30%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//突進攻撃を始める
+					situation_ = rushAttack;
+					//突進攻撃回数
+					rushAttackNumber_ = firstAttack;
+					//突進攻撃後に戻るポイントの設定
+					rushStartPoint_.x = quad_.pos.x;
+					rushStartPoint_.y = quad_.pos.y;
+				}
+				if (attackNumber_ >= 71 && attackNumber_ <= 90) {//全方向弾20%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//全方向弾を放ち始める
+					situation_ = allDerectionShot;
+				}
+				if (attackNumber_ >= 91 && attackNumber_ <= 95) {//ビーム5%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					beamStartPoint_.x = quad_.pos.x;
+					beamStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = beam;
+					//ビームのposXを決める
+					for (int i = 0; i < beam_->beamNumber_; i++) {
+						//ランダムなposX
+						beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
+					}
+				}
+				if (attackNumber_ >= 96 && attackNumber_ <= 100) {//ボム5%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					bomStartPoint_.x = quad_.pos.x;
+					bomStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = bom;
+				}
+			} else if (hp_ >= 3000 && hp_ < 5000) {//HP50%未満HP30%以上
+				if (attackNumber_ >= 1 && attackNumber_ <= 10) {//落下攻撃10%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//落下攻撃を始める
+					situation_ = fallingAttack;
+					//落下し始めるポイントを設定
+					fallingStartPoint_ = quad_.pos.y;
+				}
+				if (attackNumber_ >= 11 && attackNumber_ <= 50) {//突進攻撃40%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//突進攻撃を始める
+					situation_ = rushAttack;
+					//突進攻撃回数
+					rushAttackNumber_ = firstAttack;
+					//突進攻撃後に戻るポイントの設定
+					rushStartPoint_.x = quad_.pos.x;
+					rushStartPoint_.y = quad_.pos.y;
+				}
+				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//全方向弾30%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//全方向弾を放ち始める
+					situation_ = allDerectionShot;
+				}
+				if (attackNumber_ >= 81 && attackNumber_ <= 90) {//ビーム10%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					beamStartPoint_.x = quad_.pos.x;
+					beamStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = beam;
+					//ビームのposXを決める
+					for (int i = 0; i < beam_->beamNumber_; i++) {
+						//ランダムなposX
+						beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
+					}
+				}
+				if (attackNumber_ >= 91 && attackNumber_ <= 100) {//ボム10%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					bomStartPoint_.x = quad_.pos.x;
+					bomStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = bom;
+				}
+			} else if (hp_ >= 0 && hp_ < 3000) {//HP30%未満HP0%以上
+				if (attackNumber_ >= 1 && attackNumber_ <= 30) {//突進攻撃30%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//突進攻撃を始める
+					situation_ = rushAttack;
+					//突進攻撃回数
+					rushAttackNumber_ = firstAttack;
+					//突進攻撃後に戻るポイントの設定
+					rushStartPoint_.x = quad_.pos.x;
+					rushStartPoint_.y = quad_.pos.y;
+				}
+				if (attackNumber_ >= 31 && attackNumber_ <= 50) {//全方向弾20%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//全方向弾を放ち始める
+					situation_ = allDerectionShot;
+				}
+				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//ビーム30%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					beamStartPoint_.x = quad_.pos.x;
+					beamStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = beam;
+					//ビームのposXを決める
+					for (int i = 0; i < beam_->beamNumber_; i++) {
+						//ランダムなposX
+						beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
+					}
+				}
+				if (attackNumber_ >= 81 && attackNumber_ <= 100) {//ボム20%
+					//顔の向き
+					prevDirection_ = direction_;
+					//元の速度の記録
+					movingVelocity_.x = velocity_.x;
+					//ビーム後に戻るポイントの設定
+					bomStartPoint_.x = quad_.pos.x;
+					bomStartPoint_.y = quad_.pos.y;
+					//ビームを放ち始める
+					situation_ = bom;
+				}
+			}
+			//タイマーのリセット
+			attackCoolTimer_ = attackCoolTimeSet_;
 		}
-	}
-
-	//実験用(ホントはタイマーで管理)
-	if (keys[DIK_E] && !preKeys[DIK_E] && situation_ == moving) {
-
-		prevDirection_ = direction_;
-		//元の速度の記録
-		movingVelocity_.x = velocity_.x;
-		//落下攻撃を始める
-		situation_ = fallingAttack;
-		//落下し始めるポイントを設定
-		fallingStartPoint_ = quad_.pos.y;
-	}
-	if (keys[DIK_R] && !preKeys[DIK_R] && situation_ == moving) {
-
-		prevDirection_ = direction_;
-		//元の速度の記録
-		movingVelocity_.x = velocity_.x;
-		//突進攻撃を始める
-		situation_ = rushAttack;
-		//突進攻撃回数
-		rushAttackNumber_ = firstAttack;
-		//突進攻撃後に戻るポイントの設定
-		rushStartPoint_.x = quad_.pos.x;
-		rushStartPoint_.y = quad_.pos.y;
-	}
-	if (keys[DIK_T] && !preKeys[DIK_T] && situation_ == moving) {
-
-		prevDirection_ = direction_;
-		//元の速度の記録
-		movingVelocity_.x = velocity_.x;
-		//全方向弾を放ち始める
-		situation_ = allDerectionShot;
-	}
-	if (keys[DIK_Y] && !preKeys[DIK_Y] && situation_ == moving) {
-
-		prevDirection_ = direction_;
-		//元の速度の記録
-		movingVelocity_.x = velocity_.x;
-		//ビーム後に戻るポイントの設定
-		beamStartPoint_.x = quad_.pos.x;
-		beamStartPoint_.y = quad_.pos.y;
-		//ビームを放ち始める
-		situation_ = beam;
-		//ビームのposXを決める
-		for (int i = 0; i < beam_->beamNumber_; i++) {
-			//ランダムなposX
-			beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
-		}
-	}
-	if (keys[DIK_U] && !preKeys[DIK_U] && situation_ == moving) {
-
-		prevDirection_ = direction_;
-		//元の速度の記録
-		movingVelocity_.x = velocity_.x;
-		//ビーム後に戻るポイントの設定
-		bomStartPoint_.x = quad_.pos.x;
-		bomStartPoint_.y = quad_.pos.y;
-		//ビームを放ち始める
-		situation_ = bom;
 	}
 
 	//[moving]======================================
@@ -271,7 +379,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	if (situation_ == rushAttack) {
 		direction_ = front;
 		//加速度を設定
-		acceleration_.x = -4.0f;
+		acceleration_.x = -2.5f;
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;

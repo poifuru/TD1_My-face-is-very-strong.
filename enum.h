@@ -15,8 +15,7 @@ enum situation_ {
 	rushAttack,
 	allDerectionShot,
 	beam,
-	bom,
-	ult
+	bom
 };
 
 //突進攻撃回数
