@@ -86,6 +86,10 @@ struct BGMs {
 	int gameOver = Novice::LoadAudio("./Resources./Audios./BGMs./gameOver.mp3");
 };
 
+struct SEs {
+	
+};
+
 //オブジェクトの構造体====================
 struct Box {
 	Vector2 pos;
