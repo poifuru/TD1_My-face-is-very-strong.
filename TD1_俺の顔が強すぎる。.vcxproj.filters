@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -65,6 +65,7 @@
     <ClCompile Include="Ultimate.cpp">
       <Filter>ソースは中濃\Player</Filter>
     </ClCompile>
+    <ClCompile Include="hud.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
@@ -196,12 +197,10 @@
     <ClInclude Include="Struct.h">
       <Filter>ヘッダー入れるとこ\システム関連</Filter>
     </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>ヘッダー入れるとこ\システム関連</Filter>
-    </ClInclude>
     <ClInclude Include="Ultimate.h">
       <Filter>ヘッダー入れるとこ\Player</Filter>
     </ClInclude>
+    <ClInclude Include="hud.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー入れるとこ">
@@ -277,9 +276,6 @@
     </Filter>
     <Filter Include="ヘッダー入れるとこ\Enemy">
       <UniqueIdentifier>{9ee79f41-8fcf-47fb-95cd-4c0e4d1efff6}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-</Project>
     </Filter>
   </ItemGroup>
 </Project>

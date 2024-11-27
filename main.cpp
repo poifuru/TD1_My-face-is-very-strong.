@@ -8,6 +8,7 @@
 #include "Ultimate.h"
 #include "CollisionCheck.h"
 #include "debug.h"
+#include "hud.h"
 
 const char kWindowTitle[] = "LC1A_25_マスヤ_ゴウ_タイトル";
 
@@ -29,13 +30,36 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	//scene
 	int scene = title;
+
 	//画像
 	Images image;
+
 	//カットイン
 	int cutIn_image = image.playerUlt;
 	//ULT
 	int ULTGo_image = image.ULTGo;
 	int notULT_image = image.notULT;
+
+	//hud
+	int AKey_image[2] = {
+		image.AKey,
+	    image.onAKey
+	};
+	int DKey_image[2] = {
+		image.Dkey,
+		image.onDKey
+	};
+	int QKey_image[2] = {
+		image.QKey,
+		image.onQKey
+	};
+	int SPACEKey_image[2] = {
+		image.SPACEKey,
+		image.onSPACEKey
+	};
+	int weponGuide_image = image.weponGuide;
+	//int Num_image = image.num;
+
 	//背景
 	int backGround_image = image.backGround;
 	//game背景
@@ -95,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				enemy->quad_.pos.y = 540.0f;
 				//enemyのHP
 				enemy->hp_ = 10000;
-				
+
 				//Lets game
 				scene = game;
 
@@ -186,7 +210,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			enemy->Draw();
 
 			//Barの描画
-			DrawBar(ULTGo_image,notULT_image,keys,preKeys);
+			DrawBar(ULTGo_image, notULT_image, keys, preKeys);
 
 			//地面
 			//Novice::DrawBox(0, 900, 1920, 180, 0.0f, WHITE, kFillModeSolid);
@@ -197,6 +221,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			//カットインの描画
 			DrawCutIn(cutIn_image);
+
+			//hudの描画
+			DrawHud(keys, AKey_image, DKey_image, QKey_image, SPACEKey_image , weponGuide_image/*, Num_image*/);
 
 			//デバッグ用
 			//debugprint(player, enemy);
