@@ -15,8 +15,8 @@ Weapon::Weapon() {
 	sword_.drawRightTop = {};
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
-	sword_.imageHeight = 32;
-	sword_.image = 0;
+	sword_.imageHeight = 64;
+	sword_.image = images_.SWORD;
 	sword_.color = RED;
 	attack_ = 0;
 	attackingTimer_ = 0;
@@ -74,8 +74,8 @@ Weapon::Weapon() {
 	readyToFire_ = true;
 	shotCoolTime_ = 6;
 
-	bulletAttackPower_ = 3;
-	swordAttackPower_ = 100;
+	bulletAttackPower_ = 10;
+	swordAttackPower_ = 300;
 }
 
 void Weapon::Update(Enemy* enemy) {
