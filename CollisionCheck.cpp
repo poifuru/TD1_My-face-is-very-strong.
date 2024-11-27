@@ -10,7 +10,8 @@ void collisionCheck(Player* player, Enemy* enemy)
 	int allSEHandle = -1;
 	int rushSE = SE.playerHitRush;
 	int rushSEHandle = -1;
-
+	int swordSE = SE.sword;
+	int swordSEHandle = -1;
 
 	//弾と敵の当たり判定
 	for (int i = 0; i < 30; i++) {
@@ -19,6 +20,7 @@ void collisionCheck(Player* player, Enemy* enemy)
 				player->weapon_->bullet_[i].pos.x - player->weapon_->bullet_[i].radius.x < enemy->quad_.pos.x + enemy->quad_.radius.x &&
 				player->weapon_->bullet_[i].pos.y + player->weapon_->bullet_[i].radius.y > enemy->quad_.pos.y - enemy->quad_.radius.y &&
 				player->weapon_->bullet_[i].pos.y - player->weapon_->bullet_[i].radius.y < enemy->quad_.pos.y + enemy->quad_.radius.y) {
+				allSEHandle = Novice::PlayAudio(allSE, false, 0.2f);
 				//敵のHPを減らす
 				enemy->hp_ -= player->weapon_->bulletAttackPower_;
 				//弾を消す
@@ -37,6 +39,8 @@ void collisionCheck(Player* player, Enemy* enemy)
 					player->weapon_->sword_.pos.x - player->weapon_->sword_.radius.x < enemy->quad_.pos.x + enemy->quad_.radius.x &&
 					player->weapon_->sword_.pos.y + player->weapon_->sword_.radius.y > enemy->quad_.pos.y - enemy->quad_.radius.y &&
 					player->weapon_->sword_.pos.y - player->weapon_->sword_.radius.y < enemy->quad_.pos.y + enemy->quad_.radius.y) {
+
+					swordSEHandle = Novice::PlayAudio(swordSE, false, 0.2f);
 					//敵のHPを減らす
 					enemy->hp_ -= player->weapon_->swordAttackPower_;
 					enemy->invincible_ = 1;
