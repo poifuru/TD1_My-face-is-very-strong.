@@ -77,18 +77,18 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 
 	//プレイヤーの向きで半径をいじいじ
 	if (direction_ == 0) {
-		//quad_.radius.x = -32.0f;
+		quad_.radius.x = -32.0f;
 		//quad_.radius.y = -32.0f;
-		//weapon_->sword_.radius.x = -32.0f;
+		weapon_->sword_.radius.x = -32.0f;
 		//weapon_->sword_.radius.y = -32.0f;
-		//weapon_->gun_.radius.x = -32.0f;
+		weapon_->gun_.radius.x = -32.0f;
 		//weapon_->gun_.radius.y = -32.0f;
 	} else if (direction_ == 1) {
-		//quad_.radius.x = 32.0f;
+		quad_.radius.x = 32.0f;
 		//quad_.radius.y = 32.0f;
-		//weapon_->sword_.radius.x = 32.0f;
+		weapon_->sword_.radius.x = 32.0f;
 		//weapon_->sword_.radius.y = 32.0f;
-		//weapon_->gun_.radius.x = 32.0f;
+		weapon_->gun_.radius.x = 32.0f;
 		//weapon_->gun_.radius.y = 32.0f;
 	}
 

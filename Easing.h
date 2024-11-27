@@ -18,3 +18,5 @@ float easeInBack(float x);
 float easeOutQuint(float x);
 
 float easeInSine(float x);
+
+float easeOutBack(float x);
