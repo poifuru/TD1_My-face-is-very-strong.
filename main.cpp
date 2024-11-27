@@ -219,11 +219,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//プレイヤーの描画
 			player->Draw();
 
-			//カットインの描画
-			DrawCutIn(cutIn_image);
-
 			//hudの描画
 			DrawHud(keys, AKey_image, DKey_image, QKey_image, SPACEKey_image , weponGuide_image/*, Num_image*/);
+
+			//カットインの描画
+			DrawCutIn(cutIn_image);
 
 			//デバッグ用
 			//debugprint(player, enemy);
