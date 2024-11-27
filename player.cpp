@@ -18,7 +18,7 @@ Player::Player() {
 	quad_.image = images_.playerStand;
 	quad_.color = WHITE;
 	velocity_ = { 8.0f, 0.0f };
-	direction_ = front;
+	direction_ = right;
 	ghPos_ = 0;
 	playerTime_ = 3;
 	playerTimer_ = playerTime_;
@@ -46,7 +46,8 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 		isMove_ = true;
 		direction_ = left;
 		quad_.pos.x -= velocity_.x;
-	} else if ((keys[DIK_D] || stickX_ > 0) && quad_.pos.x + quad_.radius.x < 1920) {
+	}
+	else if ((keys[DIK_D] || stickX_ > 0) && quad_.pos.x + quad_.radius.x < 1920) {
 		isMove_ = true;
 		direction_ = right;
 		quad_.pos.x += velocity_.x;
@@ -55,10 +56,12 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	//プレイヤーの向き管理
 	if (!isMove_) {
 		quad_.image = images_.playerStand;
-	} else {
+	}
+	else {
 		if (direction_ == left) {
 			quad_.image = images_.playerLeft;
-		} else if (direction_ == right) {
+		}
+		else if (direction_ == right) {
 			quad_.image = images_.playerRight;
 		}
 	}
@@ -83,7 +86,8 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 		//weapon_->sword_.radius.y = -32.0f;
 		weapon_->gun_.radius.x = -32.0f;
 		//weapon_->gun_.radius.y = -32.0f;
-	} else if (direction_ == 1) {
+	}
+	else if (direction_ == 1) {
 		quad_.radius.x = 32.0f;
 		//quad_.radius.y = 32.0f;
 		weapon_->sword_.radius.x = 32.0f;
@@ -112,30 +116,58 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	parry_->Update();
 	if (parry_->isParry_) {
 		quad_.color = BLUE;
-	} else {
+	}
+	else {
 		quad_.color = WHITE;
 	}
 
 	//攻撃処理
-	if (weapon_->attackingTimer_ == 0) {
-		weapon_->sword_.pos = { quad_.pos.x + (quad_.radius.x * 2.5f), quad_.pos.y };
-	}
 	//攻撃中にも剣がついてくるように処理
-	if (weapon_->attack_ == 1) {
-		weapon_->startPos[0] = { quad_.pos.x - (weapon_->sword_.radius.x * 3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
-		weapon_->endPos[0] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y };
-	} else if (weapon_->attack_ == 2) {
-		weapon_->startPos[1] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y };
-		weapon_->endPos[1] = { quad_.pos.x - (weapon_->sword_.radius.x * 3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
-	} else if (weapon_->attack_ == 3) {
-		weapon_->startPos[2] = { quad_.pos.x - (weapon_->sword_.radius.x * 4.5f), quad_.pos.y -                                 (weapon_->sword_.radius.y * 4.5f) };
-		weapon_->endPos[2] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y + weapon_->sword_.radius.y };
+	if (direction_ == 1) {
+		if (weapon_->attackingTimer_ == 0) {
+			weapon_->sword_.pos = { quad_.pos.x + (quad_.radius.x * 2.5f), quad_.pos.y };
+		}
+		if (weapon_->attack_ == 1) {
+			weapon_->startPos[0] = { quad_.pos.x - (weapon_->sword_.radius.x * 3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
+			weapon_->endPos[0] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y };
+		}
+		else if (weapon_->attack_ == 2) {
+			weapon_->startPos[1] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y };
+			weapon_->endPos[1] = { quad_.pos.x - (weapon_->sword_.radius.x * 3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
+		}
+		else if (weapon_->attack_ == 3) {
+			weapon_->startPos[2] = { quad_.pos.x - (weapon_->sword_.radius.x * 4.5f), quad_.pos.y - (weapon_->sword_.radius.y * 4.5f) };
+			weapon_->endPos[2] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y + weapon_->sword_.radius.y };
+		}
 	}
+	else if (direction_ == 0) {
+		if (weapon_->attackingTimer_ == 0) {
+			weapon_->sword_.pos = { quad_.pos.x + (quad_.radius.x * -2.5f), quad_.pos.y };
+		}
+		if (weapon_->attack_ == 1) {
+			weapon_->startPos[0] = { quad_.pos.x - (weapon_->sword_.radius.x * -3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
+			weapon_->endPos[0] = { quad_.pos.x + (weapon_->sword_.radius.x * -2.5f), quad_.pos.y };
+		}
+		else if (weapon_->attack_ == 2) {
+			weapon_->startPos[1] = { quad_.pos.x + (weapon_->sword_.radius.x * -2.5f), quad_.pos.y };
+			weapon_->endPos[1] = { quad_.pos.x - (weapon_->sword_.radius.x * -3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
+		}
+		else if (weapon_->attack_ == 3) {
+			weapon_->startPos[2] = { quad_.pos.x - (weapon_->sword_.radius.x * -4.5f), quad_.pos.y - (weapon_->sword_.radius.y * 4.5f) };
+			weapon_->endPos[2] = { quad_.pos.x + (weapon_->sword_.radius.x * -2.5f), quad_.pos.y + weapon_->sword_.radius.y };
+		}
+	}
+
 	weapon_->gun_.pos = { quad_.pos };
 	for (int i = 0; i < kBulletNum; i++) {
 		//撃ってない間は弾の座標をプレイヤーに合わせる
 		if (!weapon_->isShot_[i]) {
-			weapon_->bullet_[i].pos = { quad_.pos };
+			if (direction_ == 1) {
+				weapon_->bullet_[i].pos = { quad_.pos.x + (quad_.radius.x * 3.5f), quad_.pos.y };
+			}
+			else if (direction_ == 0) {
+				weapon_->bullet_[i].pos = { quad_.pos.x - (quad_.radius.x * 3.5f), quad_.pos.y };
+			}
 		}
 	}
 	weapon_->Update(enemy);
@@ -159,7 +191,8 @@ void Player::Draw() {
 			);
 			//武器の描画
 			weapon_->Draw();
-		} else if (invincible_ && invincibleTimer_ % 3 == 0) {
+		}
+		else if (invincible_ && invincibleTimer_ % 3 == 0) {
 			Novice::DrawSpriteRect(
 				int(quad_.leftTop.x), int(quad_.leftTop.y),
 				int(ghPos_), 0,
@@ -170,7 +203,8 @@ void Player::Draw() {
 			weapon_->Draw();
 		}
 
-	} else {
+	}
+	else {
 
 		//プレイヤーの描画
 		if (!invincible_) {
@@ -180,7 +214,8 @@ void Player::Draw() {
 			);
 			//武器の描画
 			weapon_->Draw();
-		} else if (invincible_ && invincibleTimer_ % 3 == 0) {
+		}
+		else if (invincible_ && invincibleTimer_ % 3 == 0) {
 			Novice::DrawSprite(
 				int(quad_.leftTop.x), int(quad_.leftTop.y),
 				quad_.image, 1.0f, 1.0f, 0.0f, quad_.color

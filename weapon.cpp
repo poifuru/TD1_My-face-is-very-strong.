@@ -32,10 +32,10 @@ Weapon::Weapon() {
 	gun_.drawRightBottom = {};
 	gun_.drawRightTop = {};
 	gun_.imagePos = {};
-	gun_.imageWidth = 32;
+	gun_.imageWidth = 64;
 	gun_.imageHeight = 32;
-	gun_.image = 0;
-	gun_.color = BLUE;
+	gun_.image = images_.GUN;
+	gun_.color = WHITE;
 
 	for (int i = 0; i < kBulletNum; i++) {
 		bullet_[i].pos = { 300.0f, 868.0f };
