@@ -12,12 +12,21 @@ struct IntVector2 {
 	int y;
 };
 
+//アニメーション関係
+struct Animation {
+	int x;
+	int timeSet;
+	int timer;
+};
+
 //画像を入れておく構造体
 struct Images {
 	//サンプル
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
 	//ウルト
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
+	//playerBullet
+	int playerBullet = Novice::LoadTexture("./Resources./Images./playerBullet.png");
 	//BackGround
 	int backGround = Novice::LoadTexture("./Resources./Images./backGround.png");
 	int gameBackGround = Novice::LoadTexture("./Resources./Images./gameBackground.png");
@@ -38,6 +47,12 @@ struct Images {
 	//beam
 	int dangerSignal = Novice::LoadTexture("./Resources./Images./dangerSignal.png");
 	int beam = Novice::LoadTexture("./Resources./Images./beam.png");
+	//title
+	int title = Novice::LoadTexture("./Resources./Images./title.png");
+	//gameClear
+	int gameClear = Novice::LoadTexture("./Resources./Images./gameClear.png");
+	//gameOver
+	int gameOver = Novice::LoadTexture("./Resources./Images./gameOver.png");
 };
 
 //オブジェクトの構造体====================

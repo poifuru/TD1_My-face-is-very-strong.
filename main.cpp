@@ -37,8 +37,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int gameBackGround_image = image.gameBackGround;
 	//背景のカバー
 	int gameBackGroundCover_image = image.gameBackGroundCover;
-	//ult
-	int playerUlt_image = image.playerUlt;
+	//title
+	int title_image = image.title;
+	Animation title_animation;
+	title_animation.x = 0;
+	title_animation.timeSet = 30;
+	title_animation.timer = title_animation.timeSet;
+	//gameClear
+	int gameClear_image = image.gameClear;
+	Animation gameClear_animation;
+	gameClear_animation.x = 0;
+	gameClear_animation.timeSet = 30;
+	gameClear_animation.timer = gameClear_animation.timeSet;
+	//gameOver
+	int gameOver_image = image.gameOver;
+	Animation gameOver_animation;
+	gameOver_animation.x = 0;
+	gameOver_animation.timeSet = 30;
+	gameOver_animation.timer = gameOver_animation.timeSet;
 
 	Player* player = new Player();
 	Enemy* enemy = new Enemy();
@@ -77,6 +93,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				//Lets game
 				scene = game;
 			}
+
+			//titleの画像入れ替え
+			if (title_animation.timer > 0) {
+				title_animation.timer--;
+			} else {
+				title_animation.timer = title_animation.timeSet;
+				if (title_animation.x < 1) {
+					title_animation.x++;
+				} else {
+					title_animation.x = 0;
+				}
+			}
+
 			///===========================
 			/// ↑↑↑ 更新処理 ↑↑↑
 			///===========================
@@ -85,8 +114,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			//背景
 			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
-			//ult
-			Novice::DrawQuad(0, 0, 1920, 0, 0, 840, 1920, 840, 0, 0, 1920, 840, playerUlt_image, WHITE);
+			//title
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, title_animation.x * 1920, 0, 1920, 1080, title_image, WHITE);
 
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
@@ -162,13 +191,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 				scene = title;
 			}
+
+			//gameClearの画像入れ替え
+			if (gameClear_animation.timer > 0) {
+				gameClear_animation.timer--;
+			} else {
+				gameClear_animation.timer = gameClear_animation.timeSet;
+				if (gameClear_animation.x < 1) {
+					gameClear_animation.x++;
+				} else {
+					gameClear_animation.x = 0;
+				}
+			}
 			///===========================
 			/// ↑↑↑ 更新処理 ↑↑↑
 			///===========================
 			///===========================
 			/// ↓↓↓ 描画処理 ↓↓↓
 			///===========================
-
+			//背景
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
+			//gameClear
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, gameClear_animation.x * 1920, 0, 1920, 1080, gameClear_image, WHITE);
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================
@@ -180,13 +224,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 				scene = title;
 			}
+
+			//gameOverの画像入れ替え
+			if (gameOver_animation.timer > 0) {
+				gameOver_animation.timer--;
+			} else {
+				gameOver_animation.timer = gameOver_animation.timeSet;
+				if (gameOver_animation.x < 1) {
+					gameOver_animation.x++;
+				} else {
+					gameOver_animation.x = 0;
+				}
+			}
 			///===========================
 			/// ↑↑↑ 更新処理 ↑↑↑
 			///===========================
 			///===========================
 			/// ↓↓↓ 描画処理 ↓↓↓
 			///===========================
-
+			//背景
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
+			//gameOver
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, gameOver_animation.x * 1920, 0, 1920, 1080, gameOver_image, WHITE);
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================
