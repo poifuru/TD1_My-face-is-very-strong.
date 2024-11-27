@@ -73,6 +73,8 @@ struct Images {
 	int gameClear = Novice::LoadTexture("./Resources./Images./gameClear.png");
 	//gameOver
 	int gameOver = Novice::LoadTexture("./Resources./Images./gameOver.png");
+	//プレイヤーの剣
+	int SWORD = Novice::LoadTexture("./Resources/Images/sword.png");
 };
 
 //オブジェクトの構造体====================
