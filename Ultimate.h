@@ -6,9 +6,9 @@
 
 void startCutIn();
 
-void DrawCutIn();
+void DrawCutIn(int ghCutIn);
 
-void ULTUpdate(char* keys, char* preKeys); 
+void ULTUpdate(char* keys, char* preKeys,Enemy* enemy); 
 
 void DrawBar();
 

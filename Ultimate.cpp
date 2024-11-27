@@ -7,6 +7,12 @@
 //
 //=======================================
 
+Vector2 ghCutInPos = { 0.0f,0.0f };
+int cutInTimer = 0;
+const int cutInTime = 20;
+int isCutInTimer = false;
+int isCutIn = false;
+
 //カットインサイズ変更
 const float cutInWidth = 1920.0f;
 const float cutInHeight = 840.0f;
@@ -54,13 +60,13 @@ float easeT[2] = {
 
 void startCutIn()
 {
-
+	isCutInTimer = true;
 	int is2ndEase = false;
 	int is2ndPush = false;
 
 	if (isCutInPush) {
 		if (isCutInEase) {
-			easeT[0] += 0.03f;
+			easeT[0] += 0.015f;
 		}
 
 		if (easeT[0] > 1.0f) {
@@ -74,9 +80,25 @@ void startCutIn()
 		}
 	}
 
+	if (isCutInTimer) {
+		cutInTimer++;
+		if (cutInTimer >= cutInTime) {
+			cutInTimer = 0;
+
+			if (ghCutInPos.x == 0.0f) {
+				ghCutInPos.x = 1920.0f;
+			} else if (ghCutInPos.x == 1920.0f) {
+				ghCutInPos.x = 3840.0f;
+			} else if (ghCutInPos.x == 3840.0f) {
+				ghCutInPos.x = 0.0f;
+				isCutInTimer = false;
+			}
+		}
+	}
+
 	if (is2ndPush) {
 		if (is2ndEase) {
-			easeT[1] += 0.02f;
+			easeT[1] += 0.015f;
 		}
 
 		if (easeT[1] > 1.0f) {
@@ -86,6 +108,7 @@ void startCutIn()
 			is2ndEase = false;
 			is2ndPush = false;
 			isULT = false;
+			isCutIn = false;
 			easeT[0] = 0.0f;
 			easeT[1] = 0.0f;
 		}
@@ -104,7 +127,7 @@ void startCutIn()
 // ULT管理
 //=======================================
 
-void ULTUpdate(char* keys, char* preKeys)
+void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 {
 	ULTTimer--;
 
@@ -125,6 +148,7 @@ void ULTUpdate(char* keys, char* preKeys)
 		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
 			isULT = true;
 			Ultimate = 0;
+			enemy->hp_ -= 500;
 		}
 	}
 
@@ -147,19 +171,34 @@ void ULTUpdate(char* keys, char* preKeys)
 	if (keys[DIK_3]) {
 		Ultimate = 100;
 	}
+
+
 }
 
 //=======================================
 // 描画関数
 //=======================================
 
-void DrawCutIn()
+void DrawCutIn(int ghCutIn)
 {
 
-	Novice::DrawBox(static_cast<int>(cutInPos.x),
+	Novice::DrawSpriteRect(
+		static_cast<int>(cutInPos.x),
+		static_cast<int>(cutInPos.y),
+		static_cast<int>(ghCutInPos.x),
+		static_cast<int>(ghCutInPos.y),
+		static_cast<int>(cutInWidth),
+		static_cast<int>(cutInHeight),
+		ghCutIn,
+		1.0f / 3.0f, 1.0f, 0.0f, 0xFFFFFFFF);
+
+
+	/*Novice::DrawBox(static_cast<int>(cutInPos.x),
 		static_cast<int>(cutInPos.y),
 		static_cast<int>(cutInWidth),
-		static_cast<int>(cutInHeight), 0.0f, BLUE, kFillModeSolid);
+		static_cast<int>(cutInHeight), 0.0f, BLUE, kFillModeSolid);*/
+
+	
 
 }
 

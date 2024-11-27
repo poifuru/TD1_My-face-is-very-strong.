@@ -31,6 +31,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int scene = title;
 	//画像
 	Images image;
+	//カットイン
+	int cutIn_image = image.playerUlt;
 	//背景
 	int backGround_image = image.backGround;
 	//game背景
@@ -142,7 +144,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 
 			//ULTの更新
-			ULTUpdate(keys, preKeys);
+			ULTUpdate(keys, preKeys, enemy);
 
 			//gameClearへ
 			if (enemy->hp_ <= 0) {
@@ -176,7 +178,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			player->Draw();
 
 			//カットインの描画
-			DrawCutIn();
+			DrawCutIn(cutIn_image);
 
 			//デバッグ用
 			//debugprint(player, enemy);
