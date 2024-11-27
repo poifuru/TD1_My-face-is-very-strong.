@@ -29,7 +29,7 @@ Player::~Player() {
 	delete weapon_;
 }
 
-void Player::Update(const char keys[], const char preKeys[], Enemy enemy) {
+void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	//移動の処理
 	Novice::GetAnalogInputLeft(0, &stickX_, &stickY_);
 	if ((keys[DIK_A] || stickX_ < 0) && quad_.pos.x - quad_.radius.x > 0) {

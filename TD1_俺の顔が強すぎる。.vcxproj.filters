@@ -20,9 +20,6 @@
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>ソースは中濃</Filter>
-    </ClCompile>
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
     <ClCompile Include="Parry.cpp">
       <Filter>ソースは中濃\Player</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionCheck.cpp" />
-    <ClCompile Include="Ultimate.cpp" />
-    <ClCompile Include="debug.cpp" />
     <ClCompile Include="EnemyBeam.cpp">
       <Filter>ソースは中濃\Enemy</Filter>
     </ClCompile>
@@ -50,15 +44,21 @@
     <ClCompile Include="EnemyBom.cpp">
       <Filter>ソースは中濃\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionCheck.cpp">
+      <Filter>ソースは中濃</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>ソースは中濃</Filter>
+    </ClCompile>
+    <ClCompile Include="Ultimate.cpp">
+      <Filter>ソースは中濃\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
       <Filter>ヘッダー入れるとこ</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>ヘッダー入れるとこ</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
       <Filter>ヘッダー入れるとこ</Filter>
     </ClInclude>
     <ClInclude Include="Struct.h">
@@ -157,9 +157,6 @@
     <ClInclude Include="weapon.h">
       <Filter>ヘッダー入れるとこ\Player</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionCheck.h" />
-    <ClInclude Include="Ultimate.h" />
-    <ClInclude Include="debug.h" />
     <ClInclude Include="EnemyBullet.h">
       <Filter>ヘッダー入れるとこ\Enemy</Filter>
     </ClInclude>
@@ -168,6 +165,15 @@
     </ClInclude>
     <ClInclude Include="EnemyBom.h">
       <Filter>ヘッダー入れるとこ\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionCheck.h">
+      <Filter>ヘッダー入れるとこ</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>ヘッダー入れるとこ</Filter>
+    </ClInclude>
+    <ClInclude Include="Ultimate.h">
+      <Filter>ヘッダー入れるとこ\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

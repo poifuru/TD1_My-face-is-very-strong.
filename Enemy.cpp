@@ -68,7 +68,7 @@ Enemy::Enemy() {
 
 	//[allDerectionShot]============================
 	//弾
-	bullet_ = {};
+	bullet_ = new Bullet();
 	//波の幅
 	amplitude_ = 400.0f;
 	//波の速度
@@ -81,7 +81,7 @@ Enemy::Enemy() {
 
 	//[beam]========================================
 	//ビーム
-	beam_ = {};
+	beam_ = new Beam();
 	//ビーム前の場所の記録
 	beamStartPoint_ = {};
 	//ビーム中のボスの速度
@@ -90,7 +90,9 @@ Enemy::Enemy() {
 
 	//[bom]=========================================
 	//ボム
-	bom_ = {};
+	bom_ = new Bom();
+	//ボム前の場所の記録
+	bomStartPoint_ = {};
 	//==============================================
 
 	//[shake]=======================================
@@ -123,7 +125,12 @@ Enemy::Enemy() {
 
 //デストラクタ
 Enemy::~Enemy() {
-
+	//弾
+	delete bullet_;
+	//ビーム
+	delete beam_;
+	//ボム
+	delete bom_;
 }
 
 //敵の基本的な動き
@@ -185,9 +192,9 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		//ビームを放ち始める
 		situation_ = beam;
 		//ビームのposXを決める
-		for (int i = 0; i < beam_.beamNumber_; i++) {
+		for (int i = 0; i < beam_->beamNumber_; i++) {
 			//ランダムなposX
-			beam_.beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
+			beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
 		}
 	}
 	if (keys[DIK_U] && !preKeys[DIK_U] && situation_ == moving) {
@@ -373,28 +380,28 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 			//弾が撃たれていなかったら発射する
 			if (shotNumber_ < 100) {
-				for (int i = 0; i < bullet_.ammo_; i++) {
-					if (!bullet_.isShotFlag_[i]) {
+				for (int i = 0; i < bullet_->ammo_; i++) {
+					if (!bullet_->isShotFlag_[i]) {
 						//フラグを立てる
-						bullet_.isShotFlag_[i] = true;
+						bullet_->isShotFlag_[i] = true;
 						//
 						shotNumber_++;
 
 						//敵のposに代入
-						bullet_.quad_[i].pos.x = quad_.pos.x;
-						bullet_.quad_[i].pos.y = quad_.pos.y;
+						bullet_->quad_[i].pos.x = quad_.pos.x;
+						bullet_->quad_[i].pos.y = quad_.pos.y;
 						break;
 					}
 				}
 			}
 
 			//弾の動き
-			bullet_.Move();
+			bullet_->Move();
 
 			//タイマー
 			if (shotNumber_ >= 100) {
 				//すべての弾がでているかの確認
-				for (bool flag : bullet_.isShotFlag_) {
+				for (bool flag : bullet_->isShotFlag_) {
 					allShotFalseFlag_ = true;
 					if (flag) {
 						allShotFalseFlag_ = false;
@@ -438,22 +445,22 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 			}
 
 			//ビーム
-			for (int i = 0; i < beam_.beamNumber_; i++) {
+			for (int i = 0; i < beam_->beamNumber_; i++) {
 				//危険信号のフラグ
-				if (!beam_.dangerSignalFlag_[i]) {
-					beam_.dangerSignalFlag_[i] = true;
+				if (!beam_->dangerSignalFlag_[i]) {
+					beam_->dangerSignalFlag_[i] = true;
 				}
 				//ビームのフラグ
-				if (!beam_.beamFlag_[i]) {
-					beam_.beamFlag_[i] = true;
+				if (!beam_->beamFlag_[i]) {
+					beam_->beamFlag_[i] = true;
 				}
 			}
 
 			//ビームの動き
-			beam_.Move();
+			beam_->Move();
 
-			for (int i = 0; i < beam_.beamNumber_; i++) {
-				if (beam_.beam_[i].pos.y >= 1080.0f + beam_.beam_[i].radius.y) {
+			for (int i = 0; i < beam_->beamNumber_; i++) {
+				if (beam_->beam_[i].pos.y >= 1080.0f + beam_->beam_[i].radius.y) {
 					if (quad_.pos.y < 540.0f) {
 						quad_.pos.y += duringBeamSpeed_.y;
 					} else {
@@ -462,12 +469,12 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 						quad_.pos.y = beamStartPoint_.y;
 						isShaked_ = false;
 						velocity_.x = movingVelocity_.x;
-						beam_.beamFlag_[i] = false;//ビームフラグ
-						beam_.beam_[0].pos.y = -750.0f;//ビームのY座標を初期位置に
-						beam_.beam_[1].pos.y = -750.0f;//ビームのY座標を初期位置に
-						beam_.beam_[2].pos.y = -750.0f;//ビームのY座標を初期位置に
-						beam_.transitionTimer_ = beam_.transitionTimeSet_;//危険信号からビームに変わる為のタイマー
-						beam_.duringBeamTimer_ = beam_.duringBeamTimeSet_;//ビーム中のタイマー
+						beam_->beamFlag_[i] = false;//ビームフラグ
+						beam_->beam_[0].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_->beam_[1].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_->beam_[2].pos.y = -750.0f;//ビームのY座標を初期位置に
+						beam_->transitionTimer_ = beam_->transitionTimeSet_;//危険信号からビームに変わる為のタイマー
+						beam_->duringBeamTimer_ = beam_->duringBeamTimeSet_;//ビーム中のタイマー
 						situation_ = moving;//シチュエーション
 						direction_ = prevDirection_;
 					}
@@ -488,23 +495,23 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 		}
 		if (!shakeFlag_ && isShaked_) {
 			//ボムフラグを立てる
-			bom_.bomFlag_ = true;
+			bom_->bomFlag_ = true;
 			//ボスのposにボムのposを代入
-			bom_.quad_.pos.x = quad_.pos.x;
-			bom_.quad_.pos.y = quad_.pos.y;
+			bom_->quad_.pos.x = quad_.pos.x;
+			bom_->quad_.pos.y = quad_.pos.y;
 
 			//ボムの動き
-			bom_.Move();
+			bom_->Move();
 
 			//ボムが最大サイズになったら
-			if (bom_.quad_.radius.x > 900.0f && bom_.quad_.radius.y > 900.0f) {
+			if (bom_->quad_.radius.x > 900.0f && bom_->quad_.radius.y > 900.0f) {
 				//初期化
 				quad_.pos.x = bomStartPoint_.x;
 				quad_.pos.y = bomStartPoint_.y;
 				isShaked_ = false;
-				bom_.quad_.radius.x = 0.0f;
-				bom_.quad_.radius.y = 0.0f;
-				bom_.bomFlag_ = false;
+				bom_->quad_.radius.x = 0.0f;
+				bom_->quad_.radius.y = 0.0f;
+				bom_->bomFlag_ = false;
 				situation_ = moving;//シチュエーション
 				direction_ = prevDirection_;
 			}
@@ -576,7 +583,7 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 //敵を描画する関数
 void Enemy::Draw() {
 	//ビーム
-	beam_.Draw();
+	beam_->Draw();
 	//ボス
 	Novice::DrawQuad(
 		int(quad_.leftTop.x), int(quad_.leftTop.y),
@@ -588,7 +595,7 @@ void Enemy::Draw() {
 		quad_.image, WHITE
 	);
 	//弾
-	bullet_.Draw();
+	bullet_->Draw();
 	//ボム
-	bom_.Draw();
+	bom_->Draw();
 }
