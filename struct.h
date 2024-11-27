@@ -29,6 +29,16 @@ struct Images {
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
 	int ULTGo = Novice::LoadTexture("./Resources./Images./ULT.png");
 	int notULT = Novice::LoadTexture("./Resources./Images./notULT.png");
+	//hud
+	int AKey = Novice::LoadTexture("./Resources./Images./A.png");
+	int onAKey = Novice::LoadTexture("./Resources./Images./onA.png");
+	int Dkey = Novice::LoadTexture("./Resources./Images./D.png");
+	int onDKey = Novice::LoadTexture("./Resources./Images./onD.png");
+	int QKey = Novice::LoadTexture("./Resources./Images./Q.png");
+	int onQKey = Novice::LoadTexture("./Resources./Images./onQ.png");
+	int SPACEKey = Novice::LoadTexture("./Resources./Images./SPACE.png");
+	int onSPACEKey = Novice::LoadTexture("./Resources./Images./onSPACE.png");
+	int weponGuide = Novice::LoadTexture("./Resources./Images./weponGuide.png");
 	//プレイヤーの動き
 	int playerStand = Novice::LoadTexture("./Resources./Images./stand.png");
 	int playerLeft = Novice::LoadTexture("./Resources./Images./walk_left.png");
