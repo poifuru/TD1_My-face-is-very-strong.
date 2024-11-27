@@ -154,6 +154,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (player->HP_ <= 0) {
 				player->HP_ = 0;
 			}
+			//enemyのHPが0以下にならない
+			if (enemy->hp_ <= 0) {
+				enemy->hp_ = 0;
+			}
 
 			//gameClearへ
 			if (enemy->hp_ <= 0 && enemy->situation_ == moving) {
