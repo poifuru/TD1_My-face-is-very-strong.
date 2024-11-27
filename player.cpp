@@ -135,15 +135,6 @@ void Player::Draw() {
 		weapon_->Draw();
 	}
 
-}
-	Novice::DrawQuad(
-		int(quad_.leftTop.x), int(quad_.leftTop.y),
-		int(quad_.rightTop.x), int(quad_.rightTop.y),
-		int(quad_.leftBottom.x), int(quad_.leftBottom.y),
-		int(quad_.rightBottom.x), int(quad_.rightBottom.y),
-		quad_.imagePos.x, quad_.imagePos.y, quad_.imageWidth, quad_.imageHeight, quad_.image, quad_.color
-	);
-
 	//プレイヤーのHPバーの描画
 	//HPバーの背景
 	Novice::DrawBox(26, 926, 412, 47, 0.0f, 0x847e87FF, kFillModeSolid);
@@ -161,7 +152,4 @@ void Player::Draw() {
 		static_cast<int>(HP_ * 0.4f), 35,
 		0.0f, GREEN, kFillModeSolid
 	);
-
-	//武器の描画
-	weapon_->Draw();
 }

@@ -194,7 +194,7 @@ void Weapon::Update(Enemy* enemy/*, const char* keys*/) {
 				vectorToTarget_[i] = { enemy->quad_.pos.x - bullet_[i].pos.x , enemy->quad_.pos.y - bullet_[i].pos.y };
 
 				//正規化
-				float length = sqrtf(enemy->quad_.pos.x * bullet_[i].pos.x + enemy->quad_.pos.y * bullet_[i].pos.y);
+				float length = sqrtf(bullet_[i].pos.x * bullet_[i].pos.x + bullet_[i].pos.y * bullet_[i].pos.y);
 
 				if (length != 0.0f) {
 					bulletVec_[i].x = vectorToTarget_[i].x / length;
