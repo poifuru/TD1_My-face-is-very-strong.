@@ -18,7 +18,7 @@ Bom::Bom() {
 	//速度
 	velocity_ = {};
 	//加速度
-	acceleration_ = { 0.5f,0.5f };
+	acceleration_ = { 1.0f,1.0f };
 	//ボムフラグ
 	bomFlag_ = false;
 	//音
@@ -35,7 +35,7 @@ Bom::~Bom() {
 void Bom::Move() {
 	if (quad_.radius.x <= 900.0f && quad_.radius.y <= 900.0f) {
 		//速度Xに加速度を追加
-		if (velocity_.x <= 12.0f) {
+		if (velocity_.x <= 15.0f) {
 			velocity_.x += acceleration_.x;
 		} else {
 			velocity_.x = -5.0f;
@@ -43,7 +43,7 @@ void Bom::Move() {
 			enemyDuringBomHandle_ = Novice::PlayAudio(enemyDuringBomSE_, false, 0.03f);
 		}
 		//速度Yに加速度を追加
-		if (velocity_.y <= 12.0f) {
+		if (velocity_.y <= 15.0f) {
 			velocity_.y += acceleration_.y;
 		} else {
 			velocity_.y = -5.0f;

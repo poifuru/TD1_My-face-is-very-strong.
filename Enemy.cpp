@@ -62,12 +62,12 @@ Enemy::Enemy() {
 	//HP
 	hp_ = 10000;
 	//攻撃力
-	fallingAttackPower_ = 200;//落下攻撃
-	rushAttackPower_ = 100;//突進攻撃
-	allDerectionShotPower_ = 20;//全方向弾
-	allDerectionPower_ = 50;//全方向弾時の突進
+	fallingAttackPower_ = 500;//落下攻撃
+	rushAttackPower_ = 200;//突進攻撃
+	allDerectionShotPower_ = 50;//全方向弾
+	allDerectionPower_ = 200;//全方向弾時の突進
 	beamPower_ = 300;//ビーム
-	bomPower_ = 250;//ボム
+	bomPower_ = 400;//ボム
 	//==============================================
 
 	//[fallingAttack]===============================
@@ -135,12 +135,9 @@ Enemy::Enemy() {
 	//==============================================
 
 	//[status]======================================
-
 	status_ = normal;//状態
 	prevDirection_ = front;//前の向き
 	direction_ = right;//向き
-
-
 	//==============================================
 
 	//AI
@@ -447,7 +444,7 @@ void Enemy::Move() {
 	if (situation_ == rushAttack) {
 		direction_ = front;
 		//加速度を設定
-		acceleration_.x = -2.5f;
+		acceleration_.x = -3.0f;
 		//シェイクフラグ
 		if (!isShaked_) {
 			shakeFlag_ = true;

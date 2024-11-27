@@ -40,7 +40,7 @@ Beam::Beam() {
 		//敵のposXランダムな値
 		beamRandNumberX_[i] = 0.0f;
 		//危険信号からビームに変わる為のタイマー
-		transitionTimeSet_ = 5 * 60 * beamNumber_;
+		transitionTimeSet_ = 1 * 60 * beamNumber_;
 		transitionTimer_ = transitionTimeSet_;
 		//ビーム中のタイマー
 		duringBeamTimeSet_ = 3 * 60 * beamNumber_;

@@ -75,7 +75,7 @@ Weapon::Weapon() {
 	shotCoolTime_ = 6;
 
 	bulletAttackPower_ = 10;
-	swordAttackPower_ = 300;
+	swordAttackPower_ = 500;
 }
 
 void Weapon::Update(Enemy* enemy) {
