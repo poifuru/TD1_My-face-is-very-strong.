@@ -316,7 +316,7 @@ void Enemy::Move() {
 					situation_ = bom;
 				}
 			} else if (hp_ >= 0 && hp_ < 3000) {//HP30%未満HP0%以上
-				if (attackNumber_ >= 1 && attackNumber_ <= 30) {//突進攻撃30%
+				if (attackNumber_ >= 1 && attackNumber_ <= 15) {//突進攻撃15%
 					//rushAttack
 					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
 					
@@ -332,7 +332,7 @@ void Enemy::Move() {
 					rushStartPoint_.x = quad_.pos.x;
 					rushStartPoint_.y = quad_.pos.y;
 				}
-				if (attackNumber_ >= 31 && attackNumber_ <= 50) {//全方向弾20%
+				if (attackNumber_ >= 16 && attackNumber_ <= 30) {//全方向弾15%
 					//allDerectionShot
 					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
 					
@@ -343,7 +343,7 @@ void Enemy::Move() {
 					//全方向弾を放ち始める
 					situation_ = allDerectionShot;
 				}
-				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//ビーム30%
+				if (attackNumber_ >= 31 && attackNumber_ <= 65) {//ビーム35%
 					//beam
 					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
 					
@@ -362,7 +362,7 @@ void Enemy::Move() {
 						beam_->beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
 					}
 				}
-				if (attackNumber_ >= 81 && attackNumber_ <= 100) {//ボム20%
+				if (attackNumber_ >= 66 && attackNumber_ <= 100) {//ボム35%
 					//bom
 					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
 					
