@@ -115,7 +115,7 @@ public://コンストラクタとデストラクタ
 	~Enemy();
 public://メンバ関数
 	//基本的な動き
-	void Move(const char keys[], const char preKeys[]);
+	void Move();
 	//描画する
 	void Draw();
 };
