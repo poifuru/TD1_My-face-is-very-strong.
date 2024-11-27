@@ -127,7 +127,7 @@ void startCutIn()
 // ULT管理
 //=======================================
 
-void ULTUpdate(char* keys, char* preKeys)
+void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 {
 	ULTTimer--;
 
@@ -148,6 +148,7 @@ void ULTUpdate(char* keys, char* preKeys)
 		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
 			isULT = true;
 			Ultimate = 0;
+			enemy->hp_ -= 500;
 		}
 	}
 
