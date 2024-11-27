@@ -33,6 +33,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	//画像
 	Images image;
+	//BGM
+	BGMs BGM;
 
 	//カットイン
 	int cutIn_image = image.playerUlt;
@@ -84,6 +86,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	gameOver_animation.x = 0;
 	gameOver_animation.timeSet = 30;
 	gameOver_animation.timer = gameOver_animation.timeSet;
+	//BGMs
+	//title
+	int titleBGM = BGM.title;
+	int titleHandle = -1;
+	//game
+	int gameBGM = BGM.game;
+	int gameHandle = -1;
+	//gameClear
+	int gameClearBGM = BGM.gameClear;
+	int gameClearHandle = -1;
+	//gameOver
+	int gameOverBGM = BGM.gameOver;
+	int gameOverHandle = -1;
 
 	Player* player = new Player();
 	Enemy* enemy = new Enemy();
@@ -299,6 +314,41 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 
+		///// BGM /////
+		switch (scene) {
+		case title:
+			Novice::StopAudio(gameOverHandle);
+			Novice::StopAudio(gameHandle);
+			Novice::StopAudio(gameClearHandle);
+			if (!Novice::IsPlayingAudio(titleHandle) || titleHandle == -1) {
+				titleHandle = Novice::PlayAudio(titleBGM, true, 0.03f);
+			}
+			break;
+		case game:
+			Novice::StopAudio(titleHandle);
+			Novice::StopAudio(gameOverHandle);
+			Novice::StopAudio(gameClearHandle);
+			if (!Novice::IsPlayingAudio(gameHandle) || gameHandle == -1) {
+				gameHandle = Novice::PlayAudio(gameBGM, true, 0.03f);
+			}
+			break;
+		case gameClear:
+			Novice::StopAudio(titleHandle);
+			Novice::StopAudio(gameOverHandle);
+			Novice::StopAudio(gameHandle);
+			if (!Novice::IsPlayingAudio(gameClearHandle) || gameClearHandle == -1) {
+				gameClearHandle = Novice::PlayAudio(gameClearBGM, true, 0.02f);
+			}
+			break;
+		case gameOver:
+			Novice::StopAudio(titleHandle);
+			Novice::StopAudio(gameHandle);
+			Novice::StopAudio(gameClearHandle);
+			if (!Novice::IsPlayingAudio(gameOverHandle) || gameOverHandle == -1) {
+				gameOverHandle = Novice::PlayAudio(gameOverBGM, true, 0.03f);
+			}
+			break;
+		}
 		///
 		/// ↑処理ここまで
 		///

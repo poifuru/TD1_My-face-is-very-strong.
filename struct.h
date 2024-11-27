@@ -77,6 +77,17 @@ struct Images {
 	int SWORD = Novice::LoadTexture("./Resources/Images/sword.png");
 };
 
+struct BGMs {
+	//title
+	int title = Novice::LoadAudio("./Resources./Audios./BGMs./title.mp3");
+	//game
+	int game = Novice::LoadAudio("./Resources./Audios./BGMs./game.mp3");
+	//gameClear
+	int gameClear = Novice::LoadAudio("./Resources./Audios./BGMs./gameClear.mp3");
+	//gameOver
+	int gameOver = Novice::LoadAudio("./Resources./Audios./BGMs./gameOver.mp3");
+};
+
 //オブジェクトの構造体====================
 struct Box {
 	Vector2 pos;
