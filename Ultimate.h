@@ -13,3 +13,5 @@ void ULTUpdate(char* keys, char* preKeys,Enemy* enemy);
 void DrawBar();
 
 int Stop(int isStop);
+
+void resetULT();
