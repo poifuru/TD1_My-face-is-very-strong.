@@ -168,3 +168,13 @@ void DrawBar() {
 	Novice::DrawBox(480, 928, 96, 96, 0.0f, 0x847e87FF, kFillModeSolid);
 	Novice::DrawBox(480, 932 + (96 - Ultimate), 96, 96, 0.0f, BLUE, kFillModeSolid);
 }
+
+int Stop(int isStop)
+{
+
+	if (isULT) {
+		return isStop = true;
+	} else {
+		return isStop = false;
+	}
+}

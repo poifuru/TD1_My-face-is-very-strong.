@@ -11,3 +11,5 @@ void DrawCutIn();
 void ULTUpdate(char* keys, char* preKeys); 
 
 void DrawBar();
+
+int Stop(int isStop);

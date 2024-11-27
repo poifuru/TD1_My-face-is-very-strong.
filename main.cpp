@@ -25,6 +25,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
 
+	int isStop = false;
+
 	//scene
 	int scene = title;
 	//画像
@@ -80,7 +82,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			/// ↓↓↓ 描画処理 ↓↓↓
 			///===========================
 			//背景
-				Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================
@@ -89,17 +91,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			/// ↓↓↓ 更新処理 ↓↓↓
 			///===========================
-			//プレイヤーの更新
-			player->Update(keys, preKeys, enemy);
+
+			//プレイヤーの停止
+			isStop = Stop(isStop);
+
+			if (!isStop) {
+				//プレイヤーの更新
+				player->Update(keys, preKeys, enemy);
+
+				//敵とプレイヤーの当たり判定
+				collisionCheck(player, enemy);
+
+				//敵の更新
+				enemy->Move();
+
+			}
 
 			//ULTの更新
 			ULTUpdate(keys, preKeys);
-
-			//敵とプレイヤーの当たり判定
-			collisionCheck(player, enemy);
-
-			//敵の更新
-			enemy->Move();
 
 			//gameClearへ
 			if (enemy->hp_ <= 0) {
@@ -122,9 +131,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//敵の描画
 			enemy->Draw();
 
-			//カットインの描画
-			DrawCutIn();
-
 			//Barの描画
 			DrawBar();
 
@@ -134,6 +140,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			//プレイヤーの描画
 			player->Draw();
+
+			//カットインの描画
+			DrawCutIn();
 
 			//デバッグ用
 			//debugprint(player, enemy);
