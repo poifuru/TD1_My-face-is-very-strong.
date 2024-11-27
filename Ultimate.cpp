@@ -62,6 +62,7 @@ float easeT[2] = {
 
 void startCutIn(Enemy* enemy)
 {
+
 	isCutInTimer = true;
 	int is2ndEase = false;
 	int is2ndPush = false;
@@ -132,6 +133,9 @@ void startCutIn(Enemy* enemy)
 
 void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 {
+	SEs se;
+	int ULTSE = se.ULT;
+	int ULTSEHandle = -1;
 	ULTTimer--;
 
 	if (ULTTimer <= 0) {
@@ -143,12 +147,17 @@ void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 
 	if (Ultimate >= 100) {
 		isULTReady = true;
+		
 	} else {
 		isULTReady = false;
 	}
 
+
 	if (isULTReady) {
 		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
+
+			ULTSEHandle = Novice::PlayAudio(ULTSE, false, 0.1f);
+
 			isULT = true;
 			Ultimate = 0;
 		}
@@ -170,9 +179,9 @@ void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 	//	Ultimate = 50;
 	//}
 
-	//if (keys[DIK_3]) {
-	//	Ultimate = 100;
-	//}
+	if (keys[DIK_3]) {
+		Ultimate = 100;
+	}
 
 
 }
@@ -204,12 +213,12 @@ void DrawCutIn(int ghCutIn)
 
 }
 
-void DrawBar(int ULTGo, int notULT,char* keys, char* preKeys) {
+void DrawBar(int ULTGo, int notULT, char* keys, char* preKeys) {
 
 	if (!isULTReady) {
 		if (keys[DIK_Q] && !preKeys[DIK_Q]) {
 			isNotULT = true;
-			
+
 		}
 	}
 

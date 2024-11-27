@@ -1,7 +1,16 @@
 ﻿#include "CollisionCheck.h"
+#include "struct.h"
 
 void collisionCheck(Player* player, Enemy* enemy)
 {
+
+	SEs SE;
+
+	int allSE = SE.playerHitAll;
+	int allSEHandle = -1;
+	int rushSE = SE.playerHitRush;
+	int rushSEHandle = -1;
+
 
 	//弾と敵の当たり判定
 	for (int i = 0; i < 30; i++) {
@@ -45,16 +54,20 @@ void collisionCheck(Player* player, Enemy* enemy)
 			player->quad_.pos.y - player->quad_.radius.y < enemy->quad_.pos.y + enemy->quad_.radius.y) {
 			if (player->parry_->isParry_) {
 				//プレイヤーがパリィしているとき
+				player->invincible_ = 1;
 			} else {
 				//プレイヤーがパリィしていないとき
 				//プレイヤーのHPを減らす
 				if (enemy->situation_ == fallingAttack) {
+					rushSEHandle = Novice::PlayAudio(rushSE, false, 0.2f);
 					player->HP_ -= enemy->fallingAttackPower_;
 				}
 				if (enemy->situation_ == rushAttack) {
+					rushSEHandle = Novice::PlayAudio(rushSE, false, 0.2f);
 					player->HP_ -= enemy->rushAttackPower_;
 				}
 				if (enemy->situation_ == allDerectionShot) {
+					rushSEHandle = Novice::PlayAudio(rushSE, false, 0.2f);
 					player->HP_ -= enemy->allDerectionPower_;
 				}
 				player->invincible_ = 1;
@@ -68,6 +81,8 @@ void collisionCheck(Player* player, Enemy* enemy)
 					player->quad_.pos.x - player->quad_.radius.x < enemy->bullet_->quad_[i].pos.x + enemy->bullet_->quad_[i].radius.x &&
 					player->quad_.pos.y + player->quad_.radius.y > enemy->bullet_->quad_[i].pos.y - enemy->bullet_->quad_[i].radius.y &&
 					player->quad_.pos.y - player->quad_.radius.y < enemy->bullet_->quad_[i].pos.y + enemy->bullet_->quad_[i].radius.y) {
+
+					allSEHandle = Novice::PlayAudio(allSE, false, 0.2f);
 					//プレイヤーのHPを減らす
 					player->HP_ -= enemy->allDerectionShotPower_;
 					//弾を消す
@@ -122,5 +137,7 @@ void collisionCheck(Player* player, Enemy* enemy)
 		enemy->invincible_ = 0;
 		enemy->invincibleTime_ = 120;
 	}
+
+	
 
 }

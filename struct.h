@@ -104,6 +104,14 @@ struct SEs {
 	//bom
 	int enemyBom = Novice::LoadAudio("./Resources./Audios./SEs./enemyBom.mp3");
 	int enemyDuringBom = Novice::LoadAudio("./Resources./Audios./SEs./enemyDuringBom.mp3");
+	//playerHit
+	int playerHitAll = Novice::LoadAudio("./Resources./Audios./SEs./Hit1.mp3");
+	int playerHitRush = Novice::LoadAudio("./Resources./Audios./SEs./Hit2.mp3");
+
+	//ULT
+	int ULT = Novice::LoadAudio("./Resources./Audios./SEs./ULT.mp3");
+	int ULTReady = Novice::LoadAudio("./Resources./Audios./SEs./ULTReady.mp3");
+
 };
 
 //オブジェクトの構造体====================
