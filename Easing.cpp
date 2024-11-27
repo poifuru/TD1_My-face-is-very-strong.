@@ -33,3 +33,10 @@ float easeOutQuint(float x) {
 float easeInSine(float x) {
     return 1 - cosf((x * float(PI)) / 2);
 }
+
+float easeOutBack(float x) {
+    const float c1 = 1.70158f;
+    const float c3 = c1 + 1;
+
+    return 1 + c3 * powf(x - 1, 3) + c1 * powf(x - 1, 2);
+}

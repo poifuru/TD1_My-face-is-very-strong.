@@ -249,7 +249,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			DrawCutIn(cutIn_image);
 
 			//デバッグ用
-			//debugprint(player, enemy);
+			debugprint(player, enemy);
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================

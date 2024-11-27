@@ -54,7 +54,6 @@ void collisionCheck(Player* player, Enemy* enemy)
 			player->quad_.pos.y - player->quad_.radius.y < enemy->quad_.pos.y + enemy->quad_.radius.y) {
 			if (player->parry_->isParry_) {
 				//プレイヤーがパリィしているとき
-				player->invincible_ = 1;
 			} else {
 				//プレイヤーがパリィしていないとき
 				//プレイヤーのHPを減らす

@@ -15,8 +15,8 @@ Weapon::Weapon() {
 	sword_.drawRightTop = {};
 	sword_.imagePos = {};
 	sword_.imageWidth = 32;
-	sword_.imageHeight = 32;
-	sword_.image = 0;
+	sword_.imageHeight = 64;
+	sword_.image = images_.SWORD;
 	sword_.color = RED;
 	attack_ = 0;
 	attackingTimer_ = 0;
@@ -74,8 +74,8 @@ Weapon::Weapon() {
 	readyToFire_ = true;
 	shotCoolTime_ = 6;
 
-	bulletAttackPower_ = 3;
-	swordAttackPower_ = 100;
+	bulletAttackPower_ = 10;
+	swordAttackPower_ = 300;
 }
 
 void Weapon::Update(Enemy* enemy) {
@@ -132,16 +132,22 @@ void Weapon::Update(Enemy* enemy) {
 
 		//attack_が0の時にイージングに使う変数の初期化
 		if (attack_ == 0) {
+			startPos[0] = {};
+			endPos[0] = {};
 			easeT[0] = {};
 			isPushX[0] = {};
 			isPushY[0] = {};
 			isEaseX[0] = {};
 			isEaseY[0] = {};
+			startPos[1] = {};
+			endPos[1] = {};
 			easeT[1] = {};
 			isPushX[1] = {};
 			isPushY[1] = {};
 			isEaseX[1] = {};
 			isEaseY[1] = {};
+			startPos[2] = {};
+			endPos[2] = {};
 			easeT[2] = {};
 			isPushX[2] = {};
 			isPushY[2] = {};
@@ -259,8 +265,8 @@ void Weapon::Update(Enemy* enemy) {
 				}
 			}
 
-			lerpX(startPos[2].x, endPos[2].x, sword_.pos.x, easeInBack(easeT[2].x));
-			lerpX(startPos[2].y, endPos[2].y, sword_.pos.y, easeOutQuint(easeT[2].y));
+			lerpX(startPos[2].x, endPos[2].x, sword_.pos.x, easeOutBack(easeT[2].x));
+			lerpX(startPos[2].y, endPos[2].y, sword_.pos.y, easeInSine(easeT[2].y));
 		}
 
 	}

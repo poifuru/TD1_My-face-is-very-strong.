@@ -2,8 +2,8 @@
 
 void debugprint(Player* player, Enemy* enemy)
 {
-	Novice::ScreenPrintf(20, 20, "Bullet PosX:%5.1f Y:%5.1f", player->weapon_->bullet_[0].pos.x, player->weapon_->bullet_[0].pos.y);
-	Novice::ScreenPrintf(20, 40, "attack:%d", player->weapon_->attack_);
+	Novice::ScreenPrintf(100, 500, "startPos[2]X:%5.1f Y:%5.1f", player->weapon_->startPos[2].x, player->weapon_->startPos[2].y);
+	Novice::ScreenPrintf(20, 40, "derection:%d", player->direction_);
 	Novice::ScreenPrintf(20, 60, "attackingTimer", player->weapon_->attackingTimer_);
 	Novice::ScreenPrintf(20, 80, "bulletSpeed X:%5.1f Y:%5.1f", player->weapon_->bulletSpeed_[0].x, player->weapon_->bulletSpeed_[0].y);
 	Novice::ScreenPrintf(20, 100, "invincibleTimer:%d", player->invincibleTimer_);

@@ -79,16 +79,16 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 	if (direction_ == 0) {
 		//quad_.radius.x = -32.0f;
 		//quad_.radius.y = -32.0f;
-		//weapon_->sword_.radius.x = -32.0f;
+		weapon_->sword_.radius.x = -32.0f;
 		//weapon_->sword_.radius.y = -32.0f;
-		//weapon_->gun_.radius.x = -32.0f;
+		weapon_->gun_.radius.x = -32.0f;
 		//weapon_->gun_.radius.y = -32.0f;
 	} else if (direction_ == 1) {
-		//quad_.radius.x = 32.0f;
+		quad_.radius.x = 32.0f;
 		//quad_.radius.y = 32.0f;
-		//weapon_->sword_.radius.x = 32.0f;
+		weapon_->sword_.radius.x = 32.0f;
 		//weapon_->sword_.radius.y = 32.0f;
-		//weapon_->gun_.radius.x = 32.0f;
+		weapon_->gun_.radius.x = 32.0f;
 		//weapon_->gun_.radius.y = 32.0f;
 	}
 
@@ -128,7 +128,7 @@ void Player::Update(const char keys[], const char preKeys[], Enemy* enemy) {
 		weapon_->startPos[1] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y };
 		weapon_->endPos[1] = { quad_.pos.x - (weapon_->sword_.radius.x * 3), quad_.pos.y - (weapon_->sword_.radius.y * 3) };
 	} else if (weapon_->attack_ == 3) {
-		weapon_->startPos[2] = { quad_.pos.x - (weapon_->sword_.radius.x * 4.5f), quad_.pos.y - (weapon_->sword_.radius.y * 4.5f) };
+		weapon_->startPos[2] = { quad_.pos.x - (weapon_->sword_.radius.x * 4.5f), quad_.pos.y -                                 (weapon_->sword_.radius.y * 4.5f) };
 		weapon_->endPos[2] = { quad_.pos.x + (weapon_->sword_.radius.x * 2.5f), quad_.pos.y + weapon_->sword_.radius.y };
 	}
 	weapon_->gun_.pos = { quad_.pos };
