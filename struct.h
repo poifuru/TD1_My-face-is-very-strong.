@@ -23,8 +23,12 @@ struct Animation {
 struct Images {
 	//サンプル
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
+	//数字 32 * n
+	int num = Novice::LoadTexture("./Resources./Images./Num.png");
 	//ウルト
 	int playerUlt = Novice::LoadTexture("./Resources./Images./cutIn.png");
+	int ULTGo = Novice::LoadTexture("./Resources./Images./ULT.png");
+	int notULT = Novice::LoadTexture("./Resources./Images./notULT.png");
 	//プレイヤーの動き
 	int playerStand = Novice::LoadTexture("./Resources./Images./stand.png");
 	int playerLeft = Novice::LoadTexture("./Resources./Images./walk_left.png");
