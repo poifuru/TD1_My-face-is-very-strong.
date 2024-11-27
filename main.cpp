@@ -60,15 +60,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-
-		//地面
-		Novice::DrawLine(0, 900, 1920, 900, BLACK);
-			
+	
 		//プレイヤーの描画
 		player->Draw();
 		
 		//敵の描画
 		enemy->Draw();
+
+		//地面
+		Novice::DrawBox(0, 900, 1920, 180, 0.0f, WHITE, kFillModeSolid);
 
 		//カットインの描画
 		DrawCutIn();

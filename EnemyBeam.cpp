@@ -17,7 +17,7 @@ Beam::Beam() {
 		dangerSignal_[i].rightBottom = {};
 		dangerSignal_[i].rightTop = {};
 		dangerSignal_[i].imagePos = { 0,0 };
-		dangerSignal_[i].imageWidth = { 240 };
+		dangerSignal_[i].imageWidth = { 400 };
 		dangerSignal_[i].imageHeight = { 900 };
 		dangerSignal_[i].image = images_.dangerSignal;
 		dangerSignal_[i].color = {};
@@ -29,7 +29,7 @@ Beam::Beam() {
 		beam_[i].rightBottom = {};
 		beam_[i].rightTop = {};
 		beam_[i].imagePos = { 0,0 };
-		beam_[i].imageWidth = { 240 };
+		beam_[i].imageWidth = { 400 };
 		beam_[i].imageHeight = { 1500 };
 		beam_[i].image = images_.beam;
 		beam_[i].color = {};
@@ -47,7 +47,7 @@ Beam::Beam() {
 		duringBeamTimer_ = duringBeamTimeSet_;
 	}
 	//ビームの速度
-	beamSpeed_ = 20.0f;
+	beamSpeed_ = 50.0f;
 }
 
 //デストラクタ
@@ -66,7 +66,7 @@ void Beam::Move() {
 			transitionTimer_--;
 		} else {
 			//ビームを出す
-			if (beam_[i].pos.y <= 450.0f) {
+			if (beam_[i].pos.y <= 500.0f) {
 				//速度を追加
 				beam_[i].pos.y += beamSpeed_;
 			} else {
@@ -85,15 +85,15 @@ void Beam::Move() {
 		Novice::ScreenPrintf(1000, i * 20, "flag = %d , rand = %f , pos = {%f,%f}", dangerSignalFlag_[i], beamRandNumberX_[i], dangerSignal_[i].pos.x, dangerSignal_[i].pos.y);
 
 		//矩形4点の更新(危険信号)
-		dangerSignal_[i].leftTop = { dangerSignal_[i].pos.x - dangerSignal_[i].radius.x,dangerSignal_[i].pos.y - dangerSignal_[i].radius.y };
-		dangerSignal_[i].rightTop = { dangerSignal_[i].pos.x + dangerSignal_[i].radius.x,dangerSignal_[i].pos.y - dangerSignal_[i].radius.y };
-		dangerSignal_[i].leftBottom = { dangerSignal_[i].pos.x - dangerSignal_[i].radius.x,dangerSignal_[i].pos.y + dangerSignal_[i].radius.y };
-		dangerSignal_[i].rightBottom = { dangerSignal_[i].pos.x + dangerSignal_[i].radius.x,dangerSignal_[i].pos.y + dangerSignal_[i].radius.y };
+		dangerSignal_[i].leftTop = { dangerSignal_[i].pos.x - dangerSignal_[i].radius.x - 160.0f,dangerSignal_[i].pos.y - dangerSignal_[i].radius.y };
+		dangerSignal_[i].rightTop = { dangerSignal_[i].pos.x + dangerSignal_[i].radius.x + 160.0f,dangerSignal_[i].pos.y - dangerSignal_[i].radius.y };
+		dangerSignal_[i].leftBottom = { dangerSignal_[i].pos.x - dangerSignal_[i].radius.x - 160.0f,dangerSignal_[i].pos.y + dangerSignal_[i].radius.y };
+		dangerSignal_[i].rightBottom = { dangerSignal_[i].pos.x + dangerSignal_[i].radius.x + 160.0f,dangerSignal_[i].pos.y + dangerSignal_[i].radius.y };
 		//矩形4点の更新(ビーム)
-		beam_[i].leftTop = { beam_[i].pos.x - beam_[i].radius.x,beam_[i].pos.y - beam_[i].radius.y };
-		beam_[i].rightTop = { beam_[i].pos.x + beam_[i].radius.x,beam_[i].pos.y - beam_[i].radius.y };
-		beam_[i].leftBottom = { beam_[i].pos.x - beam_[i].radius.x,beam_[i].pos.y + beam_[i].radius.y };
-		beam_[i].rightBottom = { beam_[i].pos.x + beam_[i].radius.x,beam_[i].pos.y + beam_[i].radius.y };
+		beam_[i].leftTop = { beam_[i].pos.x - beam_[i].radius.x - 160.0f,beam_[i].pos.y - beam_[i].radius.y };
+		beam_[i].rightTop = { beam_[i].pos.x + beam_[i].radius.x + 160.0f,beam_[i].pos.y - beam_[i].radius.y };
+		beam_[i].leftBottom = { beam_[i].pos.x - beam_[i].radius.x - 160.0f,beam_[i].pos.y + beam_[i].radius.y };
+		beam_[i].rightBottom = { beam_[i].pos.x + beam_[i].radius.x + 160.0f,beam_[i].pos.y + beam_[i].radius.y };
 	}
 }
 

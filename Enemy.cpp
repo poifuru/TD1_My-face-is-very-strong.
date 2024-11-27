@@ -41,6 +41,8 @@ Enemy::Enemy() {
 	rushAttackPower_ = 100;//突進攻撃
 	allDerectionShotPower_ = 20;//全方向弾
 	allDerectionPower_ = 50;//全方向弾時の突進
+	beamPower_ = 300;//ビーム
+	bomPower_ = 250;//ボム
 	//==============================================
 
 	//[fallingAttack]===============================
@@ -84,6 +86,11 @@ Enemy::Enemy() {
 	beamStartPoint_ = {};
 	//ビーム中のボスの速度
 	duringBeamSpeed_ = { 5.0f,10.0f };
+	//==============================================
+
+	//[bom]=========================================
+	//ボム
+	bom_ = {};
 	//==============================================
 
 	//[shake]=======================================
@@ -165,6 +172,15 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 			//ランダムなposX
 			beam_.beamRandNumberX_[i] = float(rand() % (1920 - 240) + 240);
 		}
+	}
+	if (keys[DIK_U] && !preKeys[DIK_U] && situation_ == moving) {
+		//元の速度の記録
+		movingVelocity_.x = velocity_.x;
+		//ビーム後に戻るポイントの設定
+		bomStartPoint_.x = quad_.pos.x;
+		bomStartPoint_.y = quad_.pos.y;
+		//ビームを放ち始める
+		situation_ = bom;
 	}
 
 	//[moving]======================================
@@ -421,6 +437,38 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 	}
 	//==============================================
 	
+	//[bom]=========================================
+	if (situation_ == bom) {
+		//シェイクフラグ
+		if (!isShaked_) {
+			shakeFlag_ = true;
+			isShaked_ = true;
+		}
+		if (!shakeFlag_ && isShaked_) {
+			//ボムフラグを立てる
+			bom_.bomFlag_ = true;
+			//ボスのposにボムのposを代入
+			bom_.quad_.pos.x = quad_.pos.x;
+			bom_.quad_.pos.y = quad_.pos.y;
+
+			//ボムの動き
+			bom_.Move();
+
+			//ボムが最大サイズになったら
+			if (bom_.quad_.radius.x > 900.0f && bom_.quad_.radius.y > 900.0f) {
+				//初期化
+				quad_.pos.x = bomStartPoint_.x;
+				quad_.pos.y = bomStartPoint_.y;
+				isShaked_ = false;
+				bom_.quad_.radius.x = 0.0f;
+				bom_.quad_.radius.y = 0.0f;
+				bom_.bomFlag_ = false;
+				situation_ = moving;//シチュエーション
+			}
+		}
+	}
+	//==============================================
+	
 	//シェイクフラグ
 	if (shakeFlag_) {
 		if (shakeTimer_ > 0 && randMax_ > 0) {
@@ -447,6 +495,9 @@ void Enemy::Move(const char keys[], const char preKeys[]) {
 
 //敵を描画する関数
 void Enemy::Draw() {
+	//ビーム
+	beam_.Draw();
+	//ボス
 	Novice::DrawQuad(
 		int(quad_.leftTop.x), int(quad_.leftTop.y),
 		int(quad_.rightTop.x), int(quad_.rightTop.y),
@@ -455,9 +506,9 @@ void Enemy::Draw() {
 		quad_.imagePos.x, quad_.imagePos.y,
 		quad_.imageWidth, quad_.imageHeight,
 		quad_.image, WHITE
-	);
+	);	
 	//弾
 	bullet_.Draw();
-	//ビーム
-	beam_.Draw();
+	//ボム
+	bom_.Draw();
 }
