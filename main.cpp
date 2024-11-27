@@ -37,6 +37,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int gameBackGround_image = image.gameBackGround;
 	//背景のカバー
 	int gameBackGroundCover_image = image.gameBackGroundCover;
+	//ult
+	int playerUlt_image = image.playerUlt;
 
 	Player* player = new Player();
 	Enemy* enemy = new Enemy();
@@ -83,6 +85,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			//背景
 			Novice::DrawQuad(0, 0, 1920, 0, 0, 1080, 1920, 1080, 0, 0, 1920, 1080, backGround_image, WHITE);
+			//ult
+			Novice::DrawQuad(0, 0, 1920, 0, 0, 840, 1920, 840, 0, 0, 1920, 840, playerUlt_image, WHITE);
+
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================
