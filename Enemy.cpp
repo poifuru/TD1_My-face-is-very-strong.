@@ -702,6 +702,25 @@ void Enemy::Draw() {
 		quad_.imageWidth, quad_.imageHeight,
 		quad_.image, WHITE
 	);
+
+	//敵のHPバーの描画
+	//HPバーの背景
+	Novice::DrawBox(26, 26, 812, 47, 0.0f, 0x847e87FF, kFillModeSolid);
+
+	//HPバーの描画
+	Novice::DrawBox(
+		32, 32,
+		800, 35,
+		0.0f, BLACK, kFillModeSolid
+	);
+
+	//HPバーの描画
+	Novice::DrawBox(
+		32, 32,
+		static_cast<int>(hp_ * 0.08f), 35,
+		0.0f, RED, kFillModeSolid
+	);
+
 	//弾
 	bullet_->Draw();
 	//ボム

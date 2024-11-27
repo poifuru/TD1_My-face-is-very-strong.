@@ -1,6 +1,4 @@
-
 #include "Ultimate.h"
-
 
 //=======================================
 //
@@ -29,6 +27,7 @@ int Ultimate = 0;
 int ULTTimer = chargeTime;
 int isCutInEase = false;
 int isCutInPush = false;
+
 
 Vector2 cutInPos = {
 	-1 * cutInWidth - 5,margin
@@ -166,9 +165,6 @@ void ULTUpdate(char* keys, char* preKeys)
 	if (keys[DIK_3]) {
 		Ultimate = 100;
 	}
-
-	Novice::ScreenPrintf(1300, 80, "Ultimate : %d", Ultimate);
-
 }
 
 //=======================================
@@ -183,5 +179,10 @@ void DrawCutIn()
 		static_cast<int>(cutInWidth),
 		static_cast<int>(cutInHeight), 0.0f, BLUE, kFillModeSolid);
 
-	Novice::DrawEllipse(1500, 80, 50, 50, 0.0f, BLUE, kFillModeWireFrame);
+}
+
+void DrawBar() {
+	//ULTバーの背景
+	Novice::DrawBox(480, 928, 96, 96, 0.0f, 0x847e87FF, kFillModeSolid);
+	Novice::DrawBox(480, 932 + (96 - Ultimate), 96, 96, 0.0f, BLUE, kFillModeSolid);
 }

@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//キー入力を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
-	
+
 	//scene
 	int scene = title;
 	//画像
@@ -122,18 +122,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//敵の描画
 			enemy->Draw();
 
-			//プレイヤーの描画
-			player->Draw();
+			//カットインの描画
+			DrawCutIn();
+
+			//Barの描画
+			DrawBar();
 
 			//地面
 			//Novice::DrawBox(0, 900, 1920, 180, 0.0f, WHITE, kFillModeSolid);
 			Novice::DrawQuad(0, 900, 1920, 900, 0, 1080, 1920, 1080, 0, 0, 1920, 180, gameBackGroundCover_image, WHITE);
 
-			//カットインの描画
-			DrawCutIn();
+			//プレイヤーの描画
+			player->Draw();
 
 			//デバッグ用
-			debugprint(player, enemy);
+			//debugprint(player, enemy);
 			///===========================
 			/// ↑↑↑ 描画処理 ↑↑↑
 			///===========================
