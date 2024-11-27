@@ -95,6 +95,9 @@ public://メンバ変数
 public://status
 	//HP
 	int hp_;
+	//無敵時間
+	int invincible_;
+	int invincibleTime_;
 	//攻撃力
 	int fallingAttackPower_;//落下攻撃
 	int rushAttackPower_;//突進攻撃
