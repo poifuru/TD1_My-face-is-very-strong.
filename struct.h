@@ -112,7 +112,8 @@ struct SEs {
 
 	//ULT
 	int ULT = Novice::LoadAudio("./Resources./Audios./SEs./ULT.mp3");
-	int ULTReady = Novice::LoadAudio("./Resources./Audios./SEs./ULTReady.mp3");
+	
+	int sword = Novice::LoadAudio("./Resources./Audios./SEs./sword.mp3");
 
 };
 

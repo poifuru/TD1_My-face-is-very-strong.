@@ -179,9 +179,9 @@ void ULTUpdate(char* keys, char* preKeys, Enemy* enemy)
 	//	Ultimate = 50;
 	//}
 
-	if (keys[DIK_3]) {
-		Ultimate = 100;
-	}
+	//if (keys[DIK_3]) {
+	//	Ultimate = 100;
+	//}
 
 
 }
