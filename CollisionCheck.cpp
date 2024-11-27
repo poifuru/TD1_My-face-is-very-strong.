@@ -39,6 +39,29 @@ void collisionCheck(Player* player, Enemy* enemy)
 			}
 		}
 	}
+
+	//プレイヤーとビームの当たり判定
+	for (int i = 0; i < 3; i++) {
+		if (enemy->beam_.beamFlag_[i]) {
+			if (player->quad_.pos.x + player->quad_.radius.x > enemy->beam_.beam_[i].pos.x - enemy->beam_.beam_[i].radius.x &&
+				player->quad_.pos.x - player->quad_.radius.x < enemy->beam_.beam_[i].pos.x + enemy->beam_.beam_[i].radius.x &&
+				player->quad_.pos.y + player->quad_.radius.y > enemy->beam_.beam_[i].pos.y - enemy->beam_.beam_[i].radius.y &&
+				player->quad_.pos.y - player->quad_.radius.y < enemy->beam_.beam_[i].pos.y + enemy->beam_.beam_[i].radius.y) {
+				//プレイヤーのHPを減らす
+				player->HP_ -= enemy->beamPower_;
+			}
+		}
+	}
+
+	//プレイヤーとボムの当たり判定
+	if (enemy->bom_.bomFlag_) {
+		if (player->quad_.pos.x + player->quad_.radius.x > enemy->bom_.quad_.pos.x - enemy->bom_.quad_.radius.x &&
+			player->quad_.pos.x - player->quad_.radius.x < enemy->bom_.quad_.pos.x + enemy->bom_.quad_.radius.x &&
+			player->quad_.pos.y + player->quad_.radius.y > enemy->bom_.quad_.pos.y - enemy->bom_.quad_.radius.y &&
+			player->quad_.pos.y - player->quad_.radius.y < enemy->bom_.quad_.pos.y + enemy->bom_.quad_.radius.y) {
+			//プレイヤーのHPを減らす
+			player->HP_ -= enemy->bomPower_;
+		}
+	}
+
 }
-
-
