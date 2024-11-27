@@ -40,21 +40,21 @@ Enemy::Enemy() {
 
 	//[SE]==========================================
 	//fallingAttack
-	fallingAttackSE_ = SE.enemyFallingAttack;
+	fallingAttackSE_ = SE_.enemyFallingAttack;
 	fallingAttackHandle_ = -1;
 	//rushAttack
-	rushAttackSE_ = SE.enemyRushAttack;
+	rushAttackSE_ = SE_.enemyRushAttack;
 	rushAttackHandle_ = -1;
 	//allDerectionShot
-	allDerectionShotSE_ = SE.enemyAllDerectionShot;
+	allDerectionShotSE_ = SE_.enemyAllDerectionShot;
 	allDerectionShotHandle_ = -1;
-	bulletSE_ = SE.enemyBullet;
+	bulletSE_ = SE_.enemyBullet;
 	bulletHandle_ = -1;
 	//beam
-	beamSE_ = SE.enemyBeam;
+	beamSE_ = SE_.enemyBeam;
 	beamHandle_ = -1;
 	//bom
-	bomSE_ = SE.enemyBom;
+	bomSE_ = SE_.enemyBom;
 	bomHandle_ = -1;
 	//==============================================
 

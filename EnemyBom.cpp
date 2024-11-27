@@ -21,6 +21,9 @@ Bom::Bom() {
 	acceleration_ = { 0.5f,0.5f };
 	//ボムフラグ
 	bomFlag_ = false;
+	//音
+	enemyDuringBomSE_ = SE_.enemyDuringBom;
+	enemyDuringBomHandle_ = -1;
 }
 
 //デストラクタ
@@ -36,6 +39,8 @@ void Bom::Move() {
 			velocity_.x += acceleration_.x;
 		} else {
 			velocity_.x = -5.0f;
+			//音
+			enemyDuringBomHandle_ = Novice::PlayAudio(enemyDuringBomSE_, false, 0.03f);
 		}
 		//速度Yに加速度を追加
 		if (velocity_.y <= 12.0f) {

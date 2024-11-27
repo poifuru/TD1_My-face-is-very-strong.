@@ -100,8 +100,10 @@ struct SEs {
 	int enemyBullet = Novice::LoadAudio("./Resources./Audios./SEs./enemyBullet.mp3");
 	//beam
 	int enemyBeam = Novice::LoadAudio("./Resources./Audios./SEs./enemyBeam.mp3");
+	int enemyDuringBeam = Novice::LoadAudio("./Resources./Audios./SEs./enemyDuringBeam.mp3");
 	//bom
 	int enemyBom = Novice::LoadAudio("./Resources./Audios./SEs./enemyBom.mp3");
+	int enemyDuringBom = Novice::LoadAudio("./Resources./Audios./SEs./enemyDuringBom.mp3");
 };
 
 //オブジェクトの構造体====================
