@@ -5,6 +5,8 @@ class Beam {
 public://メンバ変数
 	//画像
 	Images images_;
+	//SE
+	SEs SE_;
 	//ビームの数
 	int beamNumber_;
 	//描画(危険信号)
@@ -25,6 +27,9 @@ public://メンバ変数
 	//ビーム中のタイマー
 	int duringBeamTimeSet_;
 	int duringBeamTimer_;
+	//音
+	int enemyDuringBeamSE_;
+	int enemyDuringBeamHandle_;
 public://コンストラクタとデストラクタ
 	//コンストラクタ
 	Beam();

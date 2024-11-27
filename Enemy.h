@@ -10,7 +10,7 @@ public://メンバ変数
 	//画像
 	Images images_;
 	//SE
-	SEs SE;
+	SEs SE_;
 	//速度
 	Vector2 velocity_;
 	//加速度

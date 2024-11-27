@@ -48,6 +48,9 @@ Beam::Beam() {
 	}
 	//ビームの速度
 	beamSpeed_ = 50.0f;
+	//音
+	enemyDuringBeamSE_ = SE_.enemyDuringBeam;
+	enemyDuringBeamHandle_ = -1;
 }
 
 //デストラクタ
@@ -65,6 +68,10 @@ void Beam::Move() {
 		if (transitionTimer_ > 0) {
 			transitionTimer_--;
 		} else {
+			//音
+			if (beam_[i].pos.y <= 800.0f) {
+				enemyDuringBeamHandle_ = Novice::PlayAudio(enemyDuringBeamSE_, false, 0.0015f);
+			}
 			//ビームを出す
 			if (beam_[i].pos.y <= 500.0f) {
 				//速度を追加
