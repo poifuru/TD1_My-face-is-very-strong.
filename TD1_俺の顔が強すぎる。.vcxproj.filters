@@ -39,9 +39,14 @@
       <Filter>ソースは中濃\Player</Filter>
     </ClCompile>
     <ClCompile Include="CollisionCheck.cpp" />
-    <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="Ultimate.cpp" />
     <ClCompile Include="debug.cpp" />
+    <ClCompile Include="EnemyBeam.cpp">
+      <Filter>ソースは中濃\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>ソースは中濃\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enum.h">
@@ -150,9 +155,14 @@
       <Filter>ヘッダー入れるとこ\Player</Filter>
     </ClInclude>
     <ClInclude Include="CollisionCheck.h" />
-    <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="Ultimate.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>ヘッダー入れるとこ\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBeam.h">
+      <Filter>ヘッダー入れるとこ\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー入れるとこ">

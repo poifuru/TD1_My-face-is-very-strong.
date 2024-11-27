@@ -14,11 +14,24 @@ struct IntVector2 {
 
 //画像を入れておく構造体
 struct Images {
+	//サンプル
 	int white1x1 = Novice::LoadTexture("./Resources./Images./white1x1.png");
-	int bossStupidFace = Novice::LoadTexture("./Resources./Images./AHO.png");
-	int bossNormalFace = Novice::LoadTexture("./Resources./Images./normalFace.png");
-	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOyellow.png");
-	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKOred.png");
+	//boss
+	int bossStupidFace = Novice::LoadTexture("./Resources./Images./AHO.png");//stupid
+	int bossStupidLeftFace = Novice::LoadTexture("./Resources./Images./AHOLeft.png");//stupidLeft
+	int bossStupidRightFace = Novice::LoadTexture("./Resources./Images./AHORight.png");//stupidRight
+	int bossNormalFace = Novice::LoadTexture("./Resources./Images./normalFace.png");//Normal
+	int bossNormalLeftFace = Novice::LoadTexture("./Resources./Images./normalLeft.png");//NormalLeft
+	int bossNormalRightFace = Novice::LoadTexture("./Resources./Images./normalRight.png");//NormalRight
+	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOyellow.png");//angry
+	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKOLeft.png");//angryLeft
+	int bossAngryYellowFace = Novice::LoadTexture("./Resources./Images./OKORight.png");//angryRight
+	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKOred.png");//angryRed
+	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKORedLeft.png");//angryRedLeft
+	int bossAngryRedFace = Novice::LoadTexture("./Resources./Images./OKORedRight.png");//angryRedRight
+	//beam
+	int dangerSignal = Novice::LoadTexture("./Resources./Images./dangerSignal.png");
+	int beam = Novice::LoadTexture("./Resources./Images./beam.png");
 };
 
 //オブジェクトの構造体====================

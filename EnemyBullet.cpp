@@ -1,7 +1,7 @@
 ﻿#include <Novice.h>
 #include <corecrt_math_defines.h>
-#include "EnemyBullet.h"
 #include <math.h>
+#include "EnemyBullet.h"
 
 //コンストラクタ
 Bullet::Bullet() {
@@ -45,13 +45,13 @@ void Bullet::Move() {
 			angle_ = i * (2 * float(M_PI) / ammo_);
 
 			//加速させる
-			if (velocity_[i].x <= 2.0f) {//x座標
+			if (velocity_[i].x <= 3.0f) {//x座標
 				velocity_[i].x += acceleration_[i].x;
 			} else {
 				velocity_[i].x = 10.0f;
 			}
 
-			if (velocity_[i].y <= 2.0f) {//y座標
+			if (velocity_[i].y <= 3.0f) {//y座標
 				velocity_[i].y += acceleration_[i].y;
 			} else {
 				velocity_[i].y = 10.0f;
