@@ -137,6 +137,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				//playerのHP
 				player->HP_ = 1000;
 				player->weapon_->weaponMode_ = 0;
+				player->weapon_->wheelScroll_ = 60;
 				//enemyの座標
 				enemy->quad_.pos.x = 980.0f;
 				enemy->quad_.pos.y = 540.0f;

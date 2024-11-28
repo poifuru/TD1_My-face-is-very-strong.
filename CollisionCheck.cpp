@@ -3,7 +3,6 @@
 
 void collisionCheck(Player* player, Enemy* enemy)
 {
-
 	SEs SE;
 
 	int allSE = SE.playerHitAll;
@@ -12,8 +11,6 @@ void collisionCheck(Player* player, Enemy* enemy)
 	int rushSEHandle = -1;
 	int swordSE = SE.sword;
 	int swordSEHandle = -1;
-
-
 
 	//弾と敵の当たり判定
 	for (int i = 0; i < 30; i++) {
