@@ -128,7 +128,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 				//sistemClick
-				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.3f);
 				
 				//初期化
 				//playerの座標
@@ -257,7 +257,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 				//sistemClick
-				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.3f);
 				
 				scene = title;
 			}
@@ -293,7 +293,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			///===========================
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 				//sistemClick
-				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.1f);
+				sistemClickHandle = Novice::PlayAudio(sistemClickSE, false, 0.3f);
 				
 				scene = title;
 			}
@@ -332,7 +332,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			Novice::StopAudio(gameHandle);
 			Novice::StopAudio(gameClearHandle);
 			if (!Novice::IsPlayingAudio(titleHandle) || titleHandle == -1) {
-				titleHandle = Novice::PlayAudio(titleBGM, true, 0.03f);
+				titleHandle = Novice::PlayAudio(titleBGM, true, 0.1f);
 			}
 			break;
 		case game:
@@ -340,7 +340,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			Novice::StopAudio(gameOverHandle);
 			Novice::StopAudio(gameClearHandle);
 			if (!Novice::IsPlayingAudio(gameHandle) || gameHandle == -1) {
-				gameHandle = Novice::PlayAudio(gameBGM, true, 0.03f);
+				gameHandle = Novice::PlayAudio(gameBGM, true, 0.1f);
 			}
 			break;
 		case gameClear:
@@ -348,7 +348,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			Novice::StopAudio(gameOverHandle);
 			Novice::StopAudio(gameHandle);
 			if (!Novice::IsPlayingAudio(gameClearHandle) || gameClearHandle == -1) {
-				gameClearHandle = Novice::PlayAudio(gameClearBGM, true, 0.02f);
+				gameClearHandle = Novice::PlayAudio(gameClearBGM, true, 0.1f);
 			}
 			break;
 		case gameOver:
@@ -356,7 +356,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			Novice::StopAudio(gameHandle);
 			Novice::StopAudio(gameClearHandle);
 			if (!Novice::IsPlayingAudio(gameOverHandle) || gameOverHandle == -1) {
-				gameOverHandle = Novice::PlayAudio(gameOverBGM, true, 0.03f);
+				gameOverHandle = Novice::PlayAudio(gameOverBGM, true, 0.1f);
 			}
 			break;
 		}

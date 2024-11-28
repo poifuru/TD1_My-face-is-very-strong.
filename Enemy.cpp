@@ -170,7 +170,7 @@ void Enemy::Move() {
 			if (hp_ >= 5000 && hp_ <= 10000) {//HP100%以下HP50%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 40) {//落下攻撃40%
 					//fallingAttack
-					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.1f);
+					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -183,7 +183,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 41  && attackNumber_ <= 70) {//突進攻撃30%
 					//rushAttack
-					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -199,7 +199,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 71 && attackNumber_ <= 90) {//全方向弾20%
 					//allDerectionShot
-					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -210,7 +210,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 91 && attackNumber_ <= 95) {//ビーム5%
 					//beam
-					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -229,7 +229,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 96 && attackNumber_ <= 100) {//ボム5%
 					//bom
-					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -244,7 +244,7 @@ void Enemy::Move() {
 			} else if (hp_ >= 3000 && hp_ < 5000) {//HP50%未満HP30%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 10) {//落下攻撃10%
 					//fallingAttack
-					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.1f);
+					fallingAttackHandle_ = Novice::PlayAudio(fallingAttackSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -257,7 +257,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 11 && attackNumber_ <= 50) {//突進攻撃40%
 					//rushAttack
-					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -273,7 +273,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 51 && attackNumber_ <= 80) {//全方向弾30%
 					//allDerectionShot
-					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -284,7 +284,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 81 && attackNumber_ <= 90) {//ビーム10%
 					//beam
-					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -303,7 +303,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 91 && attackNumber_ <= 100) {//ボム10%
 					//bom
-					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -318,7 +318,7 @@ void Enemy::Move() {
 			} else if (hp_ >= 0 && hp_ < 3000) {//HP30%未満HP0%以上
 				if (attackNumber_ >= 1 && attackNumber_ <= 15) {//突進攻撃15%
 					//rushAttack
-					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.1f);
+					rushAttackHandle_ = Novice::PlayAudio(rushAttackSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -334,7 +334,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 16 && attackNumber_ <= 30) {//全方向弾15%
 					//allDerectionShot
-					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.1f);
+					allDerectionShotHandle_ = Novice::PlayAudio(allDerectionShotSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -345,7 +345,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 31 && attackNumber_ <= 65) {//ビーム35%
 					//beam
-					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.1f);
+					beamHandle_ = Novice::PlayAudio(beamSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
@@ -364,7 +364,7 @@ void Enemy::Move() {
 				}
 				if (attackNumber_ >= 66 && attackNumber_ <= 100) {//ボム35%
 					//bom
-					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.1f);
+					bomHandle_ = Novice::PlayAudio(bomSE_, false, 0.3f);
 					
 					//顔の向き
 					prevDirection_ = direction_;
